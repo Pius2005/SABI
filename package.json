@@ -1,0 +1,37 @@
+{
+  "name": "sabi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SABI — a voice-first digital literacy platform for elderly Nigerians",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently -n api,web -c cyan,magenta \"npm run dev -w @sabi/api\" \"npm run dev -w @sabi/web\"",
+    "dev:api": "npm run dev -w @sabi/api",
+    "dev:web": "npm run dev -w @sabi/web",
+    "build": "npm run build -w @sabi/web",
+    "start": "npm run start -w @sabi/api",
+    "test": "npm run test:api && npm run test:web",
+    "test:api": "npm run test -w @sabi/api",
+    "test:web": "npm run test -w @sabi/web",
+    "typecheck": "npm run typecheck -w @sabi/api && npm run typecheck -w @sabi/web",
+    "seed": "tsx scripts/seed.ts",
+    "content:build": "tsx scripts/content-build.ts",
+    "content:validate": "tsx scripts/content-validate.ts",
+    "content:status": "tsx scripts/content-status.ts",
+    "scam:eval": "tsx scripts/scam-eval.ts",
+    "voice:eval": "tsx scripts/voice-eval.ts",
+    "security:check": "tsx scripts/security-check.ts",
+    "verify": "npm run typecheck && npm test && npm run content:validate && npm run scam:eval && npm run voice:eval && npm run security:check && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

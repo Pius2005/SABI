@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+!.env.example
+apps/api/data/
+apps/api/tts-cache/
+coverage/
+playwright-report/
+test-results/
+.DS_Store
+Thumbs.db
+*.log
+docs/VOICE_EVAL_REPORT.md

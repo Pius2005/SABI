@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SABI app icon, maskable">
+  <rect width="512" height="512" fill="#000"/>
+  <path d="M156 172c0-20 16-36 36-36h128c20 0 36 16 36 36v112c0 20-16 36-36 36h-84l-56 48c-8 7-20 1-20-9v-39h-4c-20 0-36-16-36-36V172z" fill="#fff"/>
+  <text x="256" y="252" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="88" font-weight="700" text-anchor="middle" fill="#000">SA</text>
+  <circle cx="190" cy="304" r="11" fill="#000"/>
+  <circle cx="256" cy="304" r="11" fill="#000"/>
+  <circle cx="322" cy="304" r="11" fill="#000"/>
+</svg>

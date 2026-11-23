@@ -1,0 +1,1787 @@
+[
+  {
+    "slug": "hold-and-switch-on",
+    "path": "phone-basics",
+    "order": 1,
+    "minutes": 4,
+    "titleKey": "lesson.hold_and_switch_on.title",
+    "title": "Hold and switch on your phone",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.hold_and_switch_on.s1",
+        "text": "Hold the phone in your hand. The screen faces you.",
+        "alt": "A hand holding a black smartphone with the screen facing the person.",
+        "visual": "phone-front",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.hold_and_switch_on.s2",
+        "text": "Find the small button on the right side of the phone.",
+        "alt": "The right side of a phone, with the power button circled.",
+        "visual": "phone-side",
+        "spotlight": { "shape": "circle", "x": 0.72, "y": 0.34, "w": 0.16, "h": 0.14 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.hold_and_switch_on.s3",
+        "text": "Press and hold that button for three seconds.",
+        "alt": "A finger pressing the power button on the side of a phone.",
+        "visual": "phone-side",
+        "spotlight": { "shape": "circle", "x": 0.7, "y": 0.32, "w": 0.2, "h": 0.18 }
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.hold_and_switch_on.s4",
+        "text": "The screen lights up. You have switched it on.",
+        "alt": "A phone screen lit up with the home screen showing.",
+        "visual": "phone-home",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.hold_and_switch_on.check",
+    "selfCheck": "Did your screen light up? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "charge-your-phone",
+    "path": "phone-basics",
+    "order": 2,
+    "minutes": 3,
+    "titleKey": "lesson.charge_your_phone.title",
+    "title": "Charge your phone",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.charge_your_phone.s1",
+        "text": "Find the small charging hole at the bottom of the phone.",
+        "alt": "The bottom edge of a phone showing the charging port.",
+        "visual": "phone-bottom",
+        "spotlight": { "shape": "circle", "x": 0.44, "y": 0.62, "w": 0.14, "h": 0.12 }
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.charge_your_phone.s2",
+        "text": "Put the charger inside. Push gently, never force it.",
+        "alt": "A charger being placed into the charging port.",
+        "visual": "phone-bottom",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.charge_your_phone.s3",
+        "text": "You will see a battery picture. Leave it to charge.",
+        "alt": "A phone screen showing a battery charging symbol.",
+        "visual": "phone-charging",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.charge_your_phone.check",
+    "selfCheck": "Is your phone charging now? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "touch-the-screen",
+    "path": "phone-basics",
+    "order": 3,
+    "minutes": 4,
+    "titleKey": "lesson.touch_the_screen.title",
+    "title": "Touch the screen",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.touch_the_screen.s1",
+        "text": "Your phone listens to your finger. Touch gently.",
+        "alt": "A finger gently touching a phone screen.",
+        "visual": "phone-touch",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.touch_the_screen.s2",
+        "text": "Tap once to open something. Tap means touch and lift.",
+        "alt": "A hand tapping an app picture once.",
+        "visual": "phone-home",
+        "spotlight": { "shape": "circle", "x": 0.18, "y": 0.34, "w": 0.2, "h": 0.18 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.touch_the_screen.s3",
+        "text": "If you touch the wrong thing, press Back. Nothing is broken.",
+        "alt": "A phone screen with the Back button at the bottom.",
+        "visual": "phone-home",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.touch_the_screen.s4",
+        "text": "You can try again as many times as you like.",
+        "alt": "A calm phone screen with a friendly check mark.",
+        "visual": "phone-home",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.touch_the_screen.check",
+    "selfCheck": "Did you tap and open something? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "volume-and-silent",
+    "path": "phone-basics",
+    "order": 4,
+    "minutes": 3,
+    "titleKey": "lesson.volume_and_silent.title",
+    "title": "Volume and silent",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.volume_and_silent.s1",
+        "text": "The volume buttons are on the side of the phone.",
+        "alt": "Two small volume buttons on the side of a phone.",
+        "visual": "phone-side",
+        "spotlight": { "shape": "circle", "x": 0.7, "y": 0.44, "w": 0.18, "h": 0.2 }
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.volume_and_silent.s2",
+        "text": "Press the top button to make the sound louder.",
+        "alt": "A finger pressing the top volume button.",
+        "visual": "phone-side",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.volume_and_silent.s3",
+        "text": "Press the bottom button to make it quieter.",
+        "alt": "A finger pressing the lower volume button.",
+        "visual": "phone-side",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.volume_and_silent.check",
+    "selfCheck": "Did the sound change? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "wifi-and-data",
+    "path": "phone-basics",
+    "order": 5,
+    "minutes": 5,
+    "titleKey": "lesson.wifi_and_data.title",
+    "title": "Wi-Fi and mobile data",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.wifi_and_data.s1",
+        "text": "Wi-Fi is internet from a router at home or in a shop.",
+        "alt": "A small home router with signal waves.",
+        "visual": "wifi",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.wifi_and_data.s2",
+        "text": "Mobile data is internet from your network. It uses airtime.",
+        "alt": "A phone showing mobile data and airtime.",
+        "visual": "data",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.wifi_and_data.s3",
+        "text": "Open Settings, then Wi-Fi, to join a network.",
+        "alt": "A phone Settings screen with Wi-Fi highlighted.",
+        "visual": "settings-wifi",
+        "spotlight": { "shape": "rect", "x": 0.12, "y": 0.3, "w": 0.76, "h": 0.14 }
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.wifi_and_data.s4",
+        "text": "Ask for the Wi-Fi password before you join.",
+        "alt": "A shopkeeper sharing a Wi-Fi password with a customer.",
+        "visual": "wifi-password",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.wifi_and_data.check",
+    "selfCheck": "Do you know the difference now? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "text-size-and-brightness",
+    "path": "phone-basics",
+    "order": 6,
+    "minutes": 3,
+    "titleKey": "lesson.text_size_and_brightness.title",
+    "title": "Text size and brightness",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.text_size_and_brightness.s1",
+        "text": "Open Settings. Find Display.",
+        "alt": "A phone Settings screen with Display highlighted.",
+        "visual": "settings-display",
+        "spotlight": { "shape": "rect", "x": 0.12, "y": 0.42, "w": 0.76, "h": 0.14 }
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.text_size_and_brightness.s2",
+        "text": "Choose Text size. Make the words bigger if you like.",
+        "alt": "A phone showing large text on the screen.",
+        "visual": "settings-text",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.text_size_and_brightness.s3",
+        "text": "Choose Brightness. Make the screen easy for your eyes.",
+        "alt": "A brightness slider on a phone screen.",
+        "visual": "settings-brightness",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.text_size_and_brightness.check",
+    "selfCheck": "Are the words easier to read? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "open-and-close-apps",
+    "path": "phone-basics",
+    "order": 7,
+    "minutes": 3,
+    "titleKey": "lesson.open_and_close_apps.title",
+    "title": "Open and close apps",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.open_and_close_apps.s1",
+        "text": "Apps are the small pictures on your screen.",
+        "alt": "A phone home screen with rows of app pictures.",
+        "visual": "phone-home",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.open_and_close_apps.s2",
+        "text": "Tap a picture once to open the app.",
+        "alt": "A finger tapping an app picture.",
+        "visual": "phone-home",
+        "spotlight": { "shape": "circle", "x": 0.42, "y": 0.42, "w": 0.18, "h": 0.16 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.open_and_close_apps.s3",
+        "text": "To close it, press the square button, then Close.",
+        "alt": "The recent apps screen with a Close all button.",
+        "visual": "recent-apps",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.open_and_close_apps.check",
+    "selfCheck": "Did you open and close an app? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "make-a-phone-call",
+    "path": "calls-and-family",
+    "order": 1,
+    "minutes": 5,
+    "titleKey": "lesson.make_a_phone_call.title",
+    "title": "Make a phone call",
+    "titleTexts": { "pcm": "Make one phone call" },
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.make_a_phone_call.s1",
+        "text": "Find the green phone picture. This is for calls.",
+        "texts": { "pcm": "Find di green phone picture. Na for call." },
+        "alt": "A green phone app picture on a phone screen.",
+        "visual": "phone-home",
+        "spotlight": { "shape": "circle", "x": 0.18, "y": 0.7, "w": 0.2, "h": 0.18 }
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.make_a_phone_call.s2",
+        "text": "Press the green phone with your finger.",
+        "texts": { "pcm": "Press di green phone with your finger." },
+        "alt": "A finger pressing the green phone app.",
+        "visual": "phone-home",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.make_a_phone_call.s3",
+        "text": "You will see numbers. Press the numbers of the person you want to call.",
+        "texts": { "pcm": "You go see numbers. Press di numbers of di person you want call." },
+        "alt": "A phone dialer with large number buttons.",
+        "visual": "dialer",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.make_a_phone_call.s4",
+        "text": "Now press the green call button.",
+        "texts": { "pcm": "Now press di green call button." },
+        "alt": "A green call button below the dialed number.",
+        "visual": "dialer",
+        "spotlight": { "shape": "circle", "x": 0.42, "y": 0.78, "w": 0.18, "h": 0.12 }
+      },
+      {
+        "id": "s5",
+        "textKey": "lesson.make_a_phone_call.s5",
+        "text": "When you finish, press the red button to end the call.",
+        "texts": { "pcm": "When you finish, press di red button to end di call." },
+        "alt": "A red end-call button on the call screen.",
+        "visual": "call-active",
+        "spotlight": { "shape": "circle", "x": 0.42, "y": 0.8, "w": 0.18, "h": 0.12 },
+        "practice": {
+          "app": "dialer",
+          "target": "call-button",
+          "instructionKey": "sandbox.dialer.call",
+          "instruction": "Press the green call button to make the call."
+        }
+      }
+    ],
+    "selfCheckKey": "lesson.make_a_phone_call.check",
+    "selfCheck": "Did you make a practice call? Press Yes, or Try again.",
+    "checkTexts": { "pcm": "You make one practice call? Press Yes or Try again." },
+    "sandboxTask": "sandbox.dialer.call"
+  },
+  {
+    "slug": "answer-and-end-a-call",
+    "path": "calls-and-family",
+    "order": 2,
+    "minutes": 3,
+    "titleKey": "lesson.answer_and_end_a_call.title",
+    "title": "Answer and end a call",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.answer_and_end_a_call.s1",
+        "text": "When someone calls, you see a green button and a red button.",
+        "alt": "An incoming call screen with green answer and red decline buttons.",
+        "visual": "call-incoming",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.answer_and_end_a_call.s2",
+        "text": "Press the green button to answer.",
+        "alt": "A finger pressing the green answer button.",
+        "visual": "call-incoming",
+        "spotlight": { "shape": "circle", "x": 0.28, "y": 0.74, "w": 0.2, "h": 0.14 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.answer_and_end_a_call.s3",
+        "text": "Press the red button to end the call.",
+        "alt": "A finger pressing the red end-call button.",
+        "visual": "call-active",
+        "spotlight": { "shape": "circle", "x": 0.52, "y": 0.74, "w": 0.2, "h": 0.14 }
+      }
+    ],
+    "selfCheckKey": "lesson.answer_and_end_a_call.check",
+    "selfCheck": "Did you answer and end a call? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "save-a-contact",
+    "path": "calls-and-family",
+    "order": 3,
+    "minutes": 4,
+    "titleKey": "lesson.save_a_contact.title",
+    "title": "Save a contact",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.save_a_contact.s1",
+        "text": "After a call, open your Phone app.",
+        "alt": "The Phone app open on a recent calls list.",
+        "visual": "dialer-recents",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.save_a_contact.s2",
+        "text": "Find the number you called.",
+        "alt": "A recent call number shown in the list.",
+        "visual": "dialer-recents",
+        "spotlight": { "shape": "rect", "x": 0.1, "y": 0.28, "w": 0.8, "h": 0.12 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.save_a_contact.s3",
+        "text": "Press Add to contacts. Type the person's name.",
+        "alt": "An Add to contacts screen with a name field.",
+        "visual": "contact-save",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.save_a_contact.s4",
+        "text": "Press Save. The name will show next time.",
+        "alt": "A Save button on the contact screen.",
+        "visual": "contact-save",
+        "spotlight": { "shape": "rect", "x": 0.1, "y": 0.72, "w": 0.8, "h": 0.12 }
+      }
+    ],
+    "selfCheckKey": "lesson.save_a_contact.check",
+    "selfCheck": "Did you save a name? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "video-call",
+    "path": "calls-and-family",
+    "order": 4,
+    "minutes": 3,
+    "titleKey": "lesson.video_call.title",
+    "title": "Make a video call",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.video_call.s1",
+        "text": "Open WhatsApp and open the chat of the person.",
+        "alt": "A WhatsApp chat with a family member.",
+        "visual": "whatsapp-chat",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.video_call.s2",
+        "text": "Press the small camera picture at the top.",
+        "alt": "A video camera icon at the top of a WhatsApp chat.",
+        "visual": "whatsapp-chat",
+        "spotlight": { "shape": "circle", "x": 0.76, "y": 0.12, "w": 0.12, "h": 0.1 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.video_call.s3",
+        "text": "Wait for the person to answer. Press red to stop.",
+        "alt": "A video call screen with a red end button.",
+        "visual": "video-call",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.video_call.check",
+    "selfCheck": "Did you start a video call? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "send-a-voice-note",
+    "path": "calls-and-family",
+    "order": 5,
+    "minutes": 6,
+    "titleKey": "lesson.send_a_voice_note.title",
+    "title": "Send a voice note on WhatsApp",
+    "titleTexts": { "pcm": "Send voice note for WhatsApp" },
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.send_a_voice_note.s1",
+        "text": "Open WhatsApp. Find the green picture with a phone.",
+        "texts": { "pcm": "Open WhatsApp. Find di green picture wey get phone." },
+        "alt": "The WhatsApp app picture on a phone screen.",
+        "visual": "phone-home",
+        "spotlight": { "shape": "circle", "x": 0.42, "y": 0.42, "w": 0.2, "h": 0.18 }
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.send_a_voice_note.s2",
+        "text": "Press the name of the person you want to talk to.",
+        "texts": { "pcm": "Press di name of di person you want talk to." },
+        "alt": "A WhatsApp chat list with names.",
+        "visual": "whatsapp-chats",
+        "spotlight": { "shape": "rect", "x": 0.08, "y": 0.26, "w": 0.84, "h": 0.12 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.send_a_voice_note.s3",
+        "text": "Find the small microphone picture at the bottom.",
+        "texts": { "pcm": "Find di small microphone picture down." },
+        "alt": "A microphone icon at the bottom of a WhatsApp chat.",
+        "visual": "whatsapp-chat",
+        "spotlight": { "shape": "circle", "x": 0.82, "y": 0.86, "w": 0.12, "h": 0.1 }
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.send_a_voice_note.s4",
+        "text": "Press and hold the microphone with your finger. Speak. Lift your finger to send.",
+        "texts": {
+          "pcm": "Press and hold di microphone with your finger. Talk. Lift your finger to send."
+        },
+        "alt": "A finger holding the microphone button while speaking.",
+        "visual": "whatsapp-chat",
+        "spotlight": { "shape": "circle", "x": 0.82, "y": 0.86, "w": 0.12, "h": 0.1 },
+        "practice": {
+          "app": "whatsapp",
+          "target": "mic-hold",
+          "instructionKey": "sandbox.whatsapp.voice_note",
+          "instruction": "Hold the microphone for two seconds, then lift your finger."
+        }
+      },
+      {
+        "id": "s5",
+        "textKey": "lesson.send_a_voice_note.s5",
+        "text": "Well done! Your message is sent.",
+        "texts": { "pcm": "Well done! Your message don send." },
+        "alt": "A sent voice note with a play button in the chat.",
+        "visual": "whatsapp-sent",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.send_a_voice_note.check",
+    "selfCheck": "Did you send the voice note? Press Yes, or Try again.",
+    "checkTexts": { "pcm": "You send di voice note? Press Yes or Try again." },
+    "sandboxTask": "sandbox.whatsapp.voice_note"
+  },
+  {
+    "slug": "take-and-send-a-photo",
+    "path": "calls-and-family",
+    "order": 6,
+    "minutes": 4,
+    "titleKey": "lesson.take_and_send_a_photo.title",
+    "title": "Take and send a photo",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.take_and_send_a_photo.s1",
+        "text": "Open WhatsApp and open the chat.",
+        "alt": "A WhatsApp chat screen.",
+        "visual": "whatsapp-chat",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.take_and_send_a_photo.s2",
+        "text": "Press the small paperclip picture.",
+        "alt": "A paperclip attachment icon in WhatsApp.",
+        "visual": "whatsapp-chat",
+        "spotlight": { "shape": "circle", "x": 0.12, "y": 0.86, "w": 0.12, "h": 0.1 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.take_and_send_a_photo.s3",
+        "text": "Choose Camera. Point at what you want to show.",
+        "alt": "A camera viewfinder on a phone.",
+        "visual": "camera",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.take_and_send_a_photo.s4",
+        "text": "Press the white circle to take the picture, then Send.",
+        "alt": "A white shutter circle and a send button.",
+        "visual": "camera",
+        "spotlight": { "shape": "circle", "x": 0.42, "y": 0.78, "w": 0.16, "h": 0.12 }
+      }
+    ],
+    "selfCheckKey": "lesson.take_and_send_a_photo.check",
+    "selfCheck": "Did you take and send a photo? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "open-whatsapp",
+    "path": "whatsapp",
+    "order": 1,
+    "minutes": 3,
+    "titleKey": "lesson.open_whatsapp.title",
+    "title": "Open WhatsApp",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.open_whatsapp.s1",
+        "text": "Look for the green picture with a white phone inside.",
+        "alt": "The green WhatsApp app picture.",
+        "visual": "phone-home",
+        "spotlight": { "shape": "circle", "x": 0.42, "y": 0.42, "w": 0.2, "h": 0.18 }
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.open_whatsapp.s2",
+        "text": "Tap it once. WhatsApp will open.",
+        "alt": "A finger tapping the WhatsApp app.",
+        "visual": "phone-home",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.open_whatsapp.s3",
+        "text": "You will see your chats. That means it is ready.",
+        "alt": "The WhatsApp chats list.",
+        "visual": "whatsapp-chats",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.open_whatsapp.check",
+    "selfCheck": "Did WhatsApp open? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "open-a-chat",
+    "path": "whatsapp",
+    "order": 2,
+    "minutes": 3,
+    "titleKey": "lesson.open_a_chat.title",
+    "title": "Open a chat",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.open_a_chat.s1",
+        "text": "In WhatsApp, you will see names of people.",
+        "alt": "A list of names in WhatsApp chats.",
+        "visual": "whatsapp-chats",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.open_a_chat.s2",
+        "text": "Tap the name of the person you want to talk to.",
+        "alt": "A finger tapping a name in the chat list.",
+        "visual": "whatsapp-chats",
+        "spotlight": { "shape": "rect", "x": 0.08, "y": 0.26, "w": 0.84, "h": 0.12 },
+        "practice": {
+          "app": "whatsapp",
+          "target": "chat-ada",
+          "instructionKey": "sandbox.whatsapp.open_chat",
+          "instruction": "Tap the chat with Ada."
+        }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.open_a_chat.s3",
+        "text": "The chat opens. You can now send a message.",
+        "alt": "An open WhatsApp chat with Ada.",
+        "visual": "whatsapp-chat",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.open_a_chat.check",
+    "selfCheck": "Did the chat open? Press Yes, or Try again.",
+    "sandboxTask": "sandbox.whatsapp.open_chat"
+  },
+  {
+    "slug": "send-a-message",
+    "path": "whatsapp",
+    "order": 3,
+    "minutes": 4,
+    "titleKey": "lesson.send_a_message.title",
+    "title": "Send a message",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.send_a_message.s1",
+        "text": "Open the chat of the person.",
+        "alt": "A WhatsApp chat with a message box at the bottom.",
+        "visual": "whatsapp-chat",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.send_a_message.s2",
+        "text": "Tap the box that says Type a message.",
+        "alt": "A message box with Type a message written inside.",
+        "visual": "whatsapp-chat",
+        "spotlight": { "shape": "rect", "x": 0.14, "y": 0.84, "w": 0.6, "h": 0.08 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.send_a_message.s3",
+        "text": "Type your message, or press the microphone to speak.",
+        "alt": "A phone keyboard and a microphone icon.",
+        "visual": "whatsapp-keyboard",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.send_a_message.s4",
+        "text": "Press the green send button.",
+        "alt": "A green send button in WhatsApp.",
+        "visual": "whatsapp-chat",
+        "spotlight": { "shape": "circle", "x": 0.8, "y": 0.84, "w": 0.12, "h": 0.1 },
+        "practice": {
+          "app": "whatsapp",
+          "target": "send",
+          "instructionKey": "sandbox.whatsapp.send",
+          "instruction": "Press the green send button."
+        }
+      }
+    ],
+    "selfCheckKey": "lesson.send_a_message.check",
+    "selfCheck": "Did your message send? Press Yes, or Try again.",
+    "sandboxTask": "sandbox.whatsapp.send"
+  },
+  {
+    "slug": "send-a-photo",
+    "path": "whatsapp",
+    "order": 4,
+    "minutes": 4,
+    "titleKey": "lesson.send_a_photo.title",
+    "title": "Send a photo on WhatsApp",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.send_a_photo.s1",
+        "text": "Open the chat. Press the paperclip.",
+        "alt": "A paperclip icon at the bottom of a chat.",
+        "visual": "whatsapp-chat",
+        "spotlight": { "shape": "circle", "x": 0.12, "y": 0.86, "w": 0.12, "h": 0.1 }
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.send_a_photo.s2",
+        "text": "Choose Gallery to pick a photo.",
+        "alt": "A menu with Gallery and Camera choices.",
+        "visual": "whatsapp-attach",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.send_a_photo.s3",
+        "text": "Tap the photo you want.",
+        "alt": "A gallery grid of photos.",
+        "visual": "gallery",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.send_a_photo.s4",
+        "text": "Press Send.",
+        "alt": "A green Send button on the photo preview.",
+        "visual": "photo-preview",
+        "spotlight": { "shape": "circle", "x": 0.8, "y": 0.86, "w": 0.12, "h": 0.1 },
+        "practice": {
+          "app": "whatsapp",
+          "target": "attach",
+          "instructionKey": "sandbox.whatsapp.attach",
+          "instruction": "Press the paperclip to attach a photo."
+        }
+      }
+    ],
+    "selfCheckKey": "lesson.send_a_photo.check",
+    "selfCheck": "Did the photo send? Press Yes, or Try again.",
+    "sandboxTask": "sandbox.whatsapp.attach"
+  },
+  {
+    "slug": "join-a-family-group",
+    "path": "whatsapp",
+    "order": 5,
+    "minutes": 4,
+    "titleKey": "lesson.join_a_family_group.title",
+    "title": "Join a family group",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.join_a_family_group.s1",
+        "text": "Someone in your family will send you an invite link.",
+        "alt": "A WhatsApp message with a group invite link.",
+        "visual": "whatsapp-invite",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.join_a_family_group.s2",
+        "text": "Tap the link. WhatsApp will ask to join the group.",
+        "alt": "A WhatsApp join group screen.",
+        "visual": "whatsapp-invite",
+        "spotlight": { "shape": "rect", "x": 0.1, "y": 0.56, "w": 0.8, "h": 0.12 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.join_a_family_group.s3",
+        "text": "Press Join. You will see the group in your chats.",
+        "alt": "A Join button and a family group in the chat list.",
+        "visual": "whatsapp-group",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.join_a_family_group.s4",
+        "text": "To leave, open the group, press the name, then Exit group.",
+        "alt": "A group info screen with Exit group at the bottom.",
+        "visual": "whatsapp-group",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.join_a_family_group.check",
+    "selfCheck": "Did you join the group? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "blue-ticks",
+    "path": "whatsapp",
+    "order": 6,
+    "minutes": 3,
+    "titleKey": "lesson.blue_ticks.title",
+    "title": "What blue ticks mean",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.blue_ticks.s1",
+        "text": "One grey tick means your message was sent.",
+        "alt": "A message with one grey tick.",
+        "visual": "whatsapp-ticks",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.blue_ticks.s2",
+        "text": "Two grey ticks mean it reached the person's phone.",
+        "alt": "A message with two grey ticks.",
+        "visual": "whatsapp-ticks",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.blue_ticks.s3",
+        "text": "Two blue ticks mean the person opened and read it.",
+        "alt": "A message with two blue ticks.",
+        "visual": "whatsapp-ticks",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.blue_ticks.check",
+    "selfCheck": "Do you know what the ticks mean? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "what-is-a-banking-app",
+    "path": "money-safely",
+    "order": 1,
+    "minutes": 4,
+    "titleKey": "lesson.what_is_a_banking_app.title",
+    "title": "What is a banking app?",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.what_is_a_banking_app.s1",
+        "text": "A banking app is a program that shows your money.",
+        "alt": "A bank app showing a balance on a phone.",
+        "visual": "bank-home",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.what_is_a_banking_app.s2",
+        "text": "You open it with your secret PIN or fingerprint.",
+        "alt": "A bank app PIN screen.",
+        "visual": "bank-pin",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.what_is_a_banking_app.s3",
+        "text": "You can check your balance and send money.",
+        "alt": "A bank app menu with Balance and Transfer.",
+        "visual": "bank-home",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.what_is_a_banking_app.s4",
+        "text": "Only open the app your bank told you to use.",
+        "alt": "A phone home screen with the official bank app.",
+        "visual": "phone-home",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.what_is_a_banking_app.check",
+    "selfCheck": "Do you know what a banking app is? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "check-your-balance",
+    "path": "money-safely",
+    "order": 2,
+    "minutes": 4,
+    "titleKey": "lesson.check_your_balance.title",
+    "title": "Check your balance",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.check_your_balance.s1",
+        "text": "Open your bank app. Never use a link from a message.",
+        "alt": "A bank app icon on a phone home screen.",
+        "visual": "bank-home",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.check_your_balance.s2",
+        "text": "Enter your PIN on the app's own keypad.",
+        "alt": "A bank app keypad for entering a PIN.",
+        "visual": "bank-pin",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.check_your_balance.s3",
+        "text": "Press Balance or Account.",
+        "alt": "A bank app menu with Balance highlighted.",
+        "visual": "bank-home",
+        "spotlight": { "shape": "rect", "x": 0.12, "y": 0.3, "w": 0.76, "h": 0.14 },
+        "practice": {
+          "app": "bank",
+          "target": "balance",
+          "instructionKey": "sandbox.bank.balance",
+          "instruction": "Press Balance to see the practice balance."
+        }
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.check_your_balance.s4",
+        "text": "Read your balance. Then press Log out.",
+        "alt": "A bank app balance screen with a Log out button.",
+        "visual": "bank-balance",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.check_your_balance.check",
+    "selfCheck": "Did you check the practice balance? Press Yes, or Try again.",
+    "sandboxTask": "sandbox.bank.balance"
+  },
+  {
+    "slug": "send-money-safely",
+    "path": "money-safely",
+    "order": 3,
+    "minutes": 6,
+    "titleKey": "lesson.send_money_safely.title",
+    "title": "Send money safely",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.send_money_safely.s1",
+        "text": "Open your bank app and log in with your PIN.",
+        "alt": "A bank app login screen.",
+        "visual": "bank-pin",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.send_money_safely.s2",
+        "text": "Press Transfer or Send money.",
+        "alt": "A bank app menu with Transfer highlighted.",
+        "visual": "bank-home",
+        "spotlight": { "shape": "rect", "x": 0.12, "y": 0.46, "w": 0.76, "h": 0.14 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.send_money_safely.s3",
+        "text": "Type the account number and the amount. Check the name.",
+        "alt": "A transfer form with account number, amount and name.",
+        "visual": "bank-transfer",
+        "spotlight": null,
+        "practice": {
+          "app": "bank",
+          "target": "send-money",
+          "instructionKey": "sandbox.bank.send_money",
+          "instruction": "Press Transfer to start a practice transfer."
+        }
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.send_money_safely.s4",
+        "text": "Press Send, then confirm with your PIN.",
+        "alt": "A confirm transfer screen asking for a PIN.",
+        "visual": "bank-transfer",
+        "spotlight": { "shape": "rect", "x": 0.1, "y": 0.76, "w": 0.8, "h": 0.12 }
+      },
+      {
+        "id": "s5",
+        "textKey": "lesson.send_money_safely.s5",
+        "text": "Keep the receipt. Never send money to a stranger.",
+        "alt": "A transfer receipt on a phone.",
+        "visual": "bank-receipt",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.send_money_safely.check",
+    "selfCheck": "Did you finish the practice transfer? Press Yes, or Try again.",
+    "sandboxTask": "sandbox.bank.send_money"
+  },
+  {
+    "slug": "what-is-ussd",
+    "path": "money-safely",
+    "order": 4,
+    "minutes": 3,
+    "titleKey": "lesson.what_is_ussd.title",
+    "title": "What is a USSD code?",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.what_is_ussd.s1",
+        "text": "USSD is a short code like *123# that works without data.",
+        "alt": "A phone screen showing a USSD code.",
+        "visual": "ussd",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.what_is_ussd.s2",
+        "text": "Open your Phone app and type the code.",
+        "alt": "A phone dialer with a USSD code typed in.",
+        "visual": "dialer",
+        "spotlight": null,
+        "practice": {
+          "app": "dialer",
+          "target": "ussd",
+          "instructionKey": "sandbox.dialer.ussd",
+          "instruction": "Press the USSD shortcut to try a practice code."
+        }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.what_is_ussd.s3",
+        "text": "Press call. Follow the words on the screen.",
+        "alt": "A USSD menu with numbered choices.",
+        "visual": "ussd",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.what_is_ussd.check",
+    "selfCheck": "Do you understand USSD codes? Press Yes, or Try again.",
+    "sandboxTask": "sandbox.dialer.ussd"
+  },
+  {
+    "slug": "pos-and-alerts",
+    "path": "money-safely",
+    "order": 5,
+    "minutes": 4,
+    "titleKey": "lesson.pos_and_alerts.title",
+    "title": "POS and bank alerts",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.pos_and_alerts.s1",
+        "text": "A POS is a small machine a shop uses to collect money.",
+        "alt": "A POS machine on a shop counter.",
+        "visual": "pos",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.pos_and_alerts.s2",
+        "text": "After you pay, you get an alert from your bank.",
+        "alt": "A bank alert on a phone screen.",
+        "visual": "sms-bank",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.pos_and_alerts.s3",
+        "text": "Read the alert. Check the amount and the shop name.",
+        "alt": "A bank alert showing the amount and the shop.",
+        "visual": "sms-bank",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.pos_and_alerts.s4",
+        "text": "If the alert is wrong, call your bank on the number on your card.",
+        "alt": "A bank card showing the phone number on the back.",
+        "visual": "bank-card",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.pos_and_alerts.check",
+    "selfCheck": "Do you know how to check an alert? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "never-share-pin",
+    "path": "money-safely",
+    "order": 6,
+    "minutes": 5,
+    "titleKey": "lesson.never_share_pin.title",
+    "title": "Never share your PIN or OTP",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.never_share_pin.s1",
+        "text": "Your PIN is your secret. It opens your money.",
+        "alt": "A lock symbol over a bank card.",
+        "visual": "bank-card",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.never_share_pin.s2",
+        "text": "No bank staff will ever ask for your PIN or OTP.",
+        "alt": "A bank staff member behind a counter with a crossed-out PIN.",
+        "visual": "bank-pin-warning",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.never_share_pin.s3",
+        "text": "Do not write your PIN where people can see it.",
+        "alt": "A phone with a hidden PIN, not written on paper.",
+        "visual": "bank-pin-warning",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.never_share_pin.s4",
+        "text": "Do not tell anyone your OTP, even if they say they are from the bank.",
+        "alt": "An OTP message with a warning not to share it.",
+        "visual": "sms-otp",
+        "spotlight": null
+      },
+      {
+        "id": "s5",
+        "textKey": "lesson.never_share_pin.s5",
+        "text": "If someone asks, stop and call your bank.",
+        "alt": "A person calling the bank on a phone.",
+        "visual": "bank-card",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.never_share_pin.check",
+    "selfCheck": "Will you keep your PIN secret? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "if-you-were-scammed",
+    "path": "money-safely",
+    "order": 7,
+    "minutes": 4,
+    "titleKey": "lesson.if_you_were_scammed.title",
+    "title": "What to do if you were scammed",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.if_you_were_scammed.s1",
+        "text": "If you sent money to a scammer, do not send more.",
+        "alt": "A hand stopping a money transfer.",
+        "visual": "scam-stop",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.if_you_were_scammed.s2",
+        "text": "Call your bank now using the number on the back of your card.",
+        "alt": "The phone number printed on the back of a bank card.",
+        "visual": "bank-card",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.if_you_were_scammed.s3",
+        "text": "Tell a family member you trust.",
+        "alt": "A family member comforting an older person.",
+        "visual": "family-help",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.if_you_were_scammed.s4",
+        "text": "You can also report to the police. Keep the messages.",
+        "alt": "A phone showing saved scam messages.",
+        "visual": "sms-scam",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.if_you_were_scammed.check",
+    "selfCheck": "Do you know who to call? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "a-message-asks-for-your-pin",
+    "path": "stay-safe",
+    "order": 1,
+    "minutes": 5,
+    "titleKey": "lesson.a_message_asks_for_your_pin.title",
+    "title": "A message asks for your PIN",
+    "titleTexts": { "pcm": "One message ask for your PIN" },
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.a_message_asks_for_your_pin.s1",
+        "text": "Your phone shows a message: 'Your account will be closed. Send your PIN now.'",
+        "texts": {
+          "pcm": "Your phone show message: 'Your account go close. Send your PIN now.'"
+        },
+        "alt": "A text message saying the account will be closed and asking for a PIN.",
+        "visual": "sms-scam",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.a_message_asks_for_your_pin.s2",
+        "text": "Stop. Do not reply.",
+        "texts": { "pcm": "Stop. No reply." },
+        "alt": "A large Stop sign.",
+        "visual": "scam-stop",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.a_message_asks_for_your_pin.s3",
+        "text": "Banks never ask for your PIN in a message or call.",
+        "texts": { "pcm": "Bank no dey ever ask for your PIN inside message or call." },
+        "alt": "A bank building with a crossed-out PIN.",
+        "visual": "bank-pin-warning",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.a_message_asks_for_your_pin.s4",
+        "text": "Do not press any link.",
+        "texts": { "pcm": "No press any link." },
+        "alt": "A link in a message with a warning sign.",
+        "visual": "sms-scam",
+        "spotlight": { "shape": "rect", "x": 0.18, "y": 0.52, "w": 0.64, "h": 0.1 }
+      },
+      {
+        "id": "s5",
+        "textKey": "lesson.a_message_asks_for_your_pin.s5",
+        "text": "Tell a family member or call the number on the back of your bank card.",
+        "texts": {
+          "pcm": "Tell your family or call di number wey dey back of your bank card."
+        },
+        "alt": "An older person calling a family member for help.",
+        "visual": "family-help",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.a_message_asks_for_your_pin.check",
+    "selfCheck": "What should you do? Do not reply, and ask for help. Press Yes, or Try again.",
+    "checkTexts": { "pcm": "Wetin you suppose do? No reply. Ask for help." },
+    "sandboxTask": null
+  },
+  {
+    "slug": "you-won-a-prize",
+    "path": "stay-safe",
+    "order": 2,
+    "minutes": 4,
+    "titleKey": "lesson.you_won_a_prize.title",
+    "title": "You won a prize?",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.you_won_a_prize.s1",
+        "text": "A message says you won a prize you did not enter for.",
+        "alt": "A message saying Congratulations, you won.",
+        "visual": "sms-prize",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.you_won_a_prize.s2",
+        "text": "Real prizes do not ask you to pay a fee first.",
+        "alt": "A prize with a crossed-out fee.",
+        "visual": "scam-stop",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.you_won_a_prize.s3",
+        "text": "Do not press the link or send money.",
+        "alt": "A finger moving away from a link.",
+        "visual": "sms-prize",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.you_won_a_prize.s4",
+        "text": "Delete the message and tell a family member.",
+        "alt": "A message being deleted.",
+        "visual": "sms-delete",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.you_won_a_prize.check",
+    "selfCheck": "Will you ignore prize messages? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "sim-swap",
+    "path": "stay-safe",
+    "order": 3,
+    "minutes": 4,
+    "titleKey": "lesson.sim_swap.title",
+    "title": "SIM swap",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.sim_swap.s1",
+        "text": "Your phone suddenly has no network for a long time.",
+        "alt": "A phone showing no network signal.",
+        "visual": "sim-swap",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.sim_swap.s2",
+        "text": "Someone may have copied your SIM card.",
+        "alt": "Two SIM cards, one being taken away.",
+        "visual": "sim-swap",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.sim_swap.s3",
+        "text": "Go to your network shop with your ID.",
+        "alt": "A network shop counter.",
+        "visual": "sim-shop",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.sim_swap.s4",
+        "text": "Call your bank and ask them to protect your account.",
+        "alt": "A person calling their bank.",
+        "visual": "bank-card",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.sim_swap.check",
+    "selfCheck": "Do you know what to do? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "relative-in-trouble",
+    "path": "stay-safe",
+    "order": 4,
+    "minutes": 4,
+    "titleKey": "lesson.relative_in_trouble.title",
+    "title": "A relative in trouble",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.relative_in_trouble.s1",
+        "text": "You get a call from a new number: 'I am in trouble, send money.'",
+        "alt": "A phone call from an unknown number.",
+        "visual": "call-unknown",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.relative_in_trouble.s2",
+        "text": "Scammers can pretend to be your child.",
+        "alt": "A person wearing a mask while on the phone.",
+        "visual": "scam-caller",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.relative_in_trouble.s3",
+        "text": "Hang up and call your child on their old number.",
+        "alt": "A person hanging up and dialing a saved number.",
+        "visual": "dialer-recents",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.relative_in_trouble.s4",
+        "text": "Ask a question only your family would know.",
+        "alt": "A family member answering a private question.",
+        "visual": "family-help",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.relative_in_trouble.check",
+    "selfCheck": "Will you hang up and check first? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "fake-job-or-loan",
+    "path": "stay-safe",
+    "order": 5,
+    "minutes": 4,
+    "titleKey": "lesson.fake_job_or_loan.title",
+    "title": "Fake job or loan offers",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.fake_job_or_loan.s1",
+        "text": "A job or loan that asks you to pay first is dangerous.",
+        "alt": "A job advert with a warning sign.",
+        "visual": "job-scam",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.fake_job_or_loan.s2",
+        "text": "Real employers do not ask for money to give you work.",
+        "alt": "A real office with a handshake.",
+        "visual": "job-real",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.fake_job_or_loan.s3",
+        "text": "Do not send your BVN or card details.",
+        "alt": "A BVN number with a crossed-out eye.",
+        "visual": "bank-pin-warning",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.fake_job_or_loan.s4",
+        "text": "Check with someone you trust before you pay.",
+        "alt": "Two people talking over a phone.",
+        "visual": "family-help",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.fake_job_or_loan.check",
+    "selfCheck": "Will you check before paying? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "unknown-links",
+    "path": "stay-safe",
+    "order": 6,
+    "minutes": 3,
+    "titleKey": "lesson.unknown_links.title",
+    "title": "Unknown links",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.unknown_links.s1",
+        "text": "A link is a word or picture you can press to open a page.",
+        "alt": "A blue link inside a message.",
+        "visual": "sms-link",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.unknown_links.s2",
+        "text": "Do not press links from people you do not know.",
+        "alt": "A link with a warning sign.",
+        "visual": "sms-link",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.unknown_links.s3",
+        "text": "If you are not sure, delete the message.",
+        "alt": "A message being deleted.",
+        "visual": "sms-delete",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.unknown_links.check",
+    "selfCheck": "Will you avoid strange links? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "block-and-report",
+    "path": "stay-safe",
+    "order": 7,
+    "minutes": 3,
+    "titleKey": "lesson.block_and_report.title",
+    "title": "Block and report a scammer",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.block_and_report.s1",
+        "text": "Open the message from the sender.",
+        "alt": "A text message open on a phone.",
+        "visual": "sms-scam",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.block_and_report.s2",
+        "text": "Press the sender's name or number.",
+        "alt": "The sender's number at the top of a message.",
+        "visual": "sms-scam",
+        "spotlight": { "shape": "rect", "x": 0.1, "y": 0.14, "w": 0.5, "h": 0.1 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.block_and_report.s3",
+        "text": "Choose Block, then Delete.",
+        "alt": "A menu with Block and Delete.",
+        "visual": "sms-block",
+        "spotlight": { "shape": "rect", "x": 0.16, "y": 0.6, "w": 0.68, "h": 0.12 },
+        "practice": {
+          "app": "sms",
+          "target": "block",
+          "instructionKey": "sandbox.sms.block",
+          "instruction": "Open the scam message and press Block."
+        }
+      }
+    ],
+    "selfCheckKey": "lesson.block_and_report.check",
+    "selfCheck": "Did you block the sender? Press Yes, or Try again.",
+    "sandboxTask": "sandbox.sms.block"
+  },
+  {
+    "slug": "who-to-call",
+    "path": "stay-safe",
+    "order": 8,
+    "minutes": 3,
+    "titleKey": "lesson.who_to_call.title",
+    "title": "Who to call for help",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.who_to_call.s1",
+        "text": "Call your bank on the number on the back of your card.",
+        "alt": "The phone number on the back of a bank card.",
+        "visual": "bank-card",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.who_to_call.s2",
+        "text": "Tell your facilitator or a family member.",
+        "alt": "A facilitator helping an older learner.",
+        "visual": "facilitator",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.who_to_call.s3",
+        "text": "You can press Talk to a person in this app.",
+        "alt": "A Talk to a person button on a phone.",
+        "visual": "help",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.who_to_call.check",
+    "selfCheck": "Do you know who to call? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "find-information",
+    "path": "everyday-services",
+    "order": 1,
+    "minutes": 3,
+    "titleKey": "lesson.find_information.title",
+    "title": "Find information on the internet",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.find_information.s1",
+        "text": "Open your browser, the app with a globe picture.",
+        "alt": "A browser app with a globe icon.",
+        "visual": "browser",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.find_information.s2",
+        "text": "Tap the search box and type what you want to know.",
+        "alt": "A search box with a question typed in.",
+        "visual": "browser-search",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.find_information.s3",
+        "text": "Read the first answers, but check who wrote them.",
+        "alt": "Search results with website names.",
+        "visual": "browser-results",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.find_information.check",
+    "selfCheck": "Did you search for something? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "music-and-radio",
+    "path": "everyday-services",
+    "order": 2,
+    "minutes": 3,
+    "titleKey": "lesson.music_and_radio.title",
+    "title": "Play music and radio",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.music_and_radio.s1",
+        "text": "Open a music app like YouTube or a radio app.",
+        "alt": "A music app with a play button.",
+        "visual": "music",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.music_and_radio.s2",
+        "text": "Tap the play button to start. Tap pause to stop.",
+        "alt": "Play and pause buttons on a music player.",
+        "visual": "music",
+        "spotlight": { "shape": "circle", "x": 0.42, "y": 0.52, "w": 0.16, "h": 0.12 }
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.music_and_radio.s3",
+        "text": "Use the volume buttons on the side of your phone.",
+        "alt": "Volume buttons on the side of a phone.",
+        "visual": "phone-side",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.music_and_radio.check",
+    "selfCheck": "Did you play some music? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "read-news",
+    "path": "everyday-services",
+    "order": 3,
+    "minutes": 3,
+    "titleKey": "lesson.read_news.title",
+    "title": "Read the news",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.read_news.s1",
+        "text": "Open your browser and search for news.",
+        "alt": "A browser search for news.",
+        "visual": "browser-search",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.read_news.s2",
+        "text": "Tap a story from a name you know.",
+        "alt": "News stories with website names.",
+        "visual": "browser-results",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.read_news.s3",
+        "text": "Be careful with stories that ask for money or your PIN.",
+        "alt": "A news story with a warning sign.",
+        "visual": "news-warning",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.read_news.check",
+    "selfCheck": "Did you read a news story? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "book-a-ride",
+    "path": "everyday-services",
+    "order": 4,
+    "minutes": 4,
+    "titleKey": "lesson.book_a_ride.title",
+    "title": "Book a ride",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.book_a_ride.s1",
+        "text": "Open a ride app like Bolt or Uber.",
+        "alt": "A ride app with a map.",
+        "visual": "ride",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.book_a_ride.s2",
+        "text": "Type where you are going. Check the price before you book.",
+        "alt": "A ride app destination box and price.",
+        "visual": "ride",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.book_a_ride.s3",
+        "text": "Check the driver's name and plate number.",
+        "alt": "A driver profile with name and plate number.",
+        "visual": "ride-driver",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.book_a_ride.s4",
+        "text": "Share your trip with a family member.",
+        "alt": "A share trip button on a ride app.",
+        "visual": "ride-share",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.book_a_ride.check",
+    "selfCheck": "Do you know how to book safely? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "clinic-appointment",
+    "path": "everyday-services",
+    "order": 5,
+    "minutes": 3,
+    "titleKey": "lesson.clinic_appointment.title",
+    "title": "Book a clinic appointment",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.clinic_appointment.s1",
+        "text": "Call your clinic or open their website.",
+        "alt": "A clinic reception desk and a phone.",
+        "visual": "clinic",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.clinic_appointment.s2",
+        "text": "Say your name and the day you want to come.",
+        "alt": "A person speaking to a clinic receptionist.",
+        "visual": "clinic",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.clinic_appointment.s3",
+        "text": "Write the date where you can see it.",
+        "alt": "A calendar with an appointment date circled.",
+        "visual": "calendar",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.clinic_appointment.check",
+    "selfCheck": "Did you book a practice appointment? Press Yes, or Try again.",
+    "sandboxTask": null
+  },
+  {
+    "slug": "government-portals",
+    "path": "everyday-services",
+    "order": 6,
+    "minutes": 4,
+    "titleKey": "lesson.government_portals.title",
+    "title": "Government websites",
+    "steps": [
+      {
+        "id": "s1",
+        "textKey": "lesson.government_portals.s1",
+        "text": "Government websites end with .gov.ng.",
+        "alt": "A browser address bar showing a .gov.ng address.",
+        "visual": "gov-portal",
+        "spotlight": null
+      },
+      {
+        "id": "s2",
+        "textKey": "lesson.government_portals.s2",
+        "text": "Do not use a link from a stranger to do NIN or pension.",
+        "alt": "A link from a stranger with a warning sign.",
+        "visual": "sms-link",
+        "spotlight": null
+      },
+      {
+        "id": "s3",
+        "textKey": "lesson.government_portals.s3",
+        "text": "Type the address yourself in your browser.",
+        "alt": "A person typing a web address.",
+        "visual": "browser-search",
+        "spotlight": null
+      },
+      {
+        "id": "s4",
+        "textKey": "lesson.government_portals.s4",
+        "text": "Ask a facilitator if you are not sure.",
+        "alt": "A facilitator helping with a phone.",
+        "visual": "facilitator",
+        "spotlight": null
+      }
+    ],
+    "selfCheckKey": "lesson.government_portals.check",
+    "selfCheck": "Do you know a safe government address? Press Yes, or Try again.",
+    "sandboxTask": null
+  }
+]

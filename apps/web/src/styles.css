@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   SABI design tokens. Black and white only, with two accessible greys.
+   Text sizes are driven from the root so every rem-based size grows together.
+   --------------------------------------------------------------------------- */
+:root {
+  --ink: 0 0 0;
+  --paper: 255 255 255;
+  --muted: 51 51 51;
+  --ink-color: #000000;
+  --paper-color: #ffffff;
+  color-scheme: light;
+}
+
+html[data-theme='inverted'] {
+  --ink: 255 255 255;
+  --paper: 0 0 0;
+  --muted: 212 212 212;
+  --ink-color: #ffffff;
+  --paper-color: #000000;
+  color-scheme: dark;
+}
+
+html[data-text='normal'] {
+  font-size: 17px;
+}
+
+html[data-text='large'] {
+  font-size: 20px;
+}
+
+html[data-text='xl'] {
+  font-size: 24px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+  font-size: 1rem;
+  line-height: 1.55;
+  min-height: 100dvh;
+}
+
+* {
+  border-color: rgb(var(--ink));
+}
+
+:focus-visible {
+  outline: 0.25rem solid rgb(var(--ink));
+  outline-offset: 0.2rem;
+  border-radius: 0.25rem;
+}
+
+::selection {
+  background: rgb(var(--ink));
+  color: rgb(var(--paper));
+}
+
+[data-reduce-motion='true'] *,
+[data-reduce-motion='true'] *::before,
+[data-reduce-motion='true'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply sr-only;
+  }
+
+  .skip-link:focus {
+    @apply not-sr-only fixed left-3 top-3 z-50 bg-paper px-4 py-3 font-bold text-ink;
+    border: 0.2rem solid rgb(var(--ink));
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl2 border-2 px-5 py-3 text-center font-bold leading-tight no-underline transition-colors;
+    min-height: 3.5rem;
+    border-color: rgb(var(--ink));
+  }
+
+  .btn:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  .btn-primary {
+    @apply bg-ink text-paper;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    @apply bg-paper text-ink;
+  }
+
+  .btn-secondary {
+    @apply bg-paper text-ink;
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    @apply bg-ink text-paper;
+  }
+
+  .btn-ghost {
+    @apply border-transparent bg-transparent px-3 text-ink underline decoration-2 underline-offset-4;
+  }
+
+  .btn-ghost:hover:not(:disabled) {
+    @apply border-ink no-underline;
+  }
+
+  .btn-danger {
+    @apply border-dashed bg-paper text-ink;
+    border-width: 0.2rem;
+  }
+
+  .btn-lg {
+    @apply px-6 py-4 text-lg;
+    min-height: 4.5rem;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1 text-sm;
+    min-height: 2.75rem;
+  }
+
+  .btn-block {
+    @apply w-full;
+  }
+
+  .card {
+    @apply rounded-xl2 border-2 bg-paper p-5;
+    border-color: rgb(var(--ink));
+  }
+
+  .card-flat {
+    @apply rounded-xl2 border-2 bg-paper p-4;
+    border-color: rgb(var(--ink));
+  }
+
+  .card-ink {
+    @apply rounded-xl2 bg-ink p-5 text-paper;
+  }
+
+  .input,
+  .select,
+  .textarea {
+    @apply w-full rounded-xl border-2 bg-paper px-4 py-3 text-ink;
+    min-height: 3.5rem;
+    border-color: rgb(var(--ink));
+  }
+
+  .textarea {
+    min-height: 8rem;
+  }
+
+  .input::placeholder,
+  .textarea::placeholder {
+    color: rgb(var(--muted));
+    opacity: 1;
+  }
+
+  .input:focus,
+  .select:focus,
+  .textarea:focus {
+    outline: 0.25rem solid rgb(var(--ink));
+    outline-offset: 0.15rem;
+  }
+
+  .label {
+    @apply mb-2 block font-bold;
+  }
+
+  .hint {
+    @apply mt-1 text-sm;
+    color: rgb(var(--muted));
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border-2 px-3 py-1 text-sm font-bold;
+    border-color: rgb(var(--ink));
+  }
+
+  .chip-solid {
+    @apply bg-ink text-paper;
+  }
+
+  .link {
+    @apply font-bold underline decoration-2 underline-offset-4;
+  }
+
+  .muted {
+    color: rgb(var(--muted));
+  }
+
+  .eyebrow {
+    @apply text-sm font-bold uppercase tracking-widest;
+  }
+
+  .divider {
+    border-top: 2px solid rgb(var(--ink));
+  }
+
+  .pattern {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgb(var(--ink)) 0,
+      rgb(var(--ink)) 2px,
+      transparent 2px,
+      transparent 12px
+    );
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgb(var(--ink)) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--ink)) 1px, transparent 1px);
+    background-size: 1.5rem 1.5rem;
+  }
+
+  .focus-paper:focus-visible {
+    outline-color: rgb(var(--paper));
+  }
+
+  .speak-pulse {
+    @apply relative;
+  }
+
+  .speak-pulse::after {
+    content: '';
+    @apply pointer-events-none absolute inset-0 rounded-full border-4;
+    border-color: rgb(var(--ink));
+    animation: pulseRing 1.6s ease-out infinite;
+  }
+
+  .nav-item {
+    @apply flex min-h-[4rem] flex-1 flex-col items-center justify-center gap-1 px-1 py-2 text-center text-xs font-bold no-underline;
+    color: rgb(var(--muted));
+  }
+
+  .nav-item[aria-current='page'] {
+    color: rgb(var(--ink));
+    text-decoration: underline;
+    text-decoration-thickness: 0.2rem;
+    text-underline-offset: 0.35rem;
+  }
+
+  .table-wrap {
+    @apply w-full overflow-x-auto rounded-xl2 border-2;
+    border-color: rgb(var(--ink));
+  }
+
+  table {
+    @apply w-full border-collapse text-left text-sm;
+  }
+
+  th,
+  td {
+    @apply border-b px-3 py-2 align-top;
+    border-color: rgb(var(--ink));
+  }
+
+  th {
+    @apply bg-ink text-paper;
+  }
+
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    @apply sr-only;
+  }
+}
+
+/* Printable certificate and facilitator sheets. */
+@media print {
+  :root {
+    --ink: 0 0 0;
+    --paper: 255 255 255;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 12pt;
+  }
+
+  .no-print,
+  nav,
+  header.app-header,
+  footer.app-footer {
+    display: none !important;
+  }
+
+  .print-page {
+    border: 0 !important;
+    padding: 0 !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  a[href]::after {
+    content: '';
+  }
+}
+
+.print-only {
+  display: none;
+}

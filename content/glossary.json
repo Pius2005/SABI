@@ -1,0 +1,212 @@
+[
+  {
+    "id": "glossary.app",
+    "term": "app",
+    "explanation": "A small program on your phone that does one job, like calling or WhatsApp.",
+    "pcm": "Small program for your phone wey dey do one work.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.message",
+    "term": "message",
+    "explanation": "Words sent to you on your phone.",
+    "pcm": "Words wey dem send give you for phone.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.network",
+    "term": "network",
+    "explanation": "The company that gives your phone signal and internet.",
+    "pcm": "Company wey dey give your phone signal.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.data",
+    "term": "data",
+    "explanation": "Internet you buy from your network. It is used when you open websites or WhatsApp.",
+    "pcm": "Internet wey you buy from network. E dey finish when you open website.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.airtime",
+    "term": "airtime",
+    "explanation": "Phone credit you buy to make calls and send messages.",
+    "pcm": "Phone credit wey you buy for call.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.wifi",
+    "term": "Wi-Fi",
+    "explanation": "Internet from a router. It does not use your airtime.",
+    "pcm": "Internet from router. E no dey use your airtime.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.download",
+    "term": "download",
+    "explanation": "To bring something from the internet onto your phone so you can use it later.",
+    "pcm": "To bring something from internet come your phone.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.password",
+    "term": "password",
+    "explanation": "A secret word that opens your account. Never share it.",
+    "pcm": "Secret word wey dey open your account. No share am.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.pin",
+    "term": "PIN",
+    "explanation": "A secret number, usually four digits, that opens your bank app or card. Never share it.",
+    "pcm": "Secret number wey dey open your bank app. No share am.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.otp",
+    "term": "OTP",
+    "explanation": "A one-time code sent to your phone to confirm something. It expires quickly. Never share it.",
+    "pcm": "One-time code wey dem send your phone. No share am.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.bvn",
+    "term": "BVN",
+    "explanation": "Bank Verification Number. It is private. Never send it to a stranger.",
+    "pcm": "Bank Verification Number. Na private. No send am to stranger.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.scam",
+    "term": "scam",
+    "explanation": "A trick to take your money or your secrets.",
+    "pcm": "Trick to collect your money or secret.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.link",
+    "term": "link",
+    "explanation": "Words or a picture you can press to open a page on the internet.",
+    "pcm": "Word or picture wey you press to open page.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.block",
+    "term": "block",
+    "explanation": "To stop a person from calling or messaging you.",
+    "pcm": "To stop person from call or message you.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.update",
+    "term": "update",
+    "explanation": "A new version of an app that fixes problems and keeps you safe.",
+    "pcm": "New version of app wey dey fix problem.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.battery",
+    "term": "battery",
+    "explanation": "The part of the phone that stores power. Charge it when it is low.",
+    "pcm": "Part of phone wey dey keep power.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.pos",
+    "term": "POS",
+    "explanation": "Point of Sale. A small machine a shop uses to collect card or transfer payments.",
+    "pcm": "Small machine shop dey use collect money.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.ussd",
+    "term": "USSD",
+    "explanation": "A short code like *123# that works without internet data.",
+    "pcm": "Short code like *123# wey work without data.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.transfer",
+    "term": "transfer",
+    "explanation": "To send money from one bank account to another.",
+    "pcm": "To send money from one account go another.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.balance",
+    "term": "balance",
+    "explanation": "The amount of money left in your account.",
+    "pcm": "Money wey remain for your account.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.alert",
+    "term": "bank alert",
+    "explanation": "A message from your bank telling you money went in or out.",
+    "pcm": "Message from bank say money enter or comot.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.voice-note",
+    "term": "voice note",
+    "explanation": "A short spoken message you send in a chat instead of typing.",
+    "pcm": "Short talk wey you send inside chat instead of type.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.group",
+    "term": "group",
+    "explanation": "A chat where many people can talk together, like a family group.",
+    "pcm": "Chat where plenty people dey talk together.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.contact",
+    "term": "contact",
+    "explanation": "A saved name and phone number in your phone.",
+    "pcm": "Name and number wey you save for phone.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.screenshot",
+    "term": "screenshot",
+    "explanation": "A picture of what is on your phone screen.",
+    "pcm": "Picture of wetin dey your phone screen.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.browser",
+    "term": "browser",
+    "explanation": "The app you use to open websites, often with a globe picture.",
+    "pcm": "App wey you use open website.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.settings",
+    "term": "Settings",
+    "explanation": "The place where you change how your phone works, like text size and Wi-Fi.",
+    "pcm": "Place wey you change how your phone work.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.nin",
+    "term": "NIN",
+    "explanation": "National Identification Number. Keep it private. Use only official .gov.ng websites.",
+    "pcm": "National Identification Number. Keep am private.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.pension",
+    "term": "pension",
+    "explanation": "Money saved for when you stop work. Use only official pension offices or .gov.ng websites.",
+    "pcm": "Money wey dem keep for when you stop work.",
+    "status": "approved"
+  },
+  {
+    "id": "glossary.facilitator",
+    "term": "facilitator",
+    "explanation": "A teacher who helps a group of learners.",
+    "pcm": "Teacher wey dey help group of learners.",
+    "status": "approved"
+  }
+]

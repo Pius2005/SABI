@@ -1,0 +1,162 @@
+[
+  {
+    "id": "se1",
+    "type": "fake_bank_alert",
+    "lang": "en",
+    "text": "Dear customer, your account will be closed today. Send your OTP to 08031234567 to reactivate it.",
+    "isScam": true,
+    "redFlags": ["asks_for_otp", "urgency", "impersonation"]
+  },
+  {
+    "id": "se2",
+    "type": "fake_bank_alert",
+    "lang": "en",
+    "text": "GTBank: Your account is blocked. Reply with your PIN now to unlock it.",
+    "isScam": true,
+    "redFlags": ["asks_for_pin", "urgency", "impersonation"]
+  },
+  {
+    "id": "se3",
+    "type": "prize",
+    "lang": "en",
+    "text": "Congratulations! You won ₦500,000 in our promo. Click http://bit.ly/claim-win to receive your prize.",
+    "isScam": true,
+    "redFlags": ["prize", "unknown_link"]
+  },
+  {
+    "id": "se4",
+    "type": "relative_impersonation",
+    "lang": "en",
+    "text": "Hello mummy, this is my new number. I am in the hospital, please send ₦20,000 urgently.",
+    "isScam": true,
+    "redFlags": ["new_number", "payment_request", "urgency"]
+  },
+  {
+    "id": "se5",
+    "type": "parcel_fee",
+    "lang": "en",
+    "text": "Your parcel is held at our office. Pay a delivery fee of ₦2,500 to release it. Call this number 08039876543.",
+    "isScam": true,
+    "redFlags": ["fee", "call_redirect"]
+  },
+  {
+    "id": "se6",
+    "type": "job_scam",
+    "lang": "en",
+    "text": "You have a job offer. No interview needed. Pay ₦10,000 registration fee to start work from home.",
+    "isScam": true,
+    "redFlags": ["job_offer", "fee", "no_interview"]
+  },
+  {
+    "id": "se7",
+    "type": "sim_swap",
+    "lang": "en",
+    "text": "URGENT: Your SIM will be blocked in 24 hours. Send your BVN for verification.",
+    "isScam": true,
+    "redFlags": ["asks_for_bvn", "urgency", "threat"]
+  },
+  {
+    "id": "se8",
+    "type": "otp_theft",
+    "lang": "en",
+    "text": "Hello ma, I am calling from your bank customer care. Please read out the code we just sent to you.",
+    "isScam": true,
+    "redFlags": ["asks_for_otp", "impersonation"]
+  },
+  {
+    "id": "se9",
+    "type": "card_theft",
+    "lang": "en",
+    "text": "Please send your card number and CVV to confirm your booking.",
+    "isScam": true,
+    "redFlags": ["asks_for_card", "payment_request"]
+  },
+  {
+    "id": "se10",
+    "type": "extortion",
+    "lang": "en",
+    "text": "I have your daughter. Send ₦200,000 or you will not see her again.",
+    "isScam": true,
+    "redFlags": ["extortion", "payment_request"]
+  },
+  {
+    "id": "se11",
+    "type": "investment",
+    "lang": "en",
+    "text": "Investment opportunity: double your money in 7 days. Send ₦50,000 today.",
+    "isScam": true,
+    "redFlags": ["investment", "payment_request"]
+  },
+  {
+    "id": "se12",
+    "type": "nin_phishing",
+    "lang": "en",
+    "text": "Click this link to update your NIN or your line will be barred today: http://nin-update.xyz",
+    "isScam": true,
+    "redFlags": ["unknown_link", "urgency", "impersonation"]
+  },
+  {
+    "id": "se13",
+    "type": "safe_bank_alert",
+    "lang": "en",
+    "text": "Your account was debited ₦5,000. If this was not you, call the number on the back of your card.",
+    "isScam": false,
+    "redFlags": []
+  },
+  {
+    "id": "se14",
+    "type": "safe_education",
+    "lang": "en",
+    "text": "Your bank will never ask for your PIN or OTP. Keep them secret.",
+    "isScam": false,
+    "redFlags": []
+  },
+  {
+    "id": "se15",
+    "type": "safe_otp",
+    "lang": "en",
+    "text": "Your OTP is 482913. Do not share it with anyone.",
+    "isScam": false,
+    "redFlags": []
+  },
+  {
+    "id": "se16",
+    "type": "safe_pos",
+    "lang": "en",
+    "text": "POS transaction of ₦20,000 was successful. Thank you.",
+    "isScam": false,
+    "redFlags": []
+  },
+  {
+    "id": "se17",
+    "type": "safe_government",
+    "lang": "en",
+    "text": "NIMC: Your NIN registration is complete. Visit nin.gov.ng to download your slip.",
+    "isScam": false,
+    "redFlags": []
+  },
+  {
+    "id": "se18",
+    "type": "fake_bank_alert",
+    "lang": "pcm",
+    "text": "Dear customer, your account go close today. Send your OTP to 08031234567 now.",
+    "isScam": true,
+    "redFlags": ["asks_for_otp", "urgency"]
+  },
+  {
+    "id": "se19",
+    "type": "prize",
+    "lang": "pcm",
+    "text": "Congratulation! You don win ₦200,000. Click this link to claim: http://win-big.xyz",
+    "isScam": true,
+    "redFlags": ["prize", "unknown_link"]
+  },
+  {
+    "id": "se20",
+    "type": "safe_education",
+    "lang": "pcm",
+    "text": "No ever share your PIN or OTP with anybody. Bank no go ask you for am.",
+    "isScam": false,
+    "redFlags": []
+  }
+]

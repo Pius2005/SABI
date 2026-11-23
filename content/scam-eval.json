@@ -1,0 +1,232 @@
+[
+  {
+    "id": "e1",
+    "text": "Your account will be closed today. Send your OTP to 08031234567 to reactivate it.",
+    "expected": "scam"
+  },
+  {
+    "id": "e2",
+    "text": "Dear customer, your GTBank account is blocked. Reply with your PIN now.",
+    "expected": "scam"
+  },
+  {
+    "id": "e3",
+    "text": "Congratulations! You won ₦500,000. Click http://bit.ly/win to claim.",
+    "expected": "scam"
+  },
+  {
+    "id": "e4",
+    "text": "Hello, this is my new number. I am in the hospital, please send ₦20,000 urgently.",
+    "expected": "scam"
+  },
+  {
+    "id": "e5",
+    "text": "Your parcel is held. Pay a delivery fee of ₦2,500 to release it. Call this number 08039876543.",
+    "expected": "scam"
+  },
+  {
+    "id": "e6",
+    "text": "MTN: You have received 5GB free data. Dial *131# to activate.",
+    "expected": "safe"
+  },
+  {
+    "id": "e7",
+    "text": "Your bank will never ask for your PIN or OTP. Keep them secret.",
+    "expected": "safe"
+  },
+  {
+    "id": "e8",
+    "text": "Dear customer, your account was debited ₦5,000. If this was not you, call the number on your card.",
+    "expected": "safe"
+  },
+  {
+    "id": "e9",
+    "text": "URGENT: Your SIM will be blocked in 24 hours. Send your BVN for verification.",
+    "expected": "scam"
+  },
+  {
+    "id": "e10",
+    "text": "You have a job offer. No interview needed. Pay ₦10,000 registration fee.",
+    "expected": "scam"
+  },
+  {
+    "id": "e11",
+    "text": "Congratulations, you are our lucky winner! Send your account number to receive the prize.",
+    "expected": "scam"
+  },
+  {
+    "id": "e12",
+    "text": "Please send your card number and CVV to confirm your booking.",
+    "expected": "scam"
+  },
+  {
+    "id": "e13",
+    "text": "Hello ma, I am calling from your bank customer care. Read out the code we just sent to you.",
+    "expected": "scam"
+  },
+  {
+    "id": "e14",
+    "text": "Your loan of ₦50,000 is approved. No collateral. Click here to claim.",
+    "expected": "unsure"
+  },
+  {
+    "id": "e15",
+    "text": "I am your grandson. I lost my phone. This is my new number. Please send money for transport.",
+    "expected": "scam"
+  },
+  {
+    "id": "e16",
+    "text": "Your POS transaction of ₦20,000 was successful. Thank you.",
+    "expected": "safe"
+  },
+  {
+    "id": "e17",
+    "text": "Airtime bonus: dial *123# to receive your free airtime.",
+    "expected": "safe"
+  },
+  {
+    "id": "e18",
+    "text": "This is a scam awareness message. Never share your PIN. Banks will not ask for it.",
+    "expected": "safe"
+  },
+  {
+    "id": "e19",
+    "text": "Click this link to update your NIN or your line will be barred: http://nin-update.xyz",
+    "expected": "scam"
+  },
+  {
+    "id": "e20",
+    "text": "Your package could not be delivered. Reschedule here: https://dhl.com/track",
+    "expected": "safe"
+  },
+  {
+    "id": "e21",
+    "text": "I have your daughter. Send ₦200,000 or you will not see her again.",
+    "expected": "scam"
+  },
+  {
+    "id": "e22",
+    "text": "Please help me. I sent money to a scammer. What should I do?",
+    "expected": "safe"
+  },
+  {
+    "id": "e23",
+    "text": "Your OTP is 482913. Do not share it with anyone.",
+    "expected": "safe"
+  },
+  {
+    "id": "e24",
+    "text": "Send your PIN to this WhatsApp number to unlock your account.",
+    "expected": "scam"
+  },
+  {
+    "id": "e25",
+    "text": "You have been selected for a government grant. Pay ₦5,000 processing fee.",
+    "expected": "scam"
+  },
+  {
+    "id": "e26",
+    "text": "NIMC: Your NIN registration is complete. Visit nin.gov.ng to download your slip.",
+    "expected": "safe"
+  },
+  {
+    "id": "e27",
+    "text": "Your account has been suspended. Verify now at http://gtbank-secure-login.com",
+    "expected": "scam"
+  },
+  {
+    "id": "e28",
+    "text": "Congratulations! You are today's lucky winner. Call this number 08031234567 to claim.",
+    "expected": "scam"
+  },
+  {
+    "id": "e29",
+    "text": "Buy cheap data at www.dataplus.ng",
+    "expected": "unsure"
+  },
+  {
+    "id": "e30",
+    "text": "Your ATM card is ready for collection at your branch.",
+    "expected": "safe"
+  },
+  {
+    "id": "e31",
+    "text": "We noticed unusual activity. Reply YES to confirm your password.",
+    "expected": "scam"
+  },
+  {
+    "id": "e32",
+    "text": "Investment opportunity: double your money in 7 days. Send ₦50,000.",
+    "expected": "scam"
+  },
+  {
+    "id": "e33",
+    "text": "Madam, I am from the bank. Your account is blocked. Send your BVN.",
+    "expected": "scam"
+  },
+  {
+    "id": "e34",
+    "text": "Your flight PNR is confirmed. Check in at www.airpeace.com",
+    "expected": "safe"
+  },
+  {
+    "id": "e35",
+    "text": "You have 1 new message. Click here to read.",
+    "expected": "unsure"
+  },
+  {
+    "id": "e36",
+    "text": "I am in trouble. Please send me money.",
+    "expected": "unsure"
+  },
+  {
+    "id": "e37",
+    "text": "Your BVN is required to complete this transaction. Share it with our agent.",
+    "expected": "scam"
+  },
+  {
+    "id": "e38",
+    "text": "Dear customer, do not share your OTP with anyone. Our staff will never ask for it.",
+    "expected": "safe"
+  },
+  {
+    "id": "e39",
+    "text": "Free iPhone! Only 5 left. Click here to claim now.",
+    "expected": "scam"
+  },
+  {
+    "id": "e40",
+    "text": "Your bank alert: Acct 0123456789 credited with ₦15,000. Bal ₦45,000.",
+    "expected": "safe"
+  },
+  {
+    "id": "e41",
+    "text": "URGENT: Your account will be blocked. Call this number 08031234567.",
+    "expected": "scam"
+  },
+  {
+    "id": "e42",
+    "text": "Hello, I saw your number on a job site. Work from home and earn ₦50,000 weekly. Send ₦2,000 for form.",
+    "expected": "scam"
+  },
+  {
+    "id": "e43",
+    "text": "Your account will be credited with your pension this week. No action needed.",
+    "expected": "safe"
+  },
+  {
+    "id": "e44",
+    "text": "Click the link below to see your bank statement: https://bit.ly/3xyz",
+    "expected": "scam"
+  },
+  {
+    "id": "e45",
+    "text": "Congratulation! You don win ₦200,000. Click this link to claim: http://win-big.xyz",
+    "expected": "scam"
+  },
+  {
+    "id": "e46",
+    "text": "No ever share your PIN or OTP with anybody. Bank no go ask you for am.",
+    "expected": "safe"
+  }
+]

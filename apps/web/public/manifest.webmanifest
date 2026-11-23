@@ -1,0 +1,44 @@
+{
+  "name": "SABI — Learn phones and the internet safely",
+  "short_name": "SABI",
+  "description": "A voice-first digital literacy app for older adults in Nigeria. Learn phones, WhatsApp, money safety and scams in English, Yorùbá, Igbo or Nigerian Pidgin.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "lang": "en-NG",
+  "dir": "ltr",
+  "categories": ["education", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ask SABI",
+      "short_name": "Ask",
+      "url": "/voice",
+      "description": "Ask a question by voice"
+    },
+    {
+      "name": "Check a message",
+      "short_name": "Check",
+      "url": "/scam",
+      "description": "Check if a message is a scam"
+    }
+  ]
+}

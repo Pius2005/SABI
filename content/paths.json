@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "phone-basics",
+    "titleKey": "path.phone_basics.title",
+    "goalTag": "basics",
+    "order": 1,
+    "icon": "phone",
+    "title": "Phone Basics",
+    "lessons": [
+      "hold-and-switch-on",
+      "charge-your-phone",
+      "touch-the-screen",
+      "volume-and-silent",
+      "wifi-and-data",
+      "text-size-and-brightness",
+      "open-and-close-apps"
+    ]
+  },
+  {
+    "slug": "calls-and-family",
+    "titleKey": "path.calls_family.title",
+    "goalTag": "family",
+    "order": 2,
+    "icon": "call",
+    "title": "Calls and Family",
+    "lessons": [
+      "make-a-phone-call",
+      "answer-and-end-a-call",
+      "save-a-contact",
+      "video-call",
+      "send-a-voice-note",
+      "take-and-send-a-photo"
+    ]
+  },
+  {
+    "slug": "whatsapp",
+    "titleKey": "path.whatsapp.title",
+    "goalTag": "whatsapp",
+    "order": 3,
+    "icon": "chat",
+    "title": "WhatsApp",
+    "lessons": [
+      "open-whatsapp",
+      "open-a-chat",
+      "send-a-message",
+      "send-a-photo",
+      "join-a-family-group",
+      "blue-ticks"
+    ]
+  },
+  {
+    "slug": "money-safely",
+    "titleKey": "path.money_safely.title",
+    "goalTag": "banking",
+    "order": 4,
+    "icon": "bank",
+    "title": "Money Safely",
+    "lessons": [
+      "what-is-a-banking-app",
+      "check-your-balance",
+      "send-money-safely",
+      "what-is-ussd",
+      "pos-and-alerts",
+      "never-share-pin",
+      "if-you-were-scammed"
+    ]
+  },
+  {
+    "slug": "stay-safe",
+    "titleKey": "path.stay_safe.title",
+    "goalTag": "scams",
+    "order": 5,
+    "icon": "shield",
+    "title": "Stay Safe from Scams",
+    "lessons": [
+      "a-message-asks-for-your-pin",
+      "you-won-a-prize",
+      "sim-swap",
+      "relative-in-trouble",
+      "fake-job-or-loan",
+      "unknown-links",
+      "block-and-report",
+      "who-to-call"
+    ]
+  },
+  {
+    "slug": "everyday-services",
+    "titleKey": "path.everyday_services.title",
+    "goalTag": "services",
+    "order": 6,
+    "icon": "globe",
+    "title": "Everyday Services",
+    "lessons": [
+      "find-information",
+      "music-and-radio",
+      "read-news",
+      "book-a-ride",
+      "clinic-appointment",
+      "government-portals"
+    ]
+  }
+]
