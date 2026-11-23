@@ -7,6 +7,7 @@ import { authenticate, requireRole } from '../auth';
 import { decryptPhone, encryptPhone, hashPhone, isValidNgPhone, maskPhone, normalizePhone } from '../crypto';
 import { fail, handleZod } from '../http';
 import { getSmsProvider, getWhatsAppProvider } from '../providers';
+import { triageHelpRequest } from '../triage';
 import type { DbUser } from '../db-types';
 
 function summaryFor(store: Store, learner: DbUser) {
@@ -48,7 +49,7 @@ export function createPeopleRouter(store: Store, env: Env): Router {
   router.use(['/help-requests', '/groups', '/family', '/reminders'], authenticate(store, env));
 
   // ---- Help requests -------------------------------------------------------
-  router.post('/help-requests', (req, res) => {
+  router.post('/help-requests', async (req, res) => {
     try {
       const body = z
         .object({
@@ -56,6 +57,12 @@ export function createPeopleRouter(store: Store, env: Env): Router {
           context: z.record(z.unknown()).optional(),
         })
         .parse(req.body);
+      // Drex decides who should pick this up and how soon. It never blocks the
+      // learner: with no key or no answer the local rule set routes it instead.
+      const triage = await triageHelpRequest(
+        { requestType: body.type, lang: req.user!.preferredLang, context: body.context ?? null },
+        env,
+      );
       const request = {
         id: crypto.randomUUID(),
         userId: req.user!.id,
@@ -65,9 +72,15 @@ export function createPeopleRouter(store: Store, env: Env): Router {
         createdAt: new Date().toISOString(),
         contactedAt: null,
         resolvedAt: null,
+        triage,
       };
       store.data.helpRequests.unshift(request);
-      store.audit(req.user!.id, 'help_requested', 'help_request', request.id, { type: body.type });
+      store.audit(req.user!.id, 'help_requested', 'help_request', request.id, {
+        type: body.type,
+        route: triage.route,
+        priority: triage.priority,
+        triageSource: triage.source,
+      });
       store.save();
       res.status(201).json({ request });
     } catch (error) {

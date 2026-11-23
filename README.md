@@ -82,7 +82,7 @@ All routes live under `/api/v1`.
 | Learner | `GET/PATCH/DELETE /me`, `GET /me/export`, `GET/POST /me/consents`, `GET /progress`, `PUT /progress/:lesson`, `POST /progress/sync`, `POST /sandbox/attempts` |
 | Content | `GET /paths/:slug`, `GET /lessons/:slug`, `GET /lessons/:slug/bundle` |
 | Voice | `POST /voice/turn`, `POST /voice/confirm`, `POST /tts`, `GET /tts/audio/:hash`, `POST /scam/check`, `GET /scam/examples` |
-| People | `POST/GET/PATCH /help-requests`, `GET/POST /groups`, `POST /groups/:id/members`, `POST /groups/:id/import`, `GET /groups/:id/progress`, `POST /groups/:id/notes`, family link routes, `GET/PUT /reminders` |
+| People | `POST/GET/PATCH /help-requests` (routed by Nace Drex, or local rules without a key), `GET/POST /groups`, `POST /groups/:id/members`, `POST /groups/:id/import`, `GET /groups/:id/progress`, `POST /groups/:id/notes`, family link routes, `GET/PUT /reminders` |
 | Admin | `GET/PATCH /admin/translations`, `POST /admin/audio/generate`, `GET /admin/analytics`, `GET /admin/audit-logs`, `GET /admin/users`, scam example routes, `GET /admin/glossary`, `GET /admin/voice-eval` |
 
 ## Safety and privacy design

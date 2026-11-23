@@ -26,6 +26,12 @@ interface GroupRow {
   memberCount: number;
 }
 
+interface TriageRow {
+  route: 'facilitator' | 'family' | 'support';
+  priority: 'now' | 'soon' | 'whenever';
+  source: 'drex' | 'local';
+}
+
 interface HelpRow {
   id: string;
   userId: string;
@@ -35,6 +41,7 @@ interface HelpRow {
   status: 'open' | 'contacted' | 'resolved';
   createdAt: string;
   resolvedAt: string | null;
+  triage?: TriageRow | null;
 }
 
 interface LearnerRow {
@@ -219,6 +226,17 @@ export default function Facilitator() {
                   {t(`help.status.${request.status}`)}
                 </span>
               </div>
+              {request.triage ? (
+                <p className="mt-2 flex flex-wrap items-center gap-1 text-sm">
+                  <span className={`chip ${request.triage.priority === 'now' ? 'chip-solid' : ''}`}>
+                    {t(`triage.priority.${request.triage.priority}`)}
+                  </span>
+                  <span className="chip">{t(`triage.route.${request.triage.route}`)}</span>
+                  <span className="muted text-xs">
+                    {request.triage.source === 'drex' ? t('triage.byDrex') : t('triage.byLocal')}
+                  </span>
+                </p>
+              ) : null}
               <div className="mt-2 flex flex-wrap gap-2">
                 <Button
                   size="sm"

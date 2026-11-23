@@ -16,6 +16,8 @@ export default defineConfig({
       TTS_PROVIDER: 'mock',
       LLM_PROVIDER: 'mock',
       SMS_PROVIDER: 'mock',
+      // Tests never call Nace: triage falls back to its local rule set.
+      NACE_API_KEY: '',
     },
   },
 });

@@ -42,6 +42,7 @@ export interface Env {
   smsSenderId: string;
   whatsappProvider: string;
   whatsappApiKey: string;
+  naceApiKey: string;
   retainAudio: boolean;
   audioRetentionHours: number;
   transcriptRetentionDays: number;
@@ -81,6 +82,7 @@ export function loadEnv(overrides: Partial<Env> = {}): Env {
     smsSenderId: process.env.SMS_SENDER_ID || 'SABI',
     whatsappProvider: process.env.WHATSAPP_PROVIDER || 'mock',
     whatsappApiKey: process.env.WHATSAPP_API_KEY || '',
+    naceApiKey: process.env.NACE_API_KEY || '',
     retainAudio: bool(process.env.RETAIN_AUDIO, false),
     audioRetentionHours: num(process.env.AUDIO_RETENTION_HOURS, 0),
     transcriptRetentionDays: num(process.env.TRANSCRIPT_RETENTION_DAYS, 30),

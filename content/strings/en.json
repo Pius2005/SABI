@@ -345,6 +345,14 @@
   "path.money_safely.title": "Money Safely",
   "path.stay_safe.title": "Stay Safe from Scams",
   "path.everyday_services.title": "Everyday Services",
+  "triage.priority.now": "Needs someone today",
+  "triage.priority.soon": "Within a few days",
+  "triage.priority.whenever": "When free",
+  "triage.route.facilitator": "Send to facilitator",
+  "triage.route.family": "Send to family",
+  "triage.route.support": "Send to support",
+  "triage.byDrex": "chosen by Drex",
+  "triage.byLocal": "chosen by local rules",
   "dev.typography": "Typography test",
   "dev.components": "Component gallery"
 }

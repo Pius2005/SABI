@@ -13,6 +13,8 @@ describe('help requests, groups, family links and reminders', () => {
       .send({ type: 'call_back', context: { lessonSlug: 'make-a-phone-call' } });
     expect(created.status).toBe(201);
     expect(created.body.request.status).toBe('open');
+    // No Nace key in tests, so the local rule set routes the request.
+    expect(created.body.request.triage).toMatchObject({ route: 'facilitator', priority: 'now', source: 'local' });
 
     const list = await ctx.api
       .get('/api/v1/help-requests')

@@ -91,6 +91,26 @@ always a scam, while a message that warns against sharing one is never treated
 as a request. `npm run scam:eval` enforces that invariant and a 90% accuracy
 floor against `content/scam-eval.json`.
 
+## Help-request triage
+
+`apps/api/src/triage.ts` asks [Nace Drex](https://console.nace.ai/docs/drex)
+who should pick up a help request and how soon, in a single `POST
+/v1/systemone` call. Two `choice` questions (route, priority) and one `noul`
+(enough urgency to act today) are answered together, and each comes back with a
+probability distribution rather than a single label, so SABI can refuse to route
+when the options are close: below 0.5 the local rule set decides instead, and an
+urgency probability above 0.6 overrides a hesitant priority answer.
+
+Only a compact case state leaves the API — request type, language and lesson
+slug. Names, phone numbers and free-form learner text never do.
+
+Drex is never on the critical path. With no `NACE_API_KEY`, on any non-200, on
+unreadable JSON or after eight seconds it falls back to the local rules
+(`call_back` → facilitator now, `whatsapp` → family soon) and records
+`source: "local"`, so the learner is always told someone is coming. The
+decision is stored on the request and shown to facilitators, who can see why it
+reached them.
+
 ## Offline strategy
 
 - The service worker caches the app shell and public API responses; authenticated traffic always goes to the network.

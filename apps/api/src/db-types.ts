@@ -1,4 +1,5 @@
 import type { Lang, Role, TranslationStatus } from '@sabi/shared';
+import type { TriageDecision } from './triage';
 
 export interface DbUser {
   id: string;
@@ -103,6 +104,8 @@ export interface DbHelpRequest {
   createdAt: string;
   contactedAt: string | null;
   resolvedAt: string | null;
+  /** Drex (or local) routing decision; absent on requests made before triage. */
+  triage?: TriageDecision | null;
 }
 
 export interface DbReminder {
