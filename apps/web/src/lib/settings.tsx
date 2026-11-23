@@ -30,7 +30,6 @@ const SettingsContext = createContext<SettingsContextValue | null>(null);
 function initialSettings(): AppSettings {
   const saved = loadLocalSettings();
   const merged: AppSettings = { ...DEFAULT_SETTINGS, ...saved };
-  merged.voiceSpeed = Math.min(1.5, Math.max(0.5, Number(merged.voiceSpeed) || DEFAULT_SETTINGS.voiceSpeed));
   if (!['en', 'yo', 'ig', 'pcm'].includes(merged.preferredLang)) merged.preferredLang = 'en';
   if (!['normal', 'large', 'xl'].includes(merged.textSize)) merged.textSize = 'large';
   if (!['light', 'inverted'].includes(merged.theme)) merged.theme = 'light';
@@ -73,7 +72,6 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const updateSettings = useCallback((patch: Partial<AppSettings>, options: { remote?: boolean } = {}) => {
     setSettings((previous) => {
       const next: AppSettings = { ...previous, ...patch };
-      next.voiceSpeed = Math.min(1.5, Math.max(0.5, Number(next.voiceSpeed) || previous.voiceSpeed));
       saveLocalSettings(next);
       return next;
     });

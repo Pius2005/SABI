@@ -3,7 +3,6 @@ import { LANGUAGES, LANGUAGE_GREETINGS, LANGUAGE_NAMES, type Lang } from '@sabi/
 import { APP_NAME, APP_TAGLINE, homeForRole } from '../lib/config';
 import { useAuth } from '../lib/auth';
 import { useI18n } from '../lib/i18n';
-import { useSpeech } from '../lib/speech';
 import { useInstallPrompt } from '../lib/pwa';
 import { Icon } from '../components/Icon';
 import { LinkButton, LoadingPage, Notice } from '../components/ui';
@@ -11,7 +10,6 @@ import { LinkButton, LoadingPage, Notice } from '../components/ui';
 export default function Welcome() {
   const { user, loading } = useAuth();
   const { lang, setLang, t } = useI18n();
-  const { speak, synthesisSupported } = useSpeech();
   const { available, installed, install } = useInstallPrompt();
 
   if (loading) return <LoadingPage />;
@@ -19,7 +17,6 @@ export default function Welcome() {
 
   const choose = (code: Lang) => {
     setLang(code, { remote: false });
-    if (synthesisSupported) speak(LANGUAGE_GREETINGS[code], { lang: code });
   };
 
   return (
@@ -35,15 +32,6 @@ export default function Welcome() {
             {LANGUAGE_GREETINGS[lang]}
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={() => speak(LANGUAGE_GREETINGS[lang])}
-              className="btn btn-secondary"
-              disabled={!synthesisSupported}
-            >
-              <Icon name="volume" />
-              <span>{t('action.listen')}</span>
-            </button>
             <span className="chip">
               <Icon name="globe" size={16} />
               {LANGUAGE_NAMES[lang]}
@@ -80,7 +68,7 @@ export default function Welcome() {
       <p className="hint mt-2">{t('welcome.langHint')}</p>
 
       <div className="mt-6 space-y-3">
-        <LinkButton to="/auth" size="lg" block icon={<Icon name="mic" />}>
+        <LinkButton to="/auth" size="lg" block icon={<Icon name="forward" />}>
           {t('action.start')}
         </LinkButton>
         <div className="flex flex-wrap items-center justify-between gap-3">

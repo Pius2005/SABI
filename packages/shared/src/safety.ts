@@ -1,5 +1,5 @@
 /**
- * Code-level safety filters. These run on every voice transcript, text input
+ * Code-level safety filters. These run on every text input
  * and assistant reply. They never log or return the sensitive value itself.
  */
 

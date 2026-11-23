@@ -15,7 +15,7 @@ const server = app.listen(env.port, () => {
     console.log('  Facilitator: facilitator@sabi.app / Teach123!');
     console.log('  Family:      family@sabi.app / Family123!');
     console.log('  Learners:    phone 08030000001 … 08030000006 (OTP is printed here and shown in the app)');
-    console.log(`  SMS provider: ${env.smsProvider} · LLM: ${env.llmProvider} · STT: ${env.sttProvider}\n`);
+    console.log(`  SMS provider: ${env.smsProvider} · LLM: ${env.llmProvider}\n`);
   }
 });
 

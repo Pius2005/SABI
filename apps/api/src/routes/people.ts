@@ -185,8 +185,6 @@ export function createPeopleRouter(store: Store, env: Env): Router {
       preferredLang: 'en',
       textSize: 'large',
       theme: 'light',
-      voiceSpeed: 0.9,
-      autoRead: true,
       reduceMotion: false,
       goalPathSlug: null,
       createdAt: new Date().toISOString(),

@@ -42,8 +42,6 @@ export function createMeRouter(store: Store, env: Env): Router {
           preferredLang: z.enum(['en', 'yo', 'ig', 'pcm']).optional(),
           textSize: z.enum(['normal', 'large', 'xl']).optional(),
           theme: z.enum(['light', 'inverted']).optional(),
-          voiceSpeed: z.number().min(0.5).max(1.5).optional(),
-          autoRead: z.boolean().optional(),
           reduceMotion: z.boolean().optional(),
           goalPathSlug: z.string().max(60).nullable().optional(),
         })
@@ -71,9 +69,7 @@ export function createMeRouter(store: Store, env: Env): Router {
       helpRequests: store.data.helpRequests.filter((h) => h.userId === user.id),
       familyLinks: store.data.familyLinks.filter((l) => l.learnerId === user.id || l.familyId === user.id),
       reminder: store.data.reminders.find((r) => r.userId === user.id) ?? null,
-      voiceExchanges: store.data.voiceExchanges
-        .filter((v) => v.userId === user.id)
-        .map((v) => ({ ...v, transcript: v.transcript ? v.transcript : null })),
+      assistantExchanges: store.data.voiceExchanges.filter((v) => v.userId === user.id),
       scamChecks: store.data.scamChecks.filter((s) => s.userId === user.id),
     };
     store.audit(user.id, 'export_data', 'user', user.id, null);
@@ -125,7 +121,6 @@ export function createMeRouter(store: Store, env: Env): Router {
             'privacy',
             'ai_notice',
             'store_transcripts',
-            'store_audio',
             'family_link',
             'analytics',
           ]),

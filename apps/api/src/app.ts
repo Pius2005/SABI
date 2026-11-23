@@ -11,7 +11,8 @@ import { createAuthRouter } from './routes/auth';
 import { createMeRouter } from './routes/me';
 import { createContentRouter } from './routes/content';
 import { createLearningRouter } from './routes/learning';
-import { createVoiceRouter } from './routes/voice';
+import { createAssistantRouter } from './routes/assistant';
+import { createScamRouter } from './routes/scam';
 import { createPeopleRouter } from './routes/people';
 import { createAdminRouter } from './routes/admin';
 
@@ -74,14 +75,10 @@ export function createApp(ctx: AppContext) {
       languages: LANGUAGES.map((code) => ({ code, name: LANGUAGE_NAMES[code], greeting: LANGUAGE_GREETINGS[code] })),
       pilotMode: env.allowUnreviewedTranslations,
       providers: {
-        stt: env.sttProvider,
-        tts: env.ttsProvider,
         llm: env.llmProvider,
         sms: env.smsProvider,
       },
       retention: {
-        retainAudio: env.retainAudio,
-        audioRetentionHours: env.audioRetentionHours,
         transcriptRetentionDays: env.transcriptRetentionDays,
       },
       confThreshold: env.confThreshold,
@@ -93,7 +90,8 @@ export function createApp(ctx: AppContext) {
   app.use('/api/v1', createMeRouter(store, env));
   app.use('/api/v1', createContentRouter(store, env));
   app.use('/api/v1', createLearningRouter(store, env));
-  app.use('/api/v1', createVoiceRouter(store, env));
+  app.use('/api/v1', createAssistantRouter(store, env));
+  app.use('/api/v1', createScamRouter(store, env));
   app.use('/api/v1', createPeopleRouter(store, env));
   app.use('/api/v1', createAdminRouter(store, env));
 

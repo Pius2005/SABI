@@ -173,8 +173,8 @@ export interface ServerConfig {
   tagline: string;
   languages: Array<{ code: Lang; name: string; greeting: string }>;
   pilotMode: boolean;
-  providers: { stt: string; tts: string; llm: string; sms: string };
-  retention: { retainAudio: boolean; audioRetentionHours: number; transcriptRetentionDays: number };
+  providers: { llm: string; sms: string };
+  retention: { transcriptRetentionDays: number };
   confThreshold: number;
   demo: boolean;
 }

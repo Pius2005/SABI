@@ -20,7 +20,7 @@ import {
   StatusPill,
 } from '../components/ui';
 
-type Tab = 'overview' | 'translations' | 'scams' | 'audit' | 'users' | 'voice' | 'glossary';
+type Tab = 'overview' | 'translations' | 'scams' | 'audit' | 'users' | 'glossary';
 
 const TABS: Array<{ id: Tab; label: string }> = [
   { id: 'overview', label: 'Overview' },
@@ -28,7 +28,6 @@ const TABS: Array<{ id: Tab; label: string }> = [
   { id: 'scams', label: 'Scam examples' },
   { id: 'audit', label: 'Audit log' },
   { id: 'users', label: 'People' },
-  { id: 'voice', label: 'Voice' },
   { id: 'glossary', label: 'Glossary' },
 ];
 
@@ -63,7 +62,6 @@ export default function Admin() {
       {tab === 'scams' ? <Scams /> : null}
       {tab === 'audit' ? <Audit /> : null}
       {tab === 'users' ? <Users /> : null}
-      {tab === 'voice' ? <VoiceEval /> : null}
       {tab === 'glossary' ? <Glossary /> : null}
     </div>
   );
@@ -95,14 +93,14 @@ function Overview() {
   const cards: Array<{
     label: string;
     value: number;
-    icon: 'users' | 'check-circle' | 'book' | 'help' | 'mic' | 'shield' | 'alert';
+    icon: 'users' | 'check-circle' | 'book' | 'help' | 'shield' | 'alert';
   }> = [
     { label: 'Learners', value: data.learners, icon: 'users' },
     { label: 'Active this week', value: data.activeLearners, icon: 'check-circle' },
     { label: 'Lessons completed', value: data.lessonsCompleted, icon: 'book' },
     { label: 'Stuck events', value: data.stuckEvents, icon: 'alert' },
     { label: 'Help open', value: data.helpOpen, icon: 'help' },
-    { label: 'Voice turns', value: data.voiceTurns, icon: 'mic' },
+    { label: 'Questions asked', value: data.assistantTurns, icon: 'help' },
     { label: 'Scam checks', value: data.scamChecks, icon: 'shield' },
   ];
 
@@ -154,7 +152,6 @@ interface TranslationRow {
   status: TranslationStatus;
   reviewerId: string | null;
   reviewedAt: string | null;
-  audioUrl: string | null;
 }
 
 function Translations() {
@@ -211,20 +208,6 @@ function Translations() {
         body: { key: row.key, lang: row.lang, status: 'approved' },
       });
       setMessage(t('admin.approve'));
-      reload();
-    } catch (caught) {
-      setError(errorMessage(caught, t));
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const generateAudio = async (row: TranslationRow) => {
-    setBusy(true);
-    setError(null);
-    try {
-      await apiFetch('/admin/audio/generate', { method: 'POST', body: { key: row.key, lang: row.lang } });
-      setMessage('Audio ready');
       reload();
     } catch (caught) {
       setError(errorMessage(caught, t));
@@ -320,11 +303,7 @@ function Translations() {
                       <Button variant="secondary" size="sm" disabled={busy} onClick={() => void approve(row)}>
                         {t('admin.approve')}
                       </Button>
-                    ) : (
-                      <Button variant="ghost" size="sm" disabled={busy} onClick={() => void generateAudio(row)}>
-                        Make audio
-                      </Button>
-                    )}
+                    ) : null}
                   </div>
                 </td>
               </tr>
@@ -386,8 +365,7 @@ function Translations() {
           <option value="approved">Approved</option>
         </select>
         <p className="hint mt-2">
-          Only approve text a native speaker has checked. Approved audio is generated after the text is
-          approved.
+          Only approve text a native speaker has checked.
         </p>
       </Dialog>
     </div>
@@ -649,57 +627,6 @@ function Users() {
           ))}
         </tbody>
       </table>
-    </div>
-  );
-}
-
-function VoiceEval() {
-  const { t } = useI18n();
-  const { data, error, loading, reload } = useAsync<{
-    evaluations: Array<{ id: string; kind: string; provider: string; lang: string; metric: string; value: number; createdAt: string }>;
-    note: string;
-  }>(async () => apiFetch('/admin/voice-eval'), []);
-
-  if (loading && !data) return <LoadingPage />;
-  if (error) return <ErrorState message={errorMessage(error, t)} onRetry={reload} />;
-  if (!data) return null;
-
-  return (
-    <div>
-      <Notice variant="info" className="mb-3">
-        {data.note}
-      </Notice>
-      {data.evaluations.length === 0 ? (
-        <Card>
-          <p className="font-bold">{t('admin.voiceEval')}</p>
-          <p className="mt-1 text-sm muted">No evaluation rows yet.</p>
-        </Card>
-      ) : (
-        <div className="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Kind</th>
-                <th scope="col">Provider</th>
-                <th scope="col">Language</th>
-                <th scope="col">Metric</th>
-                <th scope="col">Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.evaluations.map((row) => (
-                <tr key={row.id}>
-                  <td>{row.kind}</td>
-                  <td>{row.provider}</td>
-                  <td>{row.lang}</td>
-                  <td>{row.metric}</td>
-                  <td>{row.value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
     </div>
   );
 }

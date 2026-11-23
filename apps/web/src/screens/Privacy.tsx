@@ -28,9 +28,8 @@ interface ConsentRow {
 const CONSENTS: Array<{ type: string; labelKey: string; description: string }> = [
   { type: 'terms', labelKey: 'privacy.terms', description: 'The rules for using this app.' },
   { type: 'privacy', labelKey: 'privacy.intro', description: 'How we look after your information.' },
-  { type: 'ai_notice', labelKey: 'privacy.ai', description: 'You understand that the voice helper is an AI and can make mistakes.' },
-  { type: 'store_transcripts', labelKey: 'privacy.transcripts', description: 'Keep the words you say so a human helper can review them. Off by default.' },
-  { type: 'store_audio', labelKey: 'privacy.audio', description: 'Keep recordings of your voice. Off by default and not used in this pilot.' },
+  { type: 'ai_notice', labelKey: 'privacy.ai', description: 'You understand that the helper is an AI and can make mistakes.' },
+  { type: 'store_transcripts', labelKey: 'privacy.transcripts', description: 'Keep the questions you type so a human helper can review them. Off by default.' },
   { type: 'family_link', labelKey: 'privacy.family', description: 'Let a family member you invite see the progress you choose.' },
   { type: 'analytics', labelKey: 'privacy.analytics', description: 'Use anonymous counts to improve lessons. No message content.' },
 ];
@@ -140,8 +139,8 @@ export default function Privacy() {
       <SectionTitle>{t('privacy.retention')}</SectionTitle>
       <Card>
         <ul className="list-disc space-y-2 pl-5">
-          <li>Voice audio is not stored. It is used for the answer and then discarded.</li>
-          <li>Transcripts are kept only if you turn on “Keep my words”.</li>
+          <li>Nothing you type is recorded as audio. There is no microphone in this app.</li>
+          <li>Questions are kept only if you turn on “Keep my words”.</li>
           <li>Progress is kept while your account is open.</li>
           <li>You can export or delete everything from this page.</li>
         </ul>

@@ -7,7 +7,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { SPEECH_TAGS, type Lang, type TranslationStatus } from '@sabi/shared';
+import { LANG_TAGS, type Lang, type TranslationStatus } from '@sabi/shared';
 import enStrings from '../../../../content/strings/en.json';
 import yoStrings from '../../../../content/strings/yo.json';
 import igStrings from '../../../../content/strings/ig.json';
@@ -76,7 +76,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     setStatuses(defaultStatuses(lang));
     setNotice(lang !== 'en');
     setLoading(true);
-    document.documentElement.lang = SPEECH_TAGS[lang];
+    document.documentElement.lang = LANG_TAGS[lang];
 
     apiFetch<UiStringsResponse>(`/ui-strings/${lang}`, { auth: false })
       .then((data) => {

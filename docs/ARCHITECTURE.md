@@ -5,10 +5,8 @@
 ```
 Browser (React PWA)  ──►  Express API  ──►  JSON store (dev) / PostgreSQL (target)
         │                     │
-        │                     ├──► STT provider (mock | OpenAI Whisper)
         │                     ├──► LLM provider (mock | OpenAI chat)
-        │                     ├──► TTS provider (mock | OpenAI speech) + file cache
-        │                     └──► SMS provider   (mock | Termii)
+        │                     └──► SMS provider (mock | Termii)
         │
         └── localStorage: session, settings, progress outbox, offline lesson bundles
 ```
@@ -21,8 +19,8 @@ offline behaviour predictable.
 
 | Path | Responsibility |
 | --- | --- |
-| `apps/api` | HTTP API, auth, learning data, voice pipeline, admin reporting |
-| `apps/web` | Installable React PWA, offline packs, voice UI, all consoles |
+| `apps/api` | HTTP API, auth, learning data, written assistant, admin reporting |
+| `apps/web` | Installable React PWA, offline packs, all consoles |
 | `packages/shared` | Types, language table, safety filters, scam detector |
 | `content` | Source of truth for paths, lessons, strings, examples, fixtures |
 | `scripts` | Seed, content pipeline, evaluations, security checks |
@@ -66,22 +64,22 @@ translation notice when anything fell back.
 - Access tokens are 30-minute JWTs; refresh tokens are opaque, hashed at rest, rotated on use and revoked on logout.
 - Roles are enforced per route (`requireRole`) and per record: a facilitator only reaches learners in their own groups, a family member only learners who accepted their link.
 
-## Voice pipeline
+## Assistant pipeline
 
-`POST /voice/turn` accepts either typed text or a short audio clip (memory
-storage only; the buffer is discarded after transcription). The assistant then
-runs a fixed order of guards before any language model is consulted:
+`POST /assistant/turn` accepts typed text only. There is no speech-to-text, no
+text-to-speech and no audio upload anywhere in the app. The assistant runs a
+fixed order of guards before any language model is consulted:
 
 1. **Crisis detection** — money sent, credential shared, self-harm, abuse, medical emergency, distress.
-2. **Secret handling** — anything that looks like an attempt to share or obtain a credential is refused, and the transcript is dropped.
+2. **Secret handling** — anything that looks like an attempt to share or obtain a credential is refused, and the text is dropped.
 3. **AI disclosure** — "are you a human?" gets an honest answer.
 4. **Advice boundary** — medical, legal and money questions are redirected.
-5. **Confidence** — low STT confidence asks the learner to confirm before acting.
+5. **Confidence** — a reply the assistant is unsure of asks the learner to confirm before acting.
 6. **Answer** — retrieval over lessons and glossary plus the mock answer bank, or the configured LLM with the same system prompt.
 
 The reply is sanitised again on the way out. Every exchange records a prompt
-version, language, confidence, flag and latency — never the transcript, unless
-the learner consented to transcript storage.
+version, language, confidence, flag and latency — never the typed question,
+unless the learner consented to transcript storage.
 
 ## Scam detector
 
@@ -121,8 +119,7 @@ reached them.
 
 | Data | Default |
 | --- | --- |
-| Voice audio | discarded after transcription, never written to disk |
-| Transcripts | not stored unless the learner consents |
+| Typed questions | not stored unless the learner consents |
 | Account data | exportable (`GET /me/export`) and deletable (`DELETE /me`) by the learner |
 | Demo data | development only, gitignored |
 
@@ -131,6 +128,5 @@ reached them.
 The JSON store is deliberately dependency-free. To scale:
 
 1. Implement the `Store` surface over PostgreSQL (the `datasource` seam is one class).
-2. Move TTS caching to object storage; the cache key is already content-addressed.
-3. Replace the in-process rate-limit maps with Redis if more than one instance runs.
-4. Keep the API as the only writer so `progress/sync` remains the single reconciliation point.
+2. Replace the in-process rate-limit maps with Redis if more than one instance runs.
+3. Keep the API as the only writer so `progress/sync` remains the single reconciliation point.

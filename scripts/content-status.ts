@@ -35,11 +35,11 @@ for (const lang of LANGS) {
   console.log(`${pad(lang, 6)}${pad(`${titles}/${content.lessons.length}`, 15)}${pad(`${texts}/${stepCount}`, 12)}${percent}%`);
 }
 
-const needsAudio = content.lessons.reduce(
+const missingAlt = content.lessons.reduce(
   (sum, lesson) => sum + lesson.steps.filter((step) => !step.alt).length,
   0,
 );
-console.log(`\nSteps without alt text: ${needsAudio}`);
+console.log(`\nSteps without alt text: ${missingAlt}`);
 console.log(
   `Scam examples: ${content.scamExamples.length} · glossary: ${content.glossary.length} · ` +
     `scam eval cases: ${content.scamEval.length} · assistant safety cases: ${content.assistantSafety.length}`,

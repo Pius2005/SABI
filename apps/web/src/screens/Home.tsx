@@ -156,8 +156,8 @@ export default function Home() {
       )}
 
       <div className="grid gap-3 sm:grid-cols-3">
-        <Link to="/voice" className="card flex min-h-[7rem] flex-col justify-between no-underline">
-          <Icon name="mic" size={32} />
+        <Link to="/ask" className="card flex min-h-[7rem] flex-col justify-between no-underline">
+          <Icon name="edit" size={32} />
           <span className="mt-2 text-lg font-bold">{t('home.ask')}</span>
         </Link>
         <Link to="/scam" className="card flex min-h-[7rem] flex-col justify-between no-underline">

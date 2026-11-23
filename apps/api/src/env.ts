@@ -26,13 +26,6 @@ export interface Env {
   jwtAccessSecret: string;
   jwtRefreshSecret: string;
   encryptionKey: string;
-  sttProvider: string;
-  sttApiKey: string;
-  sttModel: string;
-  sttProviderByLang: Record<string, string>;
-  ttsProvider: string;
-  ttsApiKey: string;
-  ttsModel: string;
   llmProvider: string;
   llmApiKey: string;
   llmModel: string;
@@ -43,8 +36,6 @@ export interface Env {
   whatsappProvider: string;
   whatsappApiKey: string;
   naceApiKey: string;
-  retainAudio: boolean;
-  audioRetentionHours: number;
   transcriptRetentionDays: number;
   allowUnreviewedTranslations: boolean;
   confThreshold: number;
@@ -62,17 +53,6 @@ export function loadEnv(overrides: Partial<Env> = {}): Env {
     jwtAccessSecret: process.env.JWT_ACCESS_SECRET || 'dev-access-secret-change-me',
     jwtRefreshSecret: process.env.JWT_REFRESH_SECRET || 'dev-refresh-secret-change-me',
     encryptionKey: process.env.ENCRYPTION_KEY || 'dev-encryption-key-change-me',
-    sttProvider: process.env.STT_PROVIDER || 'mock',
-    sttApiKey: process.env.STT_API_KEY || '',
-    sttModel: process.env.STT_MODEL || 'whisper-1',
-    sttProviderByLang: {
-      yo: process.env.STT_PROVIDER_YO || '',
-      ig: process.env.STT_PROVIDER_IG || '',
-      pcm: process.env.STT_PROVIDER_PCM || '',
-    },
-    ttsProvider: process.env.TTS_PROVIDER || 'mock',
-    ttsApiKey: process.env.TTS_API_KEY || '',
-    ttsModel: process.env.TTS_MODEL || 'tts-1',
     llmProvider: process.env.LLM_PROVIDER || 'mock',
     llmApiKey: process.env.LLM_API_KEY || '',
     llmModel: process.env.LLM_MODEL || 'gpt-4o-mini',
@@ -83,8 +63,6 @@ export function loadEnv(overrides: Partial<Env> = {}): Env {
     whatsappProvider: process.env.WHATSAPP_PROVIDER || 'mock',
     whatsappApiKey: process.env.WHATSAPP_API_KEY || '',
     naceApiKey: process.env.NACE_API_KEY || '',
-    retainAudio: bool(process.env.RETAIN_AUDIO, false),
-    audioRetentionHours: num(process.env.AUDIO_RETENTION_HOURS, 0),
     transcriptRetentionDays: num(process.env.TRANSCRIPT_RETENTION_DAYS, 30),
     allowUnreviewedTranslations: bool(process.env.ALLOW_UNREVIEWED_TRANSLATIONS, true),
     confThreshold: num(process.env.CONF_THRESHOLD, 0.6),

@@ -6,7 +6,6 @@ import type { Store } from '../store';
 import { authenticate, requireRole } from '../auth';
 import { translationCoverage } from '../content-service';
 import { fail, handleZod } from '../http';
-import { synthesizeCached } from '../tts';
 
 export function createAdminRouter(store: Store, env: Env): Router {
   const router = Router();
@@ -49,8 +48,6 @@ export function createAdminRouter(store: Store, env: Env): Router {
           status: body.status ?? 'draft',
           reviewerId: null,
           reviewedAt: null,
-          audioUrl: null,
-          audioSource: null,
         };
         store.data.translations.push(row);
       } else {
@@ -71,31 +68,6 @@ export function createAdminRouter(store: Store, env: Env): Router {
     }
   });
 
-  router.post('/admin/audio/generate', async (req, res) => {
-    try {
-      const body = z
-        .object({ key: z.string().min(1).max(200), lang: z.enum(['en', 'yo', 'ig', 'pcm']), speed: z.number().min(0.5).max(1.5).optional() })
-        .parse(req.body);
-      const row = store.translation(body.key, body.lang);
-      if (!row) {
-        fail(res, 404, 'NOT_FOUND', 'That translation was not found.');
-        return;
-      }
-      if (row.status !== 'approved') {
-        fail(res, 400, 'NOT_APPROVED', 'Approve the text before making audio.');
-        return;
-      }
-      const tts = await synthesizeCached(row.text, body.lang, body.speed ?? 0.9, env);
-      row.audioUrl = `/api/v1/tts/audio/${tts.hash}`;
-      row.audioSource = 'tts';
-      store.audit(req.user!.id, 'audio_generated', 'translation', `${body.key}|${body.lang}`, null);
-      store.save();
-      res.json({ translation: row });
-    } catch (error) {
-      if (!handleZod(res, error)) fail(res, 500, 'ERROR', 'Could not make the audio.');
-    }
-  });
-
   router.get('/admin/analytics', (req, res) => {
     const learners = store.data.users.filter((u) => u.role === 'LEARNER' && !u.deletedAt);
     const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
@@ -106,7 +78,7 @@ export function createAdminRouter(store: Store, env: Env): Router {
       lessonsCompleted: store.data.progress.filter((p) => p.completedAt).length,
       stuckEvents: store.data.progress.reduce((sum, p) => sum + p.stuckCount, 0),
       helpOpen: store.data.helpRequests.filter((h) => h.status === 'open').length,
-      voiceTurns: store.data.voiceExchanges.length,
+      assistantTurns: store.data.voiceExchanges.length,
       scamChecks: store.data.scamChecks.length,
       sandboxAttempts: store.data.sandboxAttempts.length,
       translationCoverage: translationCoverage(store, env),
@@ -173,14 +145,6 @@ export function createAdminRouter(store: Store, env: Env): Router {
 
   router.get('/admin/glossary', (req, res) => {
     res.json({ glossary: store.data.glossary });
-  });
-
-  router.get('/admin/voice-eval', (req, res) => {
-    res.json({
-      evaluations: store.data.providerEvals.slice(0, 200),
-      note:
-        'Voice evaluation results are only meaningful with real recordings from older Nigerian speakers. Run npm run voice:eval to generate docs/VOICE_EVAL_REPORT.md.',
-    });
   });
 
   return router;

@@ -7,8 +7,6 @@ export interface PublicUser {
   preferredLang: Lang;
   textSize: TextSize;
   theme: Theme;
-  voiceSpeed: number;
-  autoRead: boolean;
   reduceMotion: boolean;
   phoneMasked: string | null;
   email: string | null;
@@ -99,7 +97,7 @@ export interface ScamVerdict {
   critical: boolean;
 }
 
-export interface VoiceReply {
+export interface AssistantReply {
   transcript: string;
   language: Lang | 'unknown';
   replyLang: Lang;
@@ -107,7 +105,6 @@ export interface VoiceReply {
   reply: string;
   needsConfirm: boolean;
   confirmQuestion: string | null;
-  audioUrl: string | null;
   promptVersion: string;
   safety: { flagged: string | null; message: string | null };
 }
@@ -138,7 +135,7 @@ export interface AdminAnalytics {
   lessonsCompleted: number;
   stuckEvents: number;
   helpOpen: number;
-  voiceTurns: number;
+  assistantTurns: number;
   scamChecks: number;
   translationCoverage: Record<Lang, { total: number; approved: number; needsReview: number; missing: number }>;
 }

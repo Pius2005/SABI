@@ -5,7 +5,6 @@ import { useAuth } from '../lib/auth';
 import { useI18n } from '../lib/i18n';
 import { useSettings } from '../lib/settings';
 import { apiFetch } from '../lib/api';
-import { SpeakButton } from '../components/SpeakButton';
 import { Icon } from '../components/Icon';
 import {
   Button,
@@ -35,8 +34,6 @@ export default function Setup() {
           body: {
             textSize: settings.textSize,
             theme: settings.theme,
-            voiceSpeed: settings.voiceSpeed,
-            autoRead: settings.autoRead,
             reduceMotion: settings.reduceMotion,
             preferredLang: settings.preferredLang,
           },
@@ -88,36 +85,6 @@ export default function Setup() {
           columns={2}
         />
 
-        <RadioCards<'slow' | 'normal' | 'fast'>
-          name="voiceSpeed"
-          label={t('setup.voiceSpeed')}
-          value={settings.voiceSpeed < 0.8 ? 'slow' : settings.voiceSpeed > 1.02 ? 'fast' : 'normal'}
-          onChange={(value) =>
-            updateSettings({ voiceSpeed: value === 'slow' ? 0.7 : value === 'fast' ? 1.15 : 0.9 }, { remote: false })
-          }
-          options={[
-            { value: 'slow', label: t('setup.slow') },
-            { value: 'normal', label: t('setup.normalSpeed') },
-            { value: 'fast', label: t('setup.fast') },
-          ]}
-          columns={3}
-        />
-
-        <div className="card">
-          <p className="eyebrow mb-2">{t('setup.preview')}</p>
-          <p className="text-xl font-bold">{t('welcome.title')}</p>
-          <p className="mt-2">{t('setup.preview')}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <SpeakButton text={t('setup.preview')} />
-            <span className="chip">{t('voice.speed')}: {settings.voiceSpeed.toFixed(2)}×</span>
-          </div>
-        </div>
-
-        <Toggle
-          label={t('setup.autoRead')}
-          checked={settings.autoRead}
-          onChange={(value) => updateSettings({ autoRead: value }, { remote: false })}
-        />
         <Toggle
           label={t('setup.reduceMotion')}
           checked={settings.reduceMotion}

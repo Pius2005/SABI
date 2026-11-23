@@ -324,8 +324,8 @@ export function analyzeMessage(raw: string): ScamAnalysis {
   };
 }
 
-/** Short, calm spoken version of a verdict. */
-export function verdictToSpeech(v: ScamVerdict): string {
+/** Short, calm written summary of a verdict. */
+export function verdictToText(v: ScamVerdict): string {
   const first = v.reasons[0] ? ` ${v.reasons[0]}` : '';
   const step = v.nextSteps[0] ? ` ${v.nextSteps[0]}` : '';
   return `${v.headline}.${first}${step}`;

@@ -4,7 +4,6 @@ import type { LessonDetail, PathDetail } from '@sabi/shared';
 import { useAuth } from '../lib/auth';
 import { useI18n } from '../lib/i18n';
 import { useSettings } from '../lib/settings';
-import { useSpeech } from '../lib/speech';
 import { apiFetch, ApiError } from '../lib/api';
 import { pushProgress } from '../lib/offline';
 import { getBundle, loadProgress } from '../lib/storage';
@@ -13,7 +12,6 @@ import { taskForKey, type PracticeTask } from '../lib/sandboxTasks';
 import { useAsync } from '../lib/useAsync';
 import { StepVisual } from '../components/StepVisual';
 import { Sandbox } from '../components/Sandbox';
-import { SpeakButton } from '../components/SpeakButton';
 import { Icon } from '../components/Icon';
 import {
   Button,
@@ -55,7 +53,6 @@ export default function Lesson() {
   const { user } = useAuth();
   const { lang, t, tf } = useI18n();
   const { settings } = useSettings();
-  const { speak, stopSpeaking, synthesisSupported } = useSpeech();
   const navigate = useNavigate();
 
   const [stepIndex, setStepIndex] = useState(0);
@@ -110,19 +107,6 @@ export default function Lesson() {
 
   const currentStep = lesson?.steps[stepIndex] ?? null;
   const lastStep = lesson ? lesson.steps.length - 1 : 0;
-
-  const spokenText = useMemo(() => {
-    if (!lesson) return '';
-    if (phase === 'steps') return currentStep?.text ?? '';
-    if (phase === 'selfCheck') return lesson.selfCheck;
-    return '';
-  }, [lesson, phase, currentStep]);
-
-  useEffect(() => {
-    if (!settings.autoRead || !spokenText || !synthesisSupported) return;
-    speak(spokenText);
-    return () => stopSpeaking();
-  }, [spokenText, settings.autoRead, synthesisSupported, speak, stopSpeaking]);
 
   useEffect(() => {
     if (!lesson || !user || !initialised || phase !== 'steps') return;
@@ -234,17 +218,6 @@ export default function Lesson() {
               {currentStep.text}
             </p>
             {currentStep.alt ? <p className="mt-2 text-sm muted">{currentStep.alt}</p> : null}
-            <div className="mt-4 flex flex-wrap gap-2">
-              <SpeakButton text={currentStep.text} />
-              <Button
-                variant="secondary"
-                onClick={() => speak(currentStep.text, { speed: 0.65 })}
-                disabled={!synthesisSupported}
-                icon={<Icon name="headphones" />}
-              >
-                {t('action.replay')}
-              </Button>
-            </div>
             {pictureAgain ? (
               <Notice variant="info" className="mt-3">
                 <p className="font-bold">{currentStep.alt || currentStep.text}</p>
@@ -280,9 +253,6 @@ export default function Lesson() {
         <Card>
           <p className="eyebrow mb-2">{t('lesson.selfCheck')}</p>
           <p className="text-2xl font-bold leading-snug">{lesson.selfCheck}</p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <SpeakButton text={lesson.selfCheck} />
-          </div>
           {practiceDone ? (
             <p className="mt-3 inline-flex items-center gap-2 text-sm font-bold">
               <Icon name="check-circle" size={18} />
@@ -358,23 +328,11 @@ export default function Lesson() {
           <Button
             block
             variant="secondary"
-            icon={<Icon name="headphones" />}
-            onClick={() => {
-              setStuckOpen(false);
-              speak(currentStep?.text ?? lesson.title, { speed: 0.6 });
-            }}
-          >
-            {t('lesson.stuckReplay')}
-          </Button>
-          <Button
-            block
-            variant="secondary"
             icon={<Icon name="eye" />}
             onClick={() => {
               setStuckOpen(false);
               setPhase('steps');
               setPictureAgain(true);
-              speak(currentStep?.alt ?? currentStep?.text ?? lesson.title);
             }}
           >
             {t('lesson.stuckPicture')}
@@ -382,10 +340,10 @@ export default function Lesson() {
           <Button
             block
             variant="secondary"
-            icon={<Icon name="mic" />}
+            icon={<Icon name="edit" />}
             onClick={() => {
               setStuckOpen(false);
-              navigate('/voice', {
+              navigate('/ask', {
                 state: {
                   context: `${lesson.title}. ${currentStep?.text ?? ''}`.trim(),
                 },

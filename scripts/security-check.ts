@@ -48,7 +48,7 @@ function walk(directory: string, out: string[] = []): string[] {
 
 // ---- repository hygiene ---------------------------------------------------
 const gitignore = read('.gitignore');
-for (const pattern of ['.env', 'apps/api/data/', 'apps/api/tts-cache/', 'dist/', 'coverage/']) {
+for (const pattern of ['.env', 'apps/api/data/', 'dist/', 'coverage/', 'docs/ASSISTANT_EVAL_REPORT.md']) {
   check(`.gitignore covers ${pattern}`, gitignore.includes(pattern), 'add it so secrets and local data are never committed');
 }
 
@@ -150,9 +150,10 @@ check('OTP attempts are rate limited', auth.includes('attempts >= 5') && auth.in
 check('staff logins are rate limited', auth.includes('staffAttempts'), 'lock repeated failures');
 check('staff passwords are compared with bcrypt', auth.includes('bcrypt.compareSync'), 'never compare plaintext');
 
-const voice = read('apps/api/src/routes/voice.ts');
-check('voice turns are rate limited', voice.includes('rateLimited('), 'add a per-user limiter');
-check('uploaded audio is never written to disk', !voice.includes('writeFile') && voice.includes('memoryStorage'), 'use memory storage');
+const assistant = read('apps/api/src/routes/assistant.ts');
+check('assistant turns are rate limited', assistant.includes('rateLimited('), 'add a per-user limiter');
+check('the assistant routes accept no audio', !/multer|memoryStorage|audio\//i.test(assistant), 'answers are text only');
+check('the speech routes are gone', !exists('apps/api/src/routes/voice.ts') && !exists('apps/api/src/tts.ts'), 'remove voice and tts endpoints');
 
 const safety = read('packages/shared/src/safety.ts');
 check('sensitive values are redacted before storage', safety.includes('redactSensitive'), 'keep redaction');

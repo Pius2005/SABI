@@ -17,8 +17,6 @@ export function publicUser(user: DbUser): PublicUser {
     preferredLang: user.preferredLang,
     textSize: user.textSize,
     theme: user.theme,
-    voiceSpeed: user.voiceSpeed,
-    autoRead: user.autoRead,
     reduceMotion: user.reduceMotion,
     phoneMasked: user.phoneMasked,
     email: user.email,

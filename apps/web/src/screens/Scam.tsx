@@ -6,7 +6,6 @@ import { useI18n } from '../lib/i18n';
 import { apiFetch } from '../lib/api';
 import { errorMessage } from '../lib/format';
 import { useAsync } from '../lib/useAsync';
-import { SpeakButton } from '../components/SpeakButton';
 import { Icon } from '../components/Icon';
 import { Button, Card, Notice, PageHeader, Spinner } from '../components/ui';
 
@@ -109,7 +108,6 @@ export default function Scam() {
           >
             {busy ? t('scam.checking') : t('scam.check')}
           </Button>
-          <SpeakButton text={text} label={t('scam.speak')} />
         </div>
         {error ? (
           <Notice variant="error" title={t('common.error')} className="mt-3">
@@ -206,12 +204,6 @@ export default function Scam() {
             </div>
           ) : null}
 
-          <div className="mt-4">
-            <SpeakButton
-              text={`${result.headline}. ${result.reasons.join('. ')}. ${result.nextSteps.join('. ')}`}
-            />
-          </div>
-
           <div className="mt-5 flex flex-wrap gap-2">
             <Button
               variant="secondary"
@@ -239,8 +231,8 @@ export default function Scam() {
             <Icon name="phone" size={18} />
             <span>{t('help.callback')}</span>
           </Link>
-          <Link to="/voice" className="btn btn-ghost btn-sm">
-            <Icon name="mic" size={18} />
+          <Link to="/ask" className="btn btn-ghost btn-sm">
+            <Icon name="edit" size={18} />
             <span>{t('action.askQuestion')}</span>
           </Link>
         </div>

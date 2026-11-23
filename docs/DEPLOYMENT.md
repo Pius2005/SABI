@@ -28,9 +28,8 @@ least:
 | `ENCRYPTION_KEY` | 32+ random characters — changing it makes stored phones unreadable |
 | `ALLOW_UNREVIEWED_TRANSLATIONS` | `false` once translations are approved |
 
-Provider keys (`STT_API_KEY`, `TTS_API_KEY`, `LLM_API_KEY`, `SMS_API_KEY`) are
-optional; without them the app runs on mock providers, which is fine for a demo
-and wrong for real learners.
+Provider keys (`LLM_API_KEY`, `SMS_API_KEY`) are optional; without them the app
+runs on mock providers, which is fine for a demo and wrong for real learners.
 
 Generate secrets without writing them to a shell history:
 
@@ -87,6 +86,5 @@ location / {
 
 - **Backups.** The store is a single JSON file written atomically. Back it up by copying the file between writes, or run the pilot on Postgres for real durability.
 - **Restarts.** `SIGINT`/`SIGTERM` flush pending writes before exit.
-- **TTS cache.** `apps/api/tts-cache/` can be deleted at any time; audio is regenerated on demand.
 - **Secrets.** Never commit `.env`; it is gitignored and `npm run security:check` fails if it becomes tracked.
 - **Rollback.** Deploy the previous image/tag; the data file is forward compatible (version 1) but take a backup first.

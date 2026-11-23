@@ -230,7 +230,7 @@ export default function Help() {
       ) : null}
 
       <Card className="mt-5">
-        <p className="font-bold">{t('voice.aiNotice')}</p>
+        <p className="font-bold">{t('app.aiNotice')}</p>
         <p className="mt-1 text-sm muted">{t('scam.noCertainty')}</p>
       </Card>
     </div>

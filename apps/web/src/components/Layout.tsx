@@ -127,7 +127,7 @@ export function AppShell() {
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-2 text-sm">
           <p className="flex items-start gap-2">
             <Icon name="info" size={18} className="mt-0.5 shrink-0" />
-            <span>{t('voice.aiNotice')}</span>
+            <span>{t('app.aiNotice')}</span>
           </p>
           <div className="flex flex-wrap gap-x-4 gap-y-1">
             <Link to="/privacy" className="link">

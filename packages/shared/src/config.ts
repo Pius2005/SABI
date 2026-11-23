@@ -34,8 +34,8 @@ export const LANGUAGE_GREETINGS: Record<Lang, string> = {
   pcm: 'Welcome. Na SABI be my name. I go help you learn small small.',
 };
 
-/** BCP-47 tags used by the browser speech engine and provider adapters. */
-export const SPEECH_TAGS: Record<Lang, string> = {
+/** BCP-47 tags used for the document `lang` attribute. */
+export const LANG_TAGS: Record<Lang, string> = {
   en: 'en-NG',
   yo: 'yo-NG',
   ig: 'ig-NG',
@@ -61,8 +61,6 @@ export const DEFAULT_SETTINGS = {
   preferredLang: 'en' as Lang,
   textSize: 'large' as TextSize,
   theme: 'light' as Theme,
-  voiceSpeed: 0.9,
-  autoRead: true,
   reduceMotion: false,
 };
 

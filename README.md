@@ -2,16 +2,16 @@
 
 **Learn phones and the internet, safely, in your own language.**
 
-SABI is a voice-first digital literacy platform for older adults in Nigeria. It
-teaches the everyday things people actually need — switching a phone on, making
-a call, sending a WhatsApp voice note, checking a balance, spotting a scam — in
-English, Yorùbá, Igbo and Nigerian Pidgin, with large text, spoken guidance and a
-practice sandbox that never touches real money.
+SABI is a digital literacy platform for older adults in Nigeria. It teaches the
+everyday things people actually need — switching a phone on, making a call,
+sending a WhatsApp voice note, checking a balance, spotting a scam — in English,
+Yorùbá, Igbo and Nigerian Pidgin, with large readable text and a practice sandbox
+that never touches real money.
 
 - **40 lessons** across **6 goal-based paths**
 - **4 languages**, with a visible notice whenever a translation is still under review
 - **Scam checker** that is always suspicious of anyone asking for a PIN, OTP, password, BVN or card
-- **Voice assistant** with crisis routing, AI disclosure and hard refusal to handle secrets
+- **Written assistant** with crisis routing, AI disclosure and hard refusal to handle secrets
 - **Offline packs** so a lesson keeps working without data
 - **Facilitator, family and admin** consoles
 
@@ -54,7 +54,7 @@ These accounts exist only in development seed data. `npm run seed` recreates the
 | `npm run content:validate` | Structural validation of `content/` |
 | `npm run content:status` | Translation and lesson coverage report |
 | `npm run scam:eval` | Score the scam detector against `content/scam-eval.json` |
-| `npm run voice:eval` | Score the assistant against `content/assistant-safety-tests.json` |
+| `npm run assistant:eval` | Score the assistant against `content/assistant-safety-tests.json` |
 | `npm run security:check` | Static checks for the privacy promises below |
 
 ## How it is put together
@@ -81,9 +81,9 @@ All routes live under `/api/v1`.
 | Auth | `POST /auth/otp/request`, `POST /auth/otp/verify`, `POST /auth/login`, `POST /auth/refresh`, `POST /auth/logout` |
 | Learner | `GET/PATCH/DELETE /me`, `GET /me/export`, `GET/POST /me/consents`, `GET /progress`, `PUT /progress/:lesson`, `POST /progress/sync`, `POST /sandbox/attempts` |
 | Content | `GET /paths/:slug`, `GET /lessons/:slug`, `GET /lessons/:slug/bundle` |
-| Voice | `POST /voice/turn`, `POST /voice/confirm`, `POST /tts`, `GET /tts/audio/:hash`, `POST /scam/check`, `GET /scam/examples` |
+| Assistant | `POST /assistant/turn`, `POST /assistant/confirm`, `POST /scam/check`, `GET /scam/examples` |
 | People | `POST/GET/PATCH /help-requests` (routed by Nace Drex, or local rules without a key), `GET/POST /groups`, `POST /groups/:id/members`, `POST /groups/:id/import`, `GET /groups/:id/progress`, `POST /groups/:id/notes`, family link routes, `GET/PUT /reminders` |
-| Admin | `GET/PATCH /admin/translations`, `POST /admin/audio/generate`, `GET /admin/analytics`, `GET /admin/audit-logs`, `GET /admin/users`, scam example routes, `GET /admin/glossary`, `GET /admin/voice-eval` |
+| Admin | `GET/PATCH /admin/translations`, `GET /admin/analytics`, `GET /admin/audit-logs`, `GET /admin/users`, scam example routes, `GET /admin/glossary` |
 
 ## Safety and privacy design
 
@@ -94,21 +94,22 @@ These are enforced in code, not only in copy:
 - **No advice.** Medical, legal and money questions are redirected to a professional.
 - **Scam directions matter.** "Send your OTP" is a scam; "never share your OTP" is safe. The detector is tested against 46 fixtures and fails the build if any scam or credential request is called safe.
 - **Phones are encrypted and hashed.** Accounts store an AES-256-GCM ciphertext, an HMAC lookup hash and a display mask — never the raw number.
-- **Learner choice is explicit.** Audio is discarded, transcripts are only stored with consent, and a learner can export or delete their account from the app.
-- **Rate limits** apply to OTP requests, staff logins and voice turns.
+- **Learner choice is explicit.** Typed questions are only stored with consent, and a learner can export or delete their account from the app.
+- **Text only.** There is no microphone, no audio upload and no speech API anywhere in the app.
+- **Rate limits** apply to OTP requests, staff logins and assistant questions.
 
 ## Accessibility
 
 Atkinson Hyperlegible throughout, a 3.5rem minimum touch target, a high-contrast
-inverted theme, three text sizes, reduced-motion support, spoken text on demand,
-plain-language copy and screen-reader alt text for every lesson step.
+inverted theme, three text sizes, reduced-motion support, plain-language copy
+and screen-reader alt text for every lesson step.
 
 ## Known limitations
 
 - The JSON file store is for development and single-instance pilots. Postgres is the production target.
-- Provider adapters default to mocks. Real speech, language-model and SMS calls need keys in `.env`.
+- Provider adapters default to mocks. Real language-model and SMS calls need keys in `.env`.
 - Yorùbá, Igbo and Pidgin UI strings are partly translated; untranslated keys fall back to English with a notice while `ALLOW_UNREVIEWED_TRANSLATIONS=true`. Run `npm run content:status` for current coverage.
-- Voice quality for these languages still needs recorded audio from older Nigerian speakers; the evaluation in `scripts/voice-eval.ts` covers safety behaviour only.
+- Answer quality for these languages still needs review by native speakers; the evaluation in `scripts/assistant-eval.ts` covers safety behaviour only.
 
 ## License
 

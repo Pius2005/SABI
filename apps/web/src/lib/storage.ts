@@ -72,8 +72,6 @@ export interface LocalSettings {
   preferredLang: Lang;
   textSize: TextSize;
   theme: Theme;
-  voiceSpeed: number;
-  autoRead: boolean;
   reduceMotion: boolean;
 }
 

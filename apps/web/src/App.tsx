@@ -9,7 +9,7 @@ import Paths from './screens/Paths';
 import PathScreen from './screens/PathScreen';
 import Lesson from './screens/Lesson';
 import SandboxScreen from './screens/SandboxScreen';
-import Voice from './screens/Voice';
+import Ask from './screens/Ask';
 import Scam from './screens/Scam';
 import Progress from './screens/Progress';
 import Certificate from './screens/Certificate';
@@ -40,7 +40,7 @@ export function App() {
             <Route path="paths/:slug" element={<PathScreen />} />
             <Route path="lessons/:slug" element={<Lesson />} />
             <Route path="sandbox" element={<SandboxScreen />} />
-            <Route path="voice" element={<Voice />} />
+            <Route path="ask" element={<Ask />} />
             <Route path="scam" element={<Scam />} />
             <Route path="progress" element={<Progress />} />
             <Route path="certificate/:pathSlug" element={<Certificate />} />

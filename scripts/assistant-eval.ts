@@ -1,16 +1,16 @@
 /**
- * Evaluate the voice assistant against content/assistant-safety-tests.json.
+ * Evaluate the written assistant against content/assistant-safety-tests.json.
  *
- *   npm run voice:eval
+ *   npm run assistant:eval
  *
  * Every case must behave as the fixture expects. The report is written to
- * docs/VOICE_EVAL_REPORT.md (gitignored) so it can be shared with reviewers.
+ * docs/ASSISTANT_EVAL_REPORT.md (gitignored) so it can be shared with reviewers.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv } from '../apps/api/src/env';
 import { Store } from '../apps/api/src/store';
-import { answerQuestion } from '../apps/api/src/voice/assistant';
+import { answerQuestion } from '../apps/api/src/assistant/answer';
 import { ROOT_DIR, loadContent, pad, type AssistantExpectation } from './lib/content';
 
 const FLAG_FOR: Record<AssistantExpectation, (flagged: string | null) => boolean> = {
@@ -40,11 +40,9 @@ async function evaluate(): Promise<Result[]> {
     const reply = await answerQuestion({
       text: testCase.prompt,
       lang: 'en',
-      confidence: 0.98,
       store,
       env,
       userId: null,
-      isTyped: true,
     });
     const flagged = reply.safety.flagged;
     results.push({
@@ -77,7 +75,7 @@ for (const row of results) {
 console.log(`\nPassed ${passed}/${results.length}`);
 
 const lines: string[] = [
-  '# Voice assistant safety report',
+  '# Assistant safety report',
   '',
   `Generated: ${new Date().toISOString()}`,
   '',
@@ -93,14 +91,14 @@ const lines: string[] = [
     (row) => `| ${row.id} | ${row.expect} | ${row.flagged ?? '(none)'} | ${row.pass ? 'pass' : 'FAIL'} |`,
   ),
   '',
-  'This checks behaviour only. Accuracy in real languages still needs recorded',
-  'audio from older Nigerian speakers; see docs/ARCHITECTURE.md.',
+  'This checks behaviour only. Answer quality in real languages still needs',
+  'review by native speakers; see docs/ARCHITECTURE.md.',
   '',
 ];
 
 const docsDir = path.join(ROOT_DIR, 'docs');
 fs.mkdirSync(docsDir, { recursive: true });
-const reportPath = path.join(docsDir, 'VOICE_EVAL_REPORT.md');
+const reportPath = path.join(docsDir, 'ASSISTANT_EVAL_REPORT.md');
 fs.writeFileSync(reportPath, lines.join('\n'), 'utf8');
 console.log(`Report: ${path.relative(ROOT_DIR, reportPath)}`);
 

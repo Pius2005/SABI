@@ -116,8 +116,6 @@ export function seedDatabase(env: Env): DbData {
       status,
       reviewerId: null,
       reviewedAt: status === 'approved' ? now : null,
-      audioUrl: null,
-      audioSource: null,
     });
     void source;
   };
@@ -175,8 +173,6 @@ export function seedDatabase(env: Env): DbData {
       preferredLang: input.lang ?? 'en',
       textSize: input.textSize ?? 'large',
       theme: 'light',
-      voiceSpeed: 0.9,
-      autoRead: true,
       reduceMotion: false,
       goalPathSlug: input.goal ?? null,
       createdAt: now,
@@ -217,7 +213,7 @@ export function seedDatabase(env: Env): DbData {
     addUser({ role: 'LEARNER', name: 'Mama Grace', phone: '08030000006', lang: 'en', goal: 'everyday-services' }),
   ];
 
-  const consentTypes = ['terms', 'privacy', 'ai_notice', 'store_transcripts', 'store_audio', 'analytics'];
+  const consentTypes = ['terms', 'privacy', 'ai_notice', 'store_transcripts', 'analytics'];
   for (const learner of learners) {
     for (const type of consentTypes) {
       db.consents.push({
@@ -357,7 +353,7 @@ export function seedDatabase(env: Env): DbData {
       id: crypto.randomUUID(),
       userId: learners[0].id,
       lang: 'yo',
-      sttConfidence: 0.86,
+      confidence: 0.86,
       transcript: null,
       replyPromptVersion: 'assistant.v1',
       flaggedEvent: null,
@@ -368,7 +364,7 @@ export function seedDatabase(env: Env): DbData {
       id: crypto.randomUUID(),
       userId: learners[2].id,
       lang: 'pcm',
-      sttConfidence: 0.52,
+      confidence: 0.52,
       transcript: null,
       replyPromptVersion: 'assistant.v1',
       flaggedEvent: 'low_confidence',

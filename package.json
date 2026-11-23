@@ -2,7 +2,7 @@
   "name": "sabi",
   "version": "1.0.0",
   "private": true,
-  "description": "SABI — a voice-first digital literacy platform for elderly Nigerians",
+  "description": "SABI — a text-first digital literacy platform for elderly Nigerians",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -25,9 +25,9 @@
     "content:validate": "tsx scripts/content-validate.ts",
     "content:status": "tsx scripts/content-status.ts",
     "scam:eval": "tsx scripts/scam-eval.ts",
-    "voice:eval": "tsx scripts/voice-eval.ts",
+    "assistant:eval": "tsx scripts/assistant-eval.ts",
     "security:check": "tsx scripts/security-check.ts",
-    "verify": "npm run typecheck && npm test && npm run content:validate && npm run scam:eval && npm run voice:eval && npm run security:check && npm run build"
+    "verify": "npm run typecheck && npm test && npm run content:validate && npm run scam:eval && npm run assistant:eval && npm run security:check && npm run build"
   },
   "devDependencies": {
     "concurrently": "^9.0.1",

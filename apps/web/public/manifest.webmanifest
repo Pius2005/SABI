@@ -1,18 +1,25 @@
 {
   "name": "SABI — Learn phones and the internet safely",
   "short_name": "SABI",
-  "description": "A voice-first digital literacy app for older adults in Nigeria. Learn phones, WhatsApp, money safety and scams in English, Yorùbá, Igbo or Nigerian Pidgin.",
+  "description": "A digital literacy app for older adults in Nigeria. Learn phones, WhatsApp, money safety and scams in English, Yorùbá, Igbo or Nigerian Pidgin.",
   "id": "/",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "lang": "en-NG",
   "dir": "ltr",
-  "categories": ["education", "utilities", "productivity"],
+  "categories": [
+    "education",
+    "utilities",
+    "productivity"
+  ],
   "icons": [
     {
       "src": "/icons/icon.svg",
@@ -31,8 +38,8 @@
     {
       "name": "Ask SABI",
       "short_name": "Ask",
-      "url": "/voice",
-      "description": "Ask a question by voice"
+      "url": "/ask",
+      "description": "Ask a question by typing"
     },
     {
       "name": "Check a message",

@@ -13,8 +13,6 @@ export interface DbUser {
   preferredLang: Lang;
   textSize: 'normal' | 'large' | 'xl';
   theme: 'light' | 'inverted';
-  voiceSpeed: number;
-  autoRead: boolean;
   reduceMotion: boolean;
   goalPathSlug: string | null;
   createdAt: string;
@@ -119,11 +117,11 @@ export interface DbReminder {
   updatedAt: string;
 }
 
-export interface DbVoiceExchange {
+export interface DbAssistantExchange {
   id: string;
   userId: string | null;
   lang: string;
-  sttConfidence: number;
+  confidence: number;
   transcript: string | null;
   replyPromptVersion: string;
   flaggedEvent: string | null;
@@ -145,8 +143,6 @@ export interface DbTranslation {
   status: TranslationStatus;
   reviewerId: string | null;
   reviewedAt: string | null;
-  audioUrl: string | null;
-  audioSource: 'tts' | 'human' | null;
 }
 
 export interface DbStep {
@@ -238,7 +234,7 @@ export interface DbData {
   sandboxAttempts: DbSandboxAttempt[];
   helpRequests: DbHelpRequest[];
   reminders: DbReminder[];
-  voiceExchanges: DbVoiceExchange[];
+  voiceExchanges: DbAssistantExchange[];
   scamChecks: DbScamCheck[];
   translations: DbTranslation[];
   paths: DbPath[];

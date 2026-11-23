@@ -61,7 +61,7 @@ export default function DevTypography() {
         <p className="eyebrow mb-2">Settings</p>
         <Toggle label="Sample toggle" checked={toggle} onChange={setToggle} />
         <p className="mt-2 text-sm muted">
-          Text: {settings.textSize} · Theme: {settings.theme} · Speed: {settings.voiceSpeed.toFixed(2)}×
+          Text: {settings.textSize} · Theme: {settings.theme}
         </p>
         <div className="mt-2 flex flex-wrap gap-2">
           <Button variant="secondary" size="sm" onClick={() => updateSettings({ textSize: 'normal' }, { remote: false })}>

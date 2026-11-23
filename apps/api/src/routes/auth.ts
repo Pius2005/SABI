@@ -137,8 +137,6 @@ export function createAuthRouter(store: Store, env: Env): Router {
           preferredLang: (body.lang as Lang) || 'en',
           textSize: 'large',
           theme: 'light',
-          voiceSpeed: 0.9,
-          autoRead: true,
           reduceMotion: false,
           goalPathSlug: body.goalPathSlug ?? null,
           createdAt: new Date().toISOString(),

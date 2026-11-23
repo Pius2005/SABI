@@ -6,11 +6,10 @@ dist-ssr/
 .env.*
 !.env.example
 apps/api/data/
-apps/api/tts-cache/
 coverage/
 playwright-report/
 test-results/
 .DS_Store
 Thumbs.db
 *.log
-docs/VOICE_EVAL_REPORT.md
+docs/ASSISTANT_EVAL_REPORT.md

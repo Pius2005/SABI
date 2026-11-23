@@ -95,8 +95,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         preferredLang: user.preferredLang,
         textSize: user.textSize,
         theme: user.theme,
-        voiceSpeed: user.voiceSpeed,
-        autoRead: user.autoRead,
         reduceMotion: user.reduceMotion,
       },
       { remote: false },

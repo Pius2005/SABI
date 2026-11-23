@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { bearer, loginLearner, makeApp } from './helpers';
 
-describe('voice assistant, scam checker and speech', () => {
+describe('written assistant, scam checker and removed speech routes', () => {
   it('answers a typed question and flags nothing', async () => {
     const ctx = makeApp();
     const session = await loginLearner(ctx, '08055550301');
     const response = await ctx.api
-      .post('/api/v1/voice/turn')
+      .post('/api/v1/assistant/turn')
       .set('Authorization', bearer(session.accessToken))
       .send({ text: 'How do I send a voice note on WhatsApp?', lang: 'en' });
     expect(response.status).toBe(200);
@@ -20,7 +20,7 @@ describe('voice assistant, scam checker and speech', () => {
     const ctx = makeApp();
     const session = await loginLearner(ctx, '08055550302');
     const response = await ctx.api
-      .post('/api/v1/voice/turn')
+      .post('/api/v1/assistant/turn')
       .set('Authorization', bearer(session.accessToken))
       .send({ text: 'My PIN is 1234, is that okay?', lang: 'en' });
     expect(response.status).toBe(200);
@@ -33,7 +33,7 @@ describe('voice assistant, scam checker and speech', () => {
     const ctx = makeApp();
     const session = await loginLearner(ctx, '08055550303');
     const response = await ctx.api
-      .post('/api/v1/voice/turn')
+      .post('/api/v1/assistant/turn')
       .set('Authorization', bearer(session.accessToken))
       .send({ text: 'I sent money to a scammer.', lang: 'en' });
     expect(response.body.safety.flagged).toBe('crisis:money_sent');
@@ -44,7 +44,7 @@ describe('voice assistant, scam checker and speech', () => {
     const ctx = makeApp();
     const session = await loginLearner(ctx, '08055550304');
     const response = await ctx.api
-      .post('/api/v1/voice/turn')
+      .post('/api/v1/assistant/turn')
       .set('Authorization', bearer(session.accessToken))
       .send({ text: 'Are you a human?', lang: 'en' });
     expect(response.body.safety.flagged).toBe('ai_disclosure');
@@ -54,7 +54,7 @@ describe('voice assistant, scam checker and speech', () => {
     const ctx = makeApp();
     const session = await loginLearner(ctx, '08055550305');
     const response = await ctx.api
-      .post('/api/v1/voice/turn')
+      .post('/api/v1/assistant/turn')
       .set('Authorization', bearer(session.accessToken))
       .send({ text: 'Should I take my malaria medicine?', lang: 'en' });
     expect(response.body.safety.flagged).toBe('advice_redirect');
@@ -64,26 +64,50 @@ describe('voice assistant, scam checker and speech', () => {
     const ctx = makeApp();
     const session = await loginLearner(ctx, '08055550306', { lang: 'pcm' });
     const response = await ctx.api
-      .post('/api/v1/voice/turn')
+      .post('/api/v1/assistant/turn')
       .set('Authorization', bearer(session.accessToken))
       .send({ text: 'How do I check my balance?', lang: 'pcm' });
     expect(response.body.replyLang).toBe('pcm');
     expect(response.body.reply).toContain('bank app');
   });
 
+  it('confirms a low-confidence answer', async () => {
+    const ctx = makeApp();
+    const session = await loginLearner(ctx, '08055550312');
+    const response = await ctx.api
+      .post('/api/v1/assistant/confirm')
+      .set('Authorization', bearer(session.accessToken))
+      .send({ text: 'open whatsapp', lang: 'en' });
+    expect(response.status).toBe(200);
+    expect(typeof response.body.reply).toBe('string');
+  });
+
   it('rejects an empty typed turn and requires auth', async () => {
     const ctx = makeApp();
-    const anonymous = await ctx.api.post('/api/v1/voice/turn').send({ text: 'hello' });
+    const anonymous = await ctx.api.post('/api/v1/assistant/turn').send({ text: 'hello' });
     expect(anonymous.status).toBe(401);
 
     const session = await loginLearner(ctx, '08055550307');
     const empty = await ctx.api
-      .post('/api/v1/voice/turn')
+      .post('/api/v1/assistant/turn')
       .set('Authorization', bearer(session.accessToken))
       .send({ text: '' });
-    expect(empty.status).toBe(200);
-    expect(empty.body.safety.flagged).toBe('low_confidence');
-    expect(empty.body.needsConfirm).toBe(true);
+    expect(empty.status).toBe(400);
+    expect(empty.body.error.code).toBe('VALIDATION');
+  });
+
+  it('no longer exposes any speech endpoint', async () => {
+    const ctx = makeApp();
+    const session = await loginLearner(ctx, '08055550313');
+    const auth = bearer(session.accessToken);
+
+    for (const path of ['/api/v1/voice/turn', '/api/v1/voice/confirm', '/api/v1/tts']) {
+      const response = await ctx.api.post(path).set('Authorization', auth).send({ text: 'hello', lang: 'en' });
+      expect(response.status).toBe(404);
+    }
+
+    const audio = await ctx.api.get('/api/v1/tts/audio/deadbeef').set('Authorization', auth);
+    expect(audio.status).toBe(404);
   });
 
   it('classifies a credential request as a scam and a warning as safe', async () => {
@@ -126,31 +150,14 @@ describe('voice assistant, scam checker and speech', () => {
     expect(english.body.examples.every((example: { lang: string }) => example.lang === 'en')).toBe(true);
   });
 
-  it('synthesises cached audio and serves the file', async () => {
-    const ctx = makeApp();
-    const session = await loginLearner(ctx, '08055550310');
-    const auth = bearer(session.accessToken);
-
-    const created = await ctx.api.post('/api/v1/tts').set('Authorization', auth).send({ text: 'Hello friend', lang: 'en' });
-    expect(created.status).toBe(200);
-    expect(created.body.audioUrl).toMatch(/^\/api\/v1\/tts\/audio\/[a-f0-9]{64}$/);
-
-    const audio = await ctx.api.get(created.body.audioUrl).set('Authorization', auth);
-    expect(audio.status).toBe(200);
-    expect(audio.headers['content-type']).toContain('audio/');
-
-    const repeat = await ctx.api.post('/api/v1/tts').set('Authorization', auth).send({ text: 'Hello friend', lang: 'en' });
-    expect(repeat.body.hash).toBe(created.body.hash);
-  });
-
-  it('rate limits a burst of voice turns', async () => {
+  it('rate limits a burst of assistant turns', async () => {
     const ctx = makeApp();
     const session = await loginLearner(ctx, '08055550311');
     const auth = bearer(session.accessToken);
     let limited = 0;
     for (let turn = 0; turn < 22; turn += 1) {
       const response = await ctx.api
-        .post('/api/v1/voice/turn')
+        .post('/api/v1/assistant/turn')
         .set('Authorization', auth)
         .send({ text: 'How do I make a video call?' });
       if (response.status === 429) limited += 1;

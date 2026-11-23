@@ -12,8 +12,6 @@ export default defineConfig({
       JWT_REFRESH_SECRET: 'test-refresh',
       ENCRYPTION_KEY: 'test-encryption',
       ALLOW_UNREVIEWED_TRANSLATIONS: 'true',
-      STT_PROVIDER: 'mock',
-      TTS_PROVIDER: 'mock',
       LLM_PROVIDER: 'mock',
       SMS_PROVIDER: 'mock',
       // Tests never call Nace: triage falls back to its local rule set.

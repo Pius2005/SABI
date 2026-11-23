@@ -283,25 +283,6 @@ export default function Me() {
           ]}
           columns={2}
         />
-        <RadioCards<'slow' | 'normal' | 'fast'>
-          name="me-speed"
-          label={t('me.voiceSpeed')}
-          value={settings.voiceSpeed < 0.8 ? 'slow' : settings.voiceSpeed > 1.02 ? 'fast' : 'normal'}
-          onChange={(value) =>
-            updateSettings({ voiceSpeed: value === 'slow' ? 0.7 : value === 'fast' ? 1.15 : 0.9 })
-          }
-          options={[
-            { value: 'slow', label: t('setup.slow') },
-            { value: 'normal', label: t('setup.normalSpeed') },
-            { value: 'fast', label: t('setup.fast') },
-          ]}
-          columns={3}
-        />
-        <Toggle
-          label={t('me.autoRead')}
-          checked={settings.autoRead}
-          onChange={(value) => updateSettings({ autoRead: value })}
-        />
         <Toggle
           label={t('me.reduceMotion')}
           checked={settings.reduceMotion}

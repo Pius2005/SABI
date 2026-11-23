@@ -7,15 +7,13 @@ import {
   analyzeSensitive,
   containsSecretValue,
   detectCrisis,
-  redactSensitive,
   sanitizeReply,
+  type AssistantReply,
   type Lang,
-  type VoiceReply,
 } from '@sabi/shared';
 import type { Env } from '../env';
 import type { Store } from '../store';
 import { getLlmProvider } from '../providers';
-import { synthesizeCached } from '../tts';
 
 export const PROMPT_VERSION = 'assistant.v1';
 
@@ -145,19 +143,19 @@ function mockAnswer(text: string, lang: Lang): string {
 export interface AnswerInput {
   text: string;
   lang: Lang;
-  confidence: number;
   store: Store;
   env: Env;
   userId: string | null;
-  isTyped?: boolean;
   latencyMs?: number;
 }
 
-export async function answerQuestion(input: AnswerInput): Promise<VoiceReply> {
+export async function answerQuestion(input: AnswerInput): Promise<AssistantReply> {
   const started = Date.now();
   const rawText = String(input.text ?? '').trim().slice(0, 600);
   const lang = input.lang;
-  const confidence = input.isTyped ? 0.98 : input.confidence;
+  // Answers are typed, so the text is known exactly; an empty box is the only
+  // low-confidence case left.
+  const confidence = rawText ? 0.98 : 0;
   const replyLang: Lang = lang === 'pcm' || lang === 'en' ? lang : 'en';
 
   let reply = '';
@@ -182,12 +180,7 @@ export async function answerQuestion(input: AnswerInput): Promise<VoiceReply> {
       'I cannot give medical, legal or money advice. Please speak to a doctor, a lawyer, or your bank. I can connect you to a person who can help.';
     flagged = 'advice_redirect';
   } else if (!rawText) {
-    reply = 'I could not hear that clearly. Please try again, or talk to a person.';
-    needsConfirm = true;
-    confirmQuestion = reply;
-    flagged = 'low_confidence';
-  } else if (!input.isTyped && confidence < input.env.confThreshold) {
-    reply = `Did you say: "${redactSensitive(rawText)}"?`;
+    reply = 'Please type your question again, or talk to a person.';
     needsConfirm = true;
     confirmQuestion = reply;
     flagged = 'low_confidence';
@@ -222,23 +215,13 @@ export async function answerQuestion(input: AnswerInput): Promise<VoiceReply> {
   if (sanitized.flagged) flagged = flagged ?? 'unsafe_reply';
   reply = sanitized.reply;
 
-  let audioUrl: string | null = null;
-  if (input.env.nodeEnv !== 'test' && !needsConfirm) {
-    try {
-      const tts = await synthesizeCached(reply, replyLang, 0.9, input.env);
-      audioUrl = `/api/v1/tts/audio/${tts.hash}`;
-    } catch {
-      audioUrl = null;
-    }
-  }
-
   const latencyMs = input.latencyMs ?? Date.now() - started;
   const storeTranscript = input.userId ? input.store.activeConsent(input.userId, 'store_transcripts') : false;
   input.store.data.voiceExchanges.unshift({
     id: crypto.randomUUID(),
     userId: input.userId,
     lang,
-    sttConfidence: confidence,
+    confidence,
     transcript: storeTranscript && !flagged ? rawText : null,
     replyPromptVersion: PROMPT_VERSION,
     flaggedEvent: flagged,
@@ -256,7 +239,6 @@ export async function answerQuestion(input: AnswerInput): Promise<VoiceReply> {
     reply,
     needsConfirm,
     confirmQuestion,
-    audioUrl,
     promptVersion: PROMPT_VERSION,
     safety: { flagged, message: flagged === 'pii_attempt' ? SENSITIVE_REPLY : null },
   };

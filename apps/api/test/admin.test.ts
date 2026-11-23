@@ -43,7 +43,7 @@ describe('admin console', () => {
     expect(onlyYoruba.body.items.every((row: { lang: string }) => row.lang === 'yo')).toBe(true);
   });
 
-  it('approves a translation and generates its audio', async () => {
+  it('approves a translation', async () => {
     const ctx = makeApp();
     const admin = await loginStaff(ctx, ADMIN.email, ADMIN.password);
     const auth = bearer(admin.accessToken);
@@ -55,25 +55,16 @@ describe('admin console', () => {
     expect(patched.status).toBe(200);
     expect(patched.body.translation.status).toBe('approved');
     expect(patched.body.translation.reviewerId).toBeTruthy();
-
-    const audio = await ctx.api
-      .post('/api/v1/admin/audio/generate')
-      .set('Authorization', auth)
-      .send({ key: 'auth.title', lang: 'yo' });
-    expect(audio.status).toBe(200);
-    expect(audio.body.translation.audioUrl).toMatch(/^\/api\/v1\/tts\/audio\//);
-    expect(audio.body.translation.audioSource).toBe('tts');
   });
 
-  it('will not make audio for an unapproved translation', async () => {
+  it('no longer offers audio generation for a translation', async () => {
     const ctx = makeApp();
     const admin = await loginStaff(ctx, ADMIN.email, ADMIN.password);
     const response = await ctx.api
       .post('/api/v1/admin/audio/generate')
       .set('Authorization', bearer(admin.accessToken))
       .send({ key: 'auth.title', lang: 'ig' });
-    expect(response.status).toBe(400);
-    expect(response.body.error.code).toBe('NOT_APPROVED');
+    expect(response.status).toBe(404);
   });
 
   it('creates and deletes a scam example', async () => {
@@ -107,7 +98,7 @@ describe('admin console', () => {
     expect(again.status).toBe(404);
   });
 
-  it('exposes audit logs, the glossary and the voice eval status', async () => {
+  it('exposes audit logs and the glossary', async () => {
     const ctx = makeApp();
     const admin = await loginStaff(ctx, ADMIN.email, ADMIN.password);
     const auth = bearer(admin.accessToken);
@@ -118,10 +109,6 @@ describe('admin console', () => {
 
     const glossary = await ctx.api.get('/api/v1/admin/glossary').set('Authorization', auth);
     expect(glossary.body.glossary.length).toBeGreaterThan(0);
-
-    const voice = await ctx.api.get('/api/v1/admin/voice-eval').set('Authorization', auth);
-    expect(voice.status).toBe(200);
-    expect(typeof voice.body.note).toBe('string');
   });
 
   it('keeps the admin console away from facilitators and learners', async () => {

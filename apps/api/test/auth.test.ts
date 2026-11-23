@@ -11,7 +11,7 @@ describe('auth and session lifecycle', () => {
     const config = await api.get('/api/v1/config');
     expect(config.status).toBe(200);
     expect(config.body.languages.map((l: { code: string }) => l.code)).toEqual(['en', 'yo', 'ig', 'pcm']);
-    expect(config.body.retention.retainAudio).toBe(false);
+    expect(config.body.retention.transcriptRetentionDays).toBeGreaterThan(0);
   });
 
   it('returns a structured 404 for unknown API routes', async () => {
