@@ -1,18 +1,23 @@
 # Render blueprint for the SABI API.
 #
-# The API is a long-running Node process that keeps its database in a single
-# JSON file, so it needs a persistent disk — not a serverless filesystem.
-# The frontend is deployed separately (Vercel); this service builds it too and
-# serves apps/web/dist as a single-origin fallback.
+# This describes the free-plan service that is actually running today:
+# https://sabi-api-zgz9.onrender.com (Frankfurt). A free instance has **no
+# persistent disk**, so the JSON store sits on the instance filesystem and is
+# wiped on every deploy or restart, and the instance sleeps after ~15 minutes
+# idle (~50 s cold start). That is fine for a demo, not for a pilot.
 #
-# Deploy: Render dashboard -> New -> Blueprint -> pick this repository.
-# Values marked `sync: false` are prompted for on the first deploy.
+# Before real learners, switch to the paid shape described at the bottom of this
+# file: plan starter, a 1 GB disk at /var/data and
+# DATABASE_FILE=/var/data/sabi.json.
+#
+# Deploy: Render dashboard -> New -> Blueprint -> pick this repository, or create
+# the service through the API. Values marked `sync: false` are prompted for.
 
 services:
   - type: web
     name: sabi-api
     runtime: node
-    plan: starter
+    plan: free
     region: frankfurt
     branch: main
     autoDeploy: true
@@ -26,9 +31,10 @@ services:
         value: production
       - key: NODE_VERSION
         value: "22"
-      # Absolute path on the mounted disk below.
+      # Free plan: writable, but erased on every deploy and restart. The store
+      # creates the directory if it is missing.
       - key: DATABASE_FILE
-        value: /var/data/sabi.json
+        value: /opt/render/project/src/apps/api/data/db.json
       # Generated once and kept by Render. Production refuses to start without
       # 32+ character values for all three.
       - key: JWT_ACCESS_SECRET
@@ -37,11 +43,14 @@ services:
         generateValue: true
       - key: ENCRYPTION_KEY
         generateValue: true
-      # Comma-separated exact origins, e.g. https://sabi.vercel.app
+      # Comma-separated exact origins. A relative web build sends same-origin
+      # requests, but the API also serves that build, so its own URL is listed
+      # too; the Vercel origin is required for the separately hosted frontend.
       - key: WEB_ORIGIN
         sync: false
       # First administrator, created only on an empty database. Password must be
-      # at least 12 characters.
+      # at least 12 characters. On the free plan every deploy starts from an
+      # empty store, so these take effect on the next deploy.
       - key: ADMIN_EMAIL
         sync: false
       - key: ADMIN_PASSWORD
@@ -67,7 +76,12 @@ services:
         value: SABI
       - key: NACE_API_KEY
         sync: false
-    disk:
-      name: sabi-data
-      mountPath: /var/data
-      sizeGB: 1
+    # No `disk:` block: the free plan does not support persistent disks.
+    #
+    # Paid upgrade (requires a card at dashboard.render.com/billing):
+    #   plan: starter
+    #   DATABASE_FILE=/var/data/sabi.json
+    #   disk:
+    #     name: sabi-data
+    #     mountPath: /var/data
+    #     sizeGB: 1

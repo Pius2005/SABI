@@ -27,7 +27,9 @@ Shipped:
 - Admin analytics, translations, scam examples, audit log, people and glossary.
 - A Dockerfile (`deploy/Dockerfile`), a GitHub Actions CI workflow and a
   one-command verification suite.
-- A Render blueprint (`render.yaml`) for hosting the API with a persistent disk.
+- A Render blueprint (`render.yaml`) for the API. It currently describes the
+  free plan that is deployed (no disk, the store resets on each deploy); the
+  paid Starter-plus-disk shape is documented at the bottom of the file.
 
 Deliberate deviation: **the assistant is text-only, not voice-first.** See
 `docs/DECISIONS.md` D-014. There is no microphone, audio upload, speech endpoint
