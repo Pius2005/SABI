@@ -25,8 +25,8 @@ Shipped:
 - Translation workflow with per-string review status and a visible notice.
 - Help-request triage through Nace Drex, with a local fallback.
 - Admin analytics, translations, scam examples, audit log, people and glossary.
-- A Dockerfile, a GitHub Actions CI workflow and a one-command verification
-  suite.
+- A Dockerfile (`deploy/Dockerfile`), a GitHub Actions CI workflow and a
+  one-command verification suite.
 - A Render blueprint (`render.yaml`) for hosting the API with a persistent disk.
 
 Deliberate deviation: **the assistant is text-only, not voice-first.** See
@@ -165,7 +165,8 @@ These cannot be completed by code alone.
 - **No Docker Compose file.** The spec described separate `web`, `api`,
   `postgres` and `redis` services. The app is a single process that serves the
   built web app itself and keeps its data in one JSON file, so there is nothing
-  to compose yet; `Dockerfile` plus `render.yaml` cover local and hosted runs.
+  to compose yet; `deploy/Dockerfile` plus `render.yaml` cover local and hosted
+  runs.
   Add Compose only when the store moves to PostgreSQL and rate limits to Redis.
 - **`npm audit` has not been re-run recently.** Run it and review before
   production.

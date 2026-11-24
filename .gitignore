@@ -13,3 +13,5 @@ test-results/
 Thumbs.db
 *.log
 docs/ASSISTANT_EVAL_REPORT.md
+
+.vercel

@@ -55,7 +55,9 @@ Health check: `GET /api/v1/health` returns `{"ok":true,...}`.
 ### Docker
 
 ```bash
-docker build -t sabi .
+# The Dockerfile lives in deploy/ so Vercel does not treat the repository as a
+# container service when it builds the static web app.
+docker build -f deploy/Dockerfile -t sabi .
 docker run -p 4100:4100 --env-file .env -v sabi-data:/app/apps/api/data sabi
 ```
 

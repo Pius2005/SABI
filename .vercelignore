@@ -1,0 +1,5 @@
+# The Dockerfile builds the API image for Render. Vercel would otherwise treat it
+# as a container service and refuse the static web build in vercel.json.
+Dockerfile
+.dockerignore
+render.yaml
