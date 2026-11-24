@@ -11,11 +11,19 @@ export interface TestContext {
   env: Env;
 }
 
-/** A fresh, fully seeded app with its own in-memory store. */
-export function makeApp(overrides: Partial<Env> = {}): TestContext {
+/**
+ * A fresh, fully seeded app with its own in-memory store.
+ *
+ * `options.webDist` points the static-file layer at a directory the test owns,
+ * so the suite never depends on `apps/web/dist` existing from an earlier build.
+ */
+export function makeApp(
+  overrides: Partial<Env> = {},
+  options: { webDist?: string } = {},
+): TestContext {
   const env = loadEnv({ nodeEnv: 'test', ...overrides });
   const store = Store.open({ memory: true, env });
-  const app = createApp({ store, env });
+  const app = createApp({ store, env, webDist: options.webDist });
   return { api: request(app), app, store, env };
 }
 

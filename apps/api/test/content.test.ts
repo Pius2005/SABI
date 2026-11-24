@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bearer, loginLearner, makeApp } from './helpers';
 
@@ -108,9 +111,30 @@ describe('content and localization', () => {
   });
 
   it('serves the built PWA shell for a client-side route', async () => {
-    const { api } = makeApp();
+    // The suite runs before `npm run build`, so serve a directory this test owns
+    // instead of relying on apps/web/dist already existing.
+    const dist = fs.mkdtempSync(path.join(os.tmpdir(), 'sabi-dist-'));
+    fs.writeFileSync(path.join(dist, 'index.html'), '<!doctype html><title>SABI shell</title>');
+    try {
+      const { api } = makeApp({}, { webDist: dist });
+      const response = await api.get('/paths');
+      expect(response.status).toBe(200);
+      expect(response.headers['content-type']).toContain('text/html');
+      expect(response.text).toContain('SABI shell');
+
+      // An unknown API route must answer as an API, not with the HTML shell.
+      const unknownApi = await api.get('/api/v1/not-a-route');
+      expect(unknownApi.status).toBe(404);
+      expect(unknownApi.body.error.code).toBe('NOT_FOUND');
+    } finally {
+      fs.rmSync(dist, { recursive: true, force: true });
+    }
+  });
+
+  it('does not serve a shell when there is no build to serve', async () => {
+    const missing = path.join(os.tmpdir(), 'sabi-no-dist', String(Date.now()));
+    const { api } = makeApp({}, { webDist: missing });
     const response = await api.get('/paths');
-    expect(response.status).toBe(200);
-    expect(response.headers['content-type']).toContain('text/html');
+    expect(response.status).toBe(404);
   });
 });

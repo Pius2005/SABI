@@ -103,7 +103,7 @@ Last full run on this machine:
 | Check | Result |
 | --- | --- |
 | `npm run typecheck` | Pass |
-| `npm test` | Pass — 73 API tests, 16 web tests (89 total) |
+| `npm test` | Pass — 76 API tests, 16 web tests (92 total) |
 | `npm run content:validate` | Pass — 6 paths, 40 lessons, 148 steps, 327 English strings, 20 scam examples, 30 glossary terms; warnings for untranslated yo/ig/pcm |
 | `npm run scam:eval` | Pass — 46/46 (100%) |
 | `npm run assistant:eval` | Pass — 50/50 |
@@ -111,7 +111,7 @@ Last full run on this machine:
 | `npm run build` | Pass — chunk-size warning only |
 | Browser smoke test | Pass — Welcome, Home, Ask, Scam, Me, Family, Facilitator, Admin (all tabs), Goals, Setup, Offline, Privacy, Certificate lock state |
 | `docker build` | Not run on this machine (Docker is not installed here) |
-| GitHub Actions (`.github/workflows/ci.yml`) | Added; it runs `npm run verify` on push to `main`. The first run has not happened yet |
+| GitHub Actions (`.github/workflows/ci.yml`) | Runs `npm run verify` on push and pull request to `main`. Its first run caught a test that only passed when `apps/web/dist` already existed from a local build; the test now serves its own directory |
 | Playwright / Lighthouse / axe | Not configured |
 
 The build emits one warning: the main JS chunk is about 893 kB (186 kB gzip).

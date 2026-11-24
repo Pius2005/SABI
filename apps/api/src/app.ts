@@ -19,6 +19,12 @@ import { createAdminRouter } from './routes/admin';
 export interface AppContext {
   store: Store;
   env: Env;
+  /**
+   * Directory of the built PWA to serve. Defaults to `apps/web/dist`, which
+   * only exists after a build; tests pass their own directory so they do not
+   * depend on a previous build having run.
+   */
+  webDist?: string;
 }
 
 export function createApp(ctx: AppContext) {
@@ -102,7 +108,7 @@ export function createApp(ctx: AppContext) {
   app.use('/api/v1', createAdminRouter(store, env));
 
   // Serve the built PWA when it exists (single-process deployment).
-  const webDist = path.resolve(fileURLToPath(new URL('../../web/dist', import.meta.url)));
+  const webDist = ctx.webDist ?? path.resolve(fileURLToPath(new URL('../../web/dist', import.meta.url)));
   if (fs.existsSync(webDist)) {
     app.use(express.static(webDist, { index: false, maxAge: '1h' }));
     app.get(/^\/(?!api\/).*/, (_req, res) => {
