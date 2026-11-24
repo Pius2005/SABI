@@ -25,7 +25,9 @@ Shipped:
 - Translation workflow with per-string review status and a visible notice.
 - Help-request triage through Nace Drex, with a local fallback.
 - Admin analytics, translations, scam examples, audit log, people and glossary.
-- Docker image, CI workflow and a one-command verification suite.
+- A Dockerfile, a GitHub Actions CI workflow and a one-command verification
+  suite.
+- A Render blueprint (`render.yaml`) for hosting the API with a persistent disk.
 
 Deliberate deviation: **the assistant is text-only, not voice-first.** See
 `docs/DECISIONS.md` D-014. There is no microphone, audio upload, speech endpoint
@@ -108,7 +110,8 @@ Last full run on this machine:
 | `npm run security:check` | Pass — 27/27 |
 | `npm run build` | Pass — chunk-size warning only |
 | Browser smoke test | Pass — Welcome, Home, Ask, Scam, Me, Family, Facilitator, Admin (all tabs), Goals, Setup, Offline, Privacy, Certificate lock state |
-| `docker build` | Not run on this machine |
+| `docker build` | Not run on this machine (Docker is not installed here) |
+| GitHub Actions (`.github/workflows/ci.yml`) | Added; it runs `npm run verify` on push to `main`. The first run has not happened yet |
 | Playwright / Lighthouse / axe | Not configured |
 
 The build emits one warning: the main JS chunk is about 893 kB (186 kB gzip).
@@ -159,13 +162,18 @@ These cannot be completed by code alone.
 - **No Husky pre-commit hook.** CI is the gate instead.
 - **No Prisma/PostgreSQL migration.** The JSON store is intentional for the
   pilot; the repository seam is in place.
-- **Docker Compose is single-service.** It runs the app with a data volume. The
-  spec's separate `web`, `api`, `postgres` and `redis` services do not exist
-  because the app is one process and has no database service yet.
+- **No Docker Compose file.** The spec described separate `web`, `api`,
+  `postgres` and `redis` services. The app is a single process that serves the
+  built web app itself and keeps its data in one JSON file, so there is nothing
+  to compose yet; `Dockerfile` plus `render.yaml` cover local and hosted runs.
+  Add Compose only when the store moves to PostgreSQL and rate limits to Redis.
 - **`npm audit` has not been re-run recently.** Run it and review before
   production.
 - **Voice-first requirements from spec file 05 are not met.** Documented in
   `docs/DECISIONS.md` D-014.
+- **CI is not branch protection.** The workflow reports status on pushes and
+  pull requests, but nothing blocks a direct push to `main` until branch
+  protection is enabled in the repository settings.
 
 ## 7. Where things live
 

@@ -1,0 +1,40 @@
+name: CI
+
+# The gate referenced by docs/HANDOVER.md: typecheck, tests, content
+# validation, the scam and assistant evaluations, the static security check and
+# the web build, all in one `npm run verify`.
+#
+# No secrets are needed — the suite runs with the mock providers and the
+# in-memory/test JSON store.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      # The build and the evaluations need dev dependencies (Vite, TypeScript,
+      # tsx, vitest), so do not set NODE_ENV=production here.
+      - name: Install
+        run: npm ci
+
+      - name: Verify
+        run: npm run verify
