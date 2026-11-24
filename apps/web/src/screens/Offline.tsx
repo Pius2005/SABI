@@ -17,7 +17,7 @@ import { Button, Card, EmptyState, LinkButton, Notice, PageHeader } from '../com
 
 export default function Offline() {
   const { user } = useAuth();
-  const { lang, t } = useI18n();
+  const { lang, t, tf } = useI18n();
   const online = useOnline();
   const { available, installed, install } = useInstallPrompt();
 
@@ -75,7 +75,11 @@ export default function Offline() {
 
   return (
     <div className="pb-6">
-      <PageHeader title={t('offline.title')} subtitle={t('offline.message')} backTo="/home" />
+      <PageHeader
+        title={t('offline.title')}
+        subtitle={tf('offline.message', { count: bundles.length })}
+        backTo="/home"
+      />
 
       {!online ? (
         <Notice variant="warning" title={t('common.offline')} className="mb-4">
@@ -96,7 +100,7 @@ export default function Offline() {
       <Card className="mb-5">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="eyebrow">{t('offline.pending')}</p>
+            <p className="eyebrow">{tf('offline.pending', { count: pending })}</p>
             <p className="text-4xl font-bold leading-none">{pending}</p>
             <p className="mt-1 text-sm muted">
               {pending === 0 ? 'Everything is saved.' : 'Progress waiting to sync.'}

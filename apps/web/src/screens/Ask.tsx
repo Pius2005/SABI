@@ -17,7 +17,6 @@ export default function Ask() {
   const context = (location.state as { context?: string } | null)?.context ?? '';
 
   const [question, setQuestion] = useState('');
-  const [asked, setAsked] = useState('');
   const [reply, setReply] = useState<AssistantReply | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -36,27 +35,7 @@ export default function Ask() {
         body: { text: value, lang },
       });
       setReply(response);
-      setAsked(value);
       setQuestion('');
-    } catch (caught) {
-      setError(errorMessage(caught, t));
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const confirm = async (yes: boolean) => {
-    if (!reply || !yes || !asked) {
-      setReply(null);
-      return;
-    }
-    setBusy(true);
-    try {
-      const response = await apiFetch<AssistantReply>('/assistant/confirm', {
-        method: 'POST',
-        body: { text: asked, lang },
-      });
-      setReply(response);
     } catch (caught) {
       setError(errorMessage(caught, t));
     } finally {
@@ -97,21 +76,6 @@ export default function Ask() {
           ) : null}
           {reply.replyLang !== lang ? (
             <p className="mt-2 text-sm muted">{t('translation.fallback')}</p>
-          ) : null}
-
-          {reply.needsConfirm ? (
-            <div className="mt-4 rounded-xl2 border-2 border-dashed p-4">
-              <p className="font-bold">{t('ask.confirm')}</p>
-              {reply.confirmQuestion ? <p className="mt-1">{reply.confirmQuestion}</p> : null}
-              <div className="mt-3 flex flex-wrap gap-2">
-                <Button onClick={() => void confirm(true)} icon={<Icon name="check" />}>
-                  {t('ask.confirmYes')}
-                </Button>
-                <Button variant="secondary" onClick={() => void confirm(false)} icon={<Icon name="x" />}>
-                  {t('ask.confirmNo')}
-                </Button>
-              </div>
-            </div>
           ) : null}
 
           <div className="mt-4 flex flex-wrap gap-2">

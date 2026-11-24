@@ -68,7 +68,9 @@ scripts/       Seed, content tooling, evaluations and security checks
 ```
 
 The API can serve the built PWA itself, so production is one process and one
-origin. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and
+origin. The static web build can also be hosted separately (for example on
+Vercel) by pointing `VITE_API_BASE` at the API's absolute URL and adding the web
+origin to `WEB_ORIGIN`. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and
 [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ### API at a glance
@@ -81,7 +83,7 @@ All routes live under `/api/v1`.
 | Auth | `POST /auth/otp/request`, `POST /auth/otp/verify`, `POST /auth/login`, `POST /auth/refresh`, `POST /auth/logout` |
 | Learner | `GET/PATCH/DELETE /me`, `GET /me/export`, `GET/POST /me/consents`, `GET /progress`, `PUT /progress/:lesson`, `POST /progress/sync`, `POST /sandbox/attempts` |
 | Content | `GET /paths/:slug`, `GET /lessons/:slug`, `GET /lessons/:slug/bundle` |
-| Assistant | `POST /assistant/turn`, `POST /assistant/confirm`, `POST /scam/check`, `GET /scam/examples` |
+| Assistant | `POST /assistant/turn`, `POST /scam/check`, `GET /scam/examples` |
 | People | `POST/GET/PATCH /help-requests` (routed by Nace Drex, or local rules without a key), `GET/POST /groups`, `POST /groups/:id/members`, `POST /groups/:id/import`, `GET /groups/:id/progress`, `POST /groups/:id/notes`, family link routes, `GET/PUT /reminders` |
 | Admin | `GET/PATCH /admin/translations`, `GET /admin/analytics`, `GET /admin/audit-logs`, `GET /admin/users`, scam example routes, `GET /admin/glossary` |
 

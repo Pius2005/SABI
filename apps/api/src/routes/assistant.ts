@@ -48,23 +48,5 @@ export function createAssistantRouter(store: Store, env: Env): Router {
     }
   });
 
-  // Kept for the confirmation step the screen shows on a low-confidence answer.
-  router.post('/assistant/confirm', async (req, res) => {
-    try {
-      const body = z.object({ text: TEXT, lang: LANG.optional() }).parse(req.body);
-      const lang = (body.lang ?? normalizeLang(undefined, req.user!.preferredLang)) as Lang;
-      const reply = await answerQuestion({
-        text: body.text,
-        lang,
-        store,
-        env,
-        userId: req.user!.id,
-      });
-      res.json(reply);
-    } catch (error) {
-      if (!handleZod(res, error)) fail(res, 500, 'ERROR', 'Could not answer that.');
-    }
-  });
-
   return router;
 }

@@ -13,7 +13,6 @@ describe('written assistant, scam checker and removed speech routes', () => {
     expect(response.body.reply).toContain('microphone');
     expect(response.body.safety.flagged).toBeNull();
     expect(response.body.promptVersion).toBe('assistant.v1');
-    expect(response.body.needsConfirm).toBe(false);
   });
 
   it('never answers a request for a PIN or OTP', async () => {
@@ -71,17 +70,6 @@ describe('written assistant, scam checker and removed speech routes', () => {
     expect(response.body.reply).toContain('bank app');
   });
 
-  it('confirms a low-confidence answer', async () => {
-    const ctx = makeApp();
-    const session = await loginLearner(ctx, '08055550312');
-    const response = await ctx.api
-      .post('/api/v1/assistant/confirm')
-      .set('Authorization', bearer(session.accessToken))
-      .send({ text: 'open whatsapp', lang: 'en' });
-    expect(response.status).toBe(200);
-    expect(typeof response.body.reply).toBe('string');
-  });
-
   it('rejects an empty typed turn and requires auth', async () => {
     const ctx = makeApp();
     const anonymous = await ctx.api.post('/api/v1/assistant/turn').send({ text: 'hello' });
@@ -101,7 +89,7 @@ describe('written assistant, scam checker and removed speech routes', () => {
     const session = await loginLearner(ctx, '08055550313');
     const auth = bearer(session.accessToken);
 
-    for (const path of ['/api/v1/voice/turn', '/api/v1/voice/confirm', '/api/v1/tts']) {
+    for (const path of ['/api/v1/assistant/confirm', '/api/v1/voice/turn', '/api/v1/voice/confirm', '/api/v1/tts']) {
       const response = await ctx.api.post(path).set('Authorization', auth).send({ text: 'hello', lang: 'en' });
       expect(response.status).toBe(404);
     }

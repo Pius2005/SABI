@@ -2,6 +2,26 @@ import { env } from './env';
 import { Store } from './store';
 import { createApp } from './app';
 
+// Refuse to serve real learners with development secrets. `npm run
+// security:check` catches this before a release, but a container can start
+// without that step, so fail closed here too.
+if (env.nodeEnv === 'production') {
+  const unsafe = [
+    ['JWT_ACCESS_SECRET', env.jwtAccessSecret, 'dev-access-secret-change-me'],
+    ['JWT_REFRESH_SECRET', env.jwtRefreshSecret, 'dev-refresh-secret-change-me'],
+    ['ENCRYPTION_KEY', env.encryptionKey, 'dev-encryption-key-change-me'],
+  ].filter(([, value, devDefault]) => value === devDefault || value.length < 32);
+  if (unsafe.length) {
+    console.error(
+      `[api] refusing to start: set 32+ character values for ${unsafe.map(([name]) => name).join(', ')}`,
+    );
+    process.exit(1);
+  }
+  if (!env.adminEmail && !env.adminPassword) {
+    console.warn('[api] ADMIN_EMAIL/ADMIN_PASSWORD are unset: this database has no administrator until you seed one.');
+  }
+}
+
 // Open the JSON store (seeds on first run) and mount the API.
 const store = Store.open({ env, file: env.databaseFile || null });
 const app = createApp({ store, env });

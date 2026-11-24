@@ -24,6 +24,15 @@ describe('security boundaries', () => {
     expect(response.headers['access-control-allow-origin']).toBe('http://localhost:5173');
   });
 
+  it('allows every origin listed in WEB_ORIGIN', async () => {
+    const { api } = makeApp({ webOrigin: 'https://sabi.vercel.app, https://sabi.example.com' });
+    for (const origin of ['https://sabi.vercel.app', 'https://sabi.example.com']) {
+      const response = await api.get('/api/v1/health').set('Origin', origin);
+      expect(response.status).toBe(200);
+      expect(response.headers['access-control-allow-origin']).toBe(origin);
+    }
+  });
+
   it('rejects a token signed with another secret', async () => {
     const ctx = makeApp();
     const session = await loginLearner(ctx, '08055550601');
@@ -65,6 +74,32 @@ describe('security boundaries', () => {
     expect(response.body.profile.phone).toBe('08055550603');
     expect(response.body.profile.passwordHash).toBeUndefined();
     expect(response.body.exportedAt).toBeTruthy();
+  });
+
+  it('seeds content but no demo accounts or demo data in production', async () => {
+    const ctx = makeApp({ nodeEnv: 'production' });
+    expect(ctx.store.data.users).toHaveLength(0);
+    expect(ctx.store.data.paths.length).toBeGreaterThan(0);
+    expect(ctx.store.data.lessons.length).toBeGreaterThan(0);
+
+    const demo = await ctx.api
+      .post('/api/v1/auth/login')
+      .send({ email: 'admin@sabi.app', password: 'Admin123!' });
+    expect(demo.status).toBe(401);
+  });
+
+  it('creates the first administrator from ADMIN_EMAIL and ADMIN_PASSWORD in production', async () => {
+    const ctx = makeApp({
+      nodeEnv: 'production',
+      adminEmail: 'Owner@Sabi.app',
+      adminPassword: 'pilot-password-1234',
+    });
+    expect(ctx.store.data.users).toHaveLength(1);
+    const login = await ctx.api
+      .post('/api/v1/auth/login')
+      .send({ email: 'owner@sabi.app', password: 'pilot-password-1234' });
+    expect(login.status).toBe(200);
+    expect(login.body.user.role).toBe('ADMIN');
   });
 
   it('does not expose a development OTP code in production', async () => {

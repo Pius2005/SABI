@@ -37,9 +37,13 @@ export default function Certificate() {
           <Icon name="back" size={20} />
           <span>{t('action.back')}</span>
         </Link>
-        <Button onClick={() => window.print()} icon={<Icon name="printer" />}>
-          {t('certificate.print')}
-        </Button>
+        {complete ? (
+          <Button onClick={() => window.print()} icon={<Icon name="printer" />}>
+            {t('certificate.print')}
+          </Button>
+        ) : (
+          <span />
+        )}
       </div>
 
       {!complete ? (
@@ -54,40 +58,42 @@ export default function Certificate() {
         </Notice>
       ) : null}
 
-      <Card className="print-page relative overflow-hidden text-center">
-        <div className="pattern absolute inset-x-0 top-0 h-3" aria-hidden="true" />
-        <p className="eyebrow mt-4">{APP_NAME}</p>
-        <h1 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">{t('certificate.title')}</h1>
+      {complete ? (
+        <Card className="print-page relative overflow-hidden text-center">
+          <div className="pattern absolute inset-x-0 top-0 h-3" aria-hidden="true" />
+          <p className="eyebrow mt-4">{APP_NAME}</p>
+          <h1 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">{t('certificate.title')}</h1>
 
-        <div className="mx-auto my-6 flex h-24 w-24 items-center justify-center rounded-full border-4">
-          <Icon name="award" size={52} />
-        </div>
-
-        <p className="text-lg">{t('certificate.awarded')}</p>
-        <p className="mt-2 text-3xl font-bold">{user.displayName}</p>
-
-        <p className="mx-auto mt-4 max-w-md text-lg">
-          {tf('certificate.body', { path: data.title })}
-        </p>
-
-        <div className="mx-auto mt-8 grid max-w-md gap-3 text-left sm:grid-cols-2">
-          <div className="rounded-xl border-2 p-3">
-            <p className="eyebrow">{t('certificate.date')}</p>
-            <p className="mt-1 font-bold">{today}</p>
+          <div className="mx-auto my-6 flex h-24 w-24 items-center justify-center rounded-full border-4">
+            <Icon name="award" size={52} />
           </div>
-          <div className="rounded-xl border-2 p-3">
-            <p className="eyebrow">{t('common.lessons')}</p>
-            <p className="mt-1 font-bold">
-              {done} / {data.lessonCount}
-            </p>
-          </div>
-        </div>
 
-        <p className="mt-8 text-sm muted">
-          {APP_NAME} · {t('certificate.title')}
-        </p>
-        <div className="pattern absolute inset-x-0 bottom-0 h-3" aria-hidden="true" />
-      </Card>
+          <p className="text-lg">{t('certificate.awarded')}</p>
+          <p className="mt-2 text-3xl font-bold">{user.displayName}</p>
+
+          <p className="mx-auto mt-4 max-w-md text-lg">
+            {tf('certificate.body', { path: data.title })}
+          </p>
+
+          <div className="mx-auto mt-8 grid max-w-md gap-3 text-left sm:grid-cols-2">
+            <div className="rounded-xl border-2 p-3">
+              <p className="eyebrow">{t('certificate.date')}</p>
+              <p className="mt-1 font-bold">{today}</p>
+            </div>
+            <div className="rounded-xl border-2 p-3">
+              <p className="eyebrow">{t('common.lessons')}</p>
+              <p className="mt-1 font-bold">
+                {done} / {data.lessonCount}
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-8 text-sm muted">
+            {APP_NAME} · {t('certificate.title')}
+          </p>
+          <div className="pattern absolute inset-x-0 bottom-0 h-3" aria-hidden="true" />
+        </Card>
+      ) : null}
     </div>
   );
 }

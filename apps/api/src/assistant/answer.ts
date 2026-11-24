@@ -160,8 +160,6 @@ export async function answerQuestion(input: AnswerInput): Promise<AssistantReply
 
   let reply = '';
   let flagged: string | null = null;
-  let needsConfirm = false;
-  let confirmQuestion: string | null = null;
   let transcript = rawText;
 
   const crisis = detectCrisis(rawText);
@@ -181,8 +179,6 @@ export async function answerQuestion(input: AnswerInput): Promise<AssistantReply
     flagged = 'advice_redirect';
   } else if (!rawText) {
     reply = 'Please type your question again, or talk to a person.';
-    needsConfirm = true;
-    confirmQuestion = reply;
     flagged = 'low_confidence';
   } else {
     const { context } = retrieve(rawText, input.store);
@@ -237,8 +233,6 @@ export async function answerQuestion(input: AnswerInput): Promise<AssistantReply
     replyLang,
     confidence,
     reply,
-    needsConfirm,
-    confirmQuestion,
     promptVersion: PROMPT_VERSION,
     safety: { flagged, message: flagged === 'pii_attempt' ? SENSITIVE_REPLY : null },
   };

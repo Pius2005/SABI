@@ -26,6 +26,8 @@ export interface Env {
   jwtAccessSecret: string;
   jwtRefreshSecret: string;
   encryptionKey: string;
+  adminEmail: string;
+  adminPassword: string;
   llmProvider: string;
   llmApiKey: string;
   llmModel: string;
@@ -53,6 +55,8 @@ export function loadEnv(overrides: Partial<Env> = {}): Env {
     jwtAccessSecret: process.env.JWT_ACCESS_SECRET || 'dev-access-secret-change-me',
     jwtRefreshSecret: process.env.JWT_REFRESH_SECRET || 'dev-refresh-secret-change-me',
     encryptionKey: process.env.ENCRYPTION_KEY || 'dev-encryption-key-change-me',
+    adminEmail: process.env.ADMIN_EMAIL || '',
+    adminPassword: process.env.ADMIN_PASSWORD || '',
     llmProvider: process.env.LLM_PROVIDER || 'mock',
     llmApiKey: process.env.LLM_API_KEY || '',
     llmModel: process.env.LLM_MODEL || 'gpt-4o-mini',

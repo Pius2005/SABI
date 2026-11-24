@@ -32,8 +32,14 @@ export function createApp(ctx: AppContext) {
       crossOriginResourcePolicy: { policy: 'cross-origin' },
     }),
   );
+  // WEB_ORIGIN accepts a comma-separated list so the deployed frontend and a
+  // local dev server can both reach the API when they are hosted separately.
+  const configuredOrigins = env.webOrigin
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
   const origins = new Set([
-    env.webOrigin,
+    ...configuredOrigins,
     'http://localhost:5173',
     'http://127.0.0.1:5173',
     'http://localhost:4173',

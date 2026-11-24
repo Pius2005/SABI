@@ -103,8 +103,6 @@ export interface AssistantReply {
   replyLang: Lang;
   confidence: number;
   reply: string;
-  needsConfirm: boolean;
-  confirmQuestion: string | null;
   promptVersion: string;
   safety: { flagged: string | null; message: string | null };
 }

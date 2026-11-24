@@ -2,9 +2,10 @@
 FROM node:22-alpine
 
 WORKDIR /app
-ENV NODE_ENV=production
 
-# Install dependencies first so the layer is cached.
+# Install dependencies first so the layer is cached. This deliberately installs
+# dev dependencies too: the build needs Vite and TypeScript, and the API runs
+# through tsx. NODE_ENV is set to production only after the build.
 COPY package.json package-lock.json tsconfig.base.json ./
 COPY packages/shared/package.json packages/shared/
 COPY apps/api/package.json apps/api/
@@ -17,6 +18,7 @@ COPY . .
 # Build the PWA; the API serves apps/web/dist.
 RUN npm run build && chown -R node:node /app
 
+ENV NODE_ENV=production
 USER node
 EXPOSE 4100
 

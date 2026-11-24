@@ -122,7 +122,6 @@ export default function Privacy() {
         progress. We never ask for or keep your PIN, OTP, password, BVN, NIN or card details.
       </Notice>
 
-      <SectionTitle>{t('privacy.intro')}</SectionTitle>
       <div className="space-y-2">
         {CONSENTS.map((consent) => (
           <Toggle
@@ -140,7 +139,7 @@ export default function Privacy() {
       <Card>
         <ul className="list-disc space-y-2 pl-5">
           <li>Nothing you type is recorded as audio. There is no microphone in this app.</li>
-          <li>Questions are kept only if you turn on “Keep my words”.</li>
+          <li>Questions are kept only if you turn on “Keep my questions”.</li>
           <li>Progress is kept while your account is open.</li>
           <li>You can export or delete everything from this page.</li>
         </ul>

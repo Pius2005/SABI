@@ -151,6 +151,10 @@ export function seedDatabase(env: Env): DbData {
   db.scamExamples = scamExamples.map((s) => ({ ...s, id: s.id || crypto.randomUUID() }));
   db.glossary = glossary.map((g) => ({ ...g, id: g.id || crypto.randomUUID() }));
 
+  // A real deployment gets content only. Demo staff passwords, learners and
+  // their progress exist for development and must never reach production.
+  if (env.nodeEnv === 'production') return bootstrapProduction(db, env, now);
+
   const addUser = (input: {
     role: Role;
     name: string;
@@ -398,6 +402,34 @@ export function seedDatabase(env: Env): DbData {
     },
   );
 
+  return db;
+}
+
+function bootstrapProduction(db: DbData, env: Env, now: string): DbData {
+  if (!env.adminEmail && !env.adminPassword) return db;
+  if (!env.adminEmail || !env.adminPassword) {
+    throw new Error('Set both ADMIN_EMAIL and ADMIN_PASSWORD to create the first administrator.');
+  }
+  if (env.adminPassword.length < 12) {
+    throw new Error('ADMIN_PASSWORD must be at least 12 characters in production.');
+  }
+  db.users.push({
+    id: crypto.randomUUID(),
+    role: 'ADMIN',
+    phoneEnc: null,
+    phoneHash: null,
+    phoneMasked: null,
+    email: env.adminEmail.trim().toLowerCase(),
+    passwordHash: bcrypt.hashSync(env.adminPassword, 12),
+    displayName: `${env.appName} Admin`,
+    preferredLang: 'en',
+    textSize: 'large',
+    theme: 'light',
+    reduceMotion: false,
+    goalPathSlug: null,
+    createdAt: now,
+    deletedAt: null,
+  });
   return db;
 }
 

@@ -3,7 +3,12 @@ import { APP_TAGLINE as SHARED_TAGLINE } from '@sabi/shared';
 
 export const APP_NAME = (import.meta.env.VITE_APP_NAME || 'SABI').trim() || 'SABI';
 export const APP_TAGLINE = SHARED_TAGLINE;
-export const API_BASE = (import.meta.env.VITE_API_BASE || '/api/v1').replace(/\/$/, '');
+// A relative path keeps the API on the same origin (one process serves both).
+// An absolute URL lets the static web build be hosted elsewhere (for example
+// Vercel) while the API runs on its own host; set WEB_ORIGIN on the API to the
+// web origin so its CORS allow-list accepts the browser.
+const configuredApiBase = (import.meta.env.VITE_API_BASE || '').trim().replace(/\/+$/, '');
+export const API_BASE = configuredApiBase || '/api/v1';
 export const IS_DEV = Boolean(import.meta.env.DEV);
 export const IS_DEMO = IS_DEV;
 
