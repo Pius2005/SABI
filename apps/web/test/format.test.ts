@@ -45,6 +45,11 @@ describe('error messages', () => {
     expect(errorMessage(new ApiError(423, 'LOCKED', 'locked'), t)).toBe('t:auth.locked');
   });
 
+  it('keeps the API sentence for a wrong staff password', () => {
+    const message = errorMessage(new ApiError(401, 'INVALID_LOGIN', 'Email or password is not correct.'), t);
+    expect(message).toBe('Email or password is not correct.');
+  });
+
   it('fills in the resend countdown', () => {
     const message = errorMessage(new ApiError(429, 'RESEND_COOLDOWN', 'wait', 42), t);
     expect(message).toContain('42');

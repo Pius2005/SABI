@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
 import { useI18n } from '../lib/i18n';
 import { DEMO_STAFF, IS_DEMO, homeForRole } from '../lib/config';
+import { ApiError } from '../lib/api';
 import { errorMessage } from '../lib/format';
 import { Icon } from '../components/Icon';
 import { Button, LoadingPage, Notice, PageHeader, Toggle } from '../components/ui';
@@ -131,8 +132,14 @@ export default function Auth() {
         </button>
       </div>
 
+      {/* A wrong password is not a system failure; the API's sentence is the whole
+          message, so the generic "Something went wrong" heading is dropped. */}
       {errorText ? (
-        <Notice variant="error" title={t('common.error')} className="mb-4">
+        <Notice
+          variant="error"
+          title={error instanceof ApiError && error.code === 'INVALID_LOGIN' ? undefined : t('common.error')}
+          className="mb-4"
+        >
           <p>{errorText}</p>
         </Notice>
       ) : null}

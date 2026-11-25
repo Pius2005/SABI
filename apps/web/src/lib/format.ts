@@ -50,6 +50,11 @@ const CODE_TO_KEY: Record<string, string> = {
 export function errorMessage(error: unknown, t: Translate): string {
   if (error instanceof ApiError) {
     if (error.code === 'NETWORK') return t('errors.network');
+    // The API's own sentence for a bad email/password. Left to the generic 401
+    // wording below it reads "Please log in again", which is exactly what the
+    // reader was already doing. No translated key exists for it, so the server
+    // text is the honest source rather than an invented translation.
+    if (error.code === 'INVALID_LOGIN' && error.message) return error.message;
     const key = CODE_TO_KEY[error.code];
     if (key) {
       if (error.code === 'RESEND_COOLDOWN' && error.retryAfter) {
