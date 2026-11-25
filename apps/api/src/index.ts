@@ -20,6 +20,11 @@ if (env.nodeEnv === 'production') {
   if (!env.adminEmail && !env.adminPassword) {
     console.warn('[api] ADMIN_EMAIL/ADMIN_PASSWORD are unset: this database has no administrator until you seed one.');
   }
+  if (env.smsProvider !== 'termii' || !env.smsApiKey) {
+    console.warn(
+      '[api] SMS is not configured: set SMS_PROVIDER=termii and SMS_API_KEY, or learners cannot receive login codes.',
+    );
+  }
 }
 
 // Open the JSON store (seeds on first run) and mount the API.

@@ -69,8 +69,15 @@ export function createAuthRouter(store: Store, env: Env): Router {
 
       try {
         await getSmsProvider(env).send(phone, `Your ${env.appName} code is ${code}. It expires in 5 minutes. Never share it with anyone.`);
-      } catch {
-        // The code is still valid locally; the mock provider always succeeds.
+      } catch (error) {
+        // Nothing reached the phone, so do not keep a code the learner cannot
+        // read and do not claim it was sent. Dropping it also clears the
+        // cooldown, so a retry is allowed immediately.
+        store.data.otps = store.data.otps.filter((o) => o.phoneHash !== phoneHash);
+        store.save();
+        console.error(`[api] OTP delivery failed: ${(error as Error).message}`);
+        fail(res, 502, 'SMS_FAILED', 'We could not send the code. Please try again.');
+        return;
       }
 
       const devCode = env.nodeEnv !== 'production' && env.smsProvider === 'mock' ? code : undefined;

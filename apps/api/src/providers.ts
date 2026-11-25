@@ -38,14 +38,28 @@ class MockSms implements SmsProvider {
   }
 }
 
-class TermiiSms implements SmsProvider {
+/**
+ * Termii wants the international MSISDN (2348031234567), while the app stores
+ * numbers in local form (08031234567). Sending the local form is accepted by no
+ * gateway and silently fails to route, so convert here rather than at every
+ * call site.
+ */
+export function toMsisdn(raw: string): string {
+  const digits = String(raw ?? '').replace(/\D/g, '');
+  if (digits.startsWith('234') && digits.length >= 13) return digits;
+  if (digits.startsWith('0') && digits.length === 11) return `234${digits.slice(1)}`;
+  if (digits.length === 10) return `234${digits}`;
+  return digits;
+}
+
+export class TermiiSms implements SmsProvider {
   constructor(private env: Env) {}
   async send(to: string, body: string): Promise<void> {
     const res = await fetch('https://api.ng.termii.com/api/sms/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        to,
+        to: toMsisdn(to),
         from: this.env.smsSenderId,
         sms: body,
         type: 'plain',
@@ -53,7 +67,12 @@ class TermiiSms implements SmsProvider {
         api_key: this.env.smsApiKey,
       }),
     });
-    if (!res.ok) throw new Error(`SMS failed: ${res.status}`);
+    if (!res.ok) {
+      // The gateway explains itself (bad sender ID, no balance, unreachable
+      // number). Keep it for the server log; the learner never sees it.
+      const detail = await res.text().catch(() => '');
+      throw new Error(`SMS failed: ${res.status} ${detail.slice(0, 300)}`.trim());
+    }
   }
 }
 

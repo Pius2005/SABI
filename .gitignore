@@ -15,3 +15,6 @@ Thumbs.db
 docs/ASSISTANT_EVAL_REPORT.md
 
 .vercel
+
+# Local secret drop files (never committed)
+.secrets/
