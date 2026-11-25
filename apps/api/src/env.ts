@@ -65,9 +65,9 @@ export function loadEnv(overrides: Partial<Env> = {}): Env {
     smsProvider: process.env.SMS_PROVIDER || 'mock',
     smsApiKey: process.env.SMS_API_KEY || '',
     smsSenderId: process.env.SMS_SENDER_ID || 'SABI',
-    // Termii routes: `dnd` is the transactional path OTPs belong on, `generic`
-    // is promotional and drops DND numbers. Accounts without DND activation
-    // can fall back with SMS_CHANNEL=generic.
+    // SMS route: `dnd` is the transactional path OTPs belong on. `generic` is
+    // the promotional fallback for accounts without DND activation (Termii's
+    // `generic`, Sendchamp's `non_dnd`); it drops numbers on DND.
     smsChannel: process.env.SMS_CHANNEL || 'dnd',
     whatsappProvider: process.env.WHATSAPP_PROVIDER || 'mock',
     whatsappApiKey: process.env.WHATSAPP_API_KEY || '',

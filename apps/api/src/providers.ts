@@ -39,10 +39,10 @@ class MockSms implements SmsProvider {
 }
 
 /**
- * Termii wants the international MSISDN (2348031234567), while the app stores
- * numbers in local form (08031234567). Sending the local form is accepted by no
- * gateway and silently fails to route, so convert here rather than at every
- * call site.
+ * Every Nigerian gateway we use wants the international MSISDN
+ * (2348031234567), while the app stores numbers in local form (08031234567).
+ * Sending the local form is accepted by no gateway and silently fails to route,
+ * so convert here rather than at every call site.
  */
 export function toMsisdn(raw: string): string {
   const digits = String(raw ?? '').replace(/\D/g, '');
@@ -78,6 +78,45 @@ export class TermiiSms implements SmsProvider {
   }
 }
 
+/**
+ * Sendchamp is the free fallback: 50 SMS units on signup, no card. It takes the
+ * same MSISDN form as Termii, but its routes are named differently: `dnd` is
+ * the transactional route OTPs belong on and `non_dnd` is the promotional one.
+ */
+export class SendchampSms implements SmsProvider {
+  constructor(private env: Env) {}
+  async send(to: string, body: string): Promise<void> {
+    const res = await fetch('https://api.sendchamp.com/api/v1/sms/send', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${this.env.smsApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: [toMsisdn(to)],
+        message: body,
+        sender_name: this.env.smsSenderId,
+        route: this.env.smsChannel === 'generic' ? 'non_dnd' : 'dnd',
+      }),
+    });
+    const detail = await res.text().catch(() => '');
+    // Sendchamp reports some rejections (bad route, empty wallet) in the body
+    // while still answering 200, so a 2xx alone does not mean the message was
+    // accepted. Treat `status: "failed"` the same as an error status.
+    let failedInBody = false;
+    try {
+      const parsed = JSON.parse(detail) as { status?: string };
+      failedInBody = parsed.status === 'failed' || parsed.status === 'error';
+    } catch {
+      failedInBody = false;
+    }
+    if (!res.ok || failedInBody) {
+      throw new Error(`SMS failed: ${res.status} ${detail.slice(0, 300)}`.trim());
+    }
+  }
+}
+
 class MockWhatsApp implements WhatsAppProvider {
   async send(to: string, body: string): Promise<void> {
     console.log(`[mock-whatsapp] to ${to.replace(/\d(?=\d{4})/g, '*')}: ${body.slice(0, 40)}…`);
@@ -91,6 +130,7 @@ export function getLlmProvider(env: Env): LlmProvider | null {
 
 export function getSmsProvider(env: Env): SmsProvider {
   if (env.smsProvider === 'termii' && env.smsApiKey) return new TermiiSms(env);
+  if (env.smsProvider === 'sendchamp' && env.smsApiKey) return new SendchampSms(env);
   return new MockSms();
 }
 

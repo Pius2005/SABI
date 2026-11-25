@@ -82,7 +82,7 @@ provider keys.
 | `JWT_REFRESH_SECRET` | Refresh-token signing key | 32+ random characters |
 | `ENCRYPTION_KEY` | Phone encryption key | 32+ random characters; changing it makes stored phones unreadable |
 | `LLM_PROVIDER`, `LLM_API_KEY`, `LLM_MODEL`, `LLM_BASE_URL` | Written answers | `mock` without a key |
-| `SMS_PROVIDER`, `SMS_API_KEY`, `SMS_SENDER_ID` | OTP delivery | `mock` without a key |
+| `SMS_PROVIDER`, `SMS_API_KEY`, `SMS_SENDER_ID` | OTP delivery — `termii` or `sendchamp` | `mock` without a key |
 | `WHATSAPP_PROVIDER`, `WHATSAPP_API_KEY` | Family encouragement | `mock` without a key |
 | `NACE_API_KEY` | Drex help-request triage | Optional; local rules without it |
 | `TRANSCRIPT_RETENTION_DAYS` | Retention when consent is given | 30 |
@@ -105,7 +105,7 @@ Last full run on this machine:
 | Check | Result |
 | --- | --- |
 | `npm run typecheck` | Pass |
-| `npm test` | Pass — 76 API tests, 16 web tests (92 total) |
+| `npm test` | Pass — 87 API tests, 17 web tests (104 total) |
 | `npm run content:validate` | Pass — 6 paths, 40 lessons, 148 steps, 327 English strings, 20 scam examples, 30 glossary terms; warnings for untranslated yo/ig/pcm |
 | `npm run scam:eval` | Pass — 46/46 (100%) |
 | `npm run assistant:eval` | Pass — 50/50 |
@@ -134,8 +134,8 @@ These cannot be completed by code alone.
    the admin Translations tab. Do not set
    `ALLOW_UNREVIEWED_TRANSLATIONS=false` until review is complete, or learners
    will see English fallbacks.
-3. **Configure real providers.** Set `SMS_PROVIDER=termii` and
-   `SMS_API_KEY` for OTPs; set `LLM_PROVIDER=openai` and `LLM_API_KEY` for
+3. **Configure real providers.** Set `SMS_PROVIDER=termii` (or `sendchamp`)
+   and `SMS_API_KEY` for OTPs; set `LLM_PROVIDER=openai` and `LLM_API_KEY` for
    generated answers. Test both with a small group before the pilot. With mock
    providers the OTP is visible and answers come from the local bank.
 4. **Replace the JSON store for multi-instance production.** The JSON store is

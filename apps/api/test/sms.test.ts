@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Env } from '../src/env';
-import { TermiiSms, toMsisdn } from '../src/providers';
+import { SendchampSms, TermiiSms, getSmsProvider, toMsisdn } from '../src/providers';
 import { makeApp } from './helpers';
 
 const env = { smsApiKey: 'test-key', smsSenderId: 'Termii', smsChannel: 'dnd' } as Env;
@@ -60,10 +60,66 @@ describe('Termii SMS delivery', () => {
   });
 });
 
+describe('Sendchamp SMS delivery', () => {
+  const champEnv = { smsApiKey: 'champ-key', smsSenderId: 'SABI', smsChannel: 'dnd' } as Env;
+
+  it('is selected when SMS_PROVIDER=sendchamp and a key is present', () => {
+    expect(getSmsProvider({ smsProvider: 'sendchamp', smsApiKey: 'champ-key' } as Env)).toBeInstanceOf(SendchampSms);
+    expect(getSmsProvider({ smsProvider: 'sendchamp', smsApiKey: '' } as Env)).not.toBeInstanceOf(SendchampSms);
+  });
+
+  it('sends the MSISDN, bearer key and transactional route Sendchamp expects', async () => {
+    const calls: Array<{ url: string; headers: Record<string, string>; body: Record<string, unknown> }> = [];
+    vi.stubGlobal('fetch', async (url: string, init: { headers: Record<string, string>; body: string }) => {
+      calls.push({ url, headers: init.headers, body: JSON.parse(init.body) as Record<string, unknown> });
+      return new Response(JSON.stringify({ status: 'success', code: 200, data: { id: 'sms-1' } }), { status: 200 });
+    });
+
+    await new SendchampSms(champEnv).send('08031234567', 'Your SABI code is 123456.');
+
+    expect(calls).toHaveLength(1);
+    expect(calls[0]?.url).toBe('https://api.sendchamp.com/api/v1/sms/send');
+    expect(calls[0]?.headers.Authorization).toBe('Bearer champ-key');
+    expect(calls[0]?.body).toMatchObject({
+      to: ['2348031234567'],
+      message: 'Your SABI code is 123456.',
+      sender_name: 'SABI',
+      route: 'dnd',
+    });
+  });
+
+  it('maps the generic channel to Sendchamp\'s non_dnd route', async () => {
+    let body: Record<string, unknown> = {};
+    vi.stubGlobal('fetch', async (_url: string, init: { body: string }) => {
+      body = JSON.parse(init.body) as Record<string, unknown>;
+      return new Response(JSON.stringify({ status: 'success' }), { status: 200 });
+    });
+
+    await new SendchampSms({ ...champEnv, smsChannel: 'generic' } as Env).send('08031234567', 'hi');
+
+    expect(body.route).toBe('non_dnd');
+  });
+
+  it('reports an error status and a body-level failure to the caller', async () => {
+    vi.stubGlobal(
+      'fetch',
+      async () => new Response(JSON.stringify({ status: 'failed', message: 'Insufficient balance' }), { status: 400 }),
+    );
+    await expect(new SendchampSms(champEnv).send('08031234567', 'hi')).rejects.toThrow(/400.*Insufficient balance/);
+
+    // Sendchamp sometimes answers 200 while rejecting the message in the body.
+    vi.stubGlobal(
+      'fetch',
+      async () => new Response(JSON.stringify({ status: 'failed', message: 'Route not enabled' }), { status: 200 }),
+    );
+    await expect(new SendchampSms(champEnv).send('08031234567', 'hi')).rejects.toThrow(/Route not enabled/);
+  });
+});
+
 describe('OTP request when SMS cannot be delivered', () => {
-  it('tells the learner instead of pretending the code was sent', async () => {
+  it.each(['termii', 'sendchamp'])('%s: tells the learner instead of pretending the code was sent', async (provider) => {
     vi.stubGlobal('fetch', async () => new Response('gateway down', { status: 500 }));
-    const ctx = makeApp({ smsProvider: 'termii', smsApiKey: 'test-key' });
+    const ctx = makeApp({ smsProvider: provider, smsApiKey: 'test-key' });
     vi.spyOn(console, 'error').mockImplementation(() => undefined);
 
     const response = await ctx.api.post('/api/v1/auth/otp/request').send({ phone: '08055559999' });

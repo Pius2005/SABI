@@ -59,9 +59,10 @@ services:
       # Set to "false" once the content is approved.
       - key: ALLOW_UNREVIEWED_TRANSLATIONS
         value: "true"
-      # Providers. `mock` needs no key; set `openai` / `termii` and add the key
-      # to switch. SMS_PROVIDER=mock in production sends nothing, so a real
-      # Termii key is required before learners can sign in with a phone number.
+      # Providers. `mock` needs no key; set `openai` / `termii` / `sendchamp`
+      # and add the key to switch. SMS_PROVIDER=mock in production sends
+      # nothing, so a real gateway key is required before learners can sign in
+      # with a phone number. Sendchamp is the free fallback (50 SMS units).
       - key: LLM_PROVIDER
         value: mock
       - key: LLM_API_KEY
@@ -69,14 +70,18 @@ services:
       - key: LLM_MODEL
         value: gpt-4o-mini
       - key: SMS_PROVIDER
-        value: mock
+        value: sendchamp
       - key: SMS_API_KEY
         sync: false
+      # `Sendchamp` is the default sender every account can use without
+      # approval. Replace with your own approved Sender ID once it is live
+      # (SMS > Sender ID in the Sendchamp dashboard).
       - key: SMS_SENDER_ID
-        value: SABI
-      # Termii route. `dnd` is the transactional path OTPs belong on; accounts
-      # without DND activation can try `generic` (promotional: no delivery to
-      # numbers on DND, and MTN blocks it between 8pm and 8am).
+        value: Sendchamp
+      # SMS route. `dnd` is the transactional path OTPs belong on (Termii
+      # `dnd`, Sendchamp `dnd`); accounts without DND activation can try
+      # `generic` (promotional: no delivery to numbers on DND, and MTN blocks
+      # it between 8pm and 8am).
       - key: SMS_CHANNEL
         value: dnd
       - key: NACE_API_KEY
