@@ -74,6 +74,11 @@ services:
         sync: false
       - key: SMS_SENDER_ID
         value: SABI
+      # Termii route. `dnd` is the transactional path OTPs belong on; accounts
+      # without DND activation can try `generic` (promotional: no delivery to
+      # numbers on DND, and MTN blocks it between 8pm and 8am).
+      - key: SMS_CHANNEL
+        value: dnd
       - key: NACE_API_KEY
         sync: false
     # No `disk:` block: the free plan does not support persistent disks.

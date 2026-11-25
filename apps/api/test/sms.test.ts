@@ -3,7 +3,7 @@ import type { Env } from '../src/env';
 import { TermiiSms, toMsisdn } from '../src/providers';
 import { makeApp } from './helpers';
 
-const env = { smsApiKey: 'test-key', smsSenderId: 'Termii' } as Env;
+const env = { smsApiKey: 'test-key', smsSenderId: 'Termii', smsChannel: 'dnd' } as Env;
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -33,9 +33,21 @@ describe('Termii SMS delivery', () => {
       from: 'Termii',
       sms: 'Your SABI code is 123456.',
       type: 'plain',
-      channel: 'generic',
+      channel: 'dnd',
       api_key: 'test-key',
     });
+  });
+
+  it('honours an explicit generic channel for accounts without DND', async () => {
+    const sent: Array<Record<string, unknown>> = [];
+    vi.stubGlobal('fetch', async (_url: string, init: { body: string }) => {
+      sent.push(JSON.parse(init.body) as Record<string, unknown>);
+      return new Response('{}', { status: 200 });
+    });
+
+    await new TermiiSms({ ...env, smsChannel: 'generic' } as Env).send('08031234567', 'hi');
+
+    expect(sent[0]?.channel).toBe('generic');
   });
 
   it('reports a rejected message to the caller', async () => {

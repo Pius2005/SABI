@@ -35,6 +35,7 @@ export interface Env {
   smsProvider: string;
   smsApiKey: string;
   smsSenderId: string;
+  smsChannel: string;
   whatsappProvider: string;
   whatsappApiKey: string;
   naceApiKey: string;
@@ -64,6 +65,10 @@ export function loadEnv(overrides: Partial<Env> = {}): Env {
     smsProvider: process.env.SMS_PROVIDER || 'mock',
     smsApiKey: process.env.SMS_API_KEY || '',
     smsSenderId: process.env.SMS_SENDER_ID || 'SABI',
+    // Termii routes: `dnd` is the transactional path OTPs belong on, `generic`
+    // is promotional and drops DND numbers. Accounts without DND activation
+    // can fall back with SMS_CHANNEL=generic.
+    smsChannel: process.env.SMS_CHANNEL || 'dnd',
     whatsappProvider: process.env.WHATSAPP_PROVIDER || 'mock',
     whatsappApiKey: process.env.WHATSAPP_API_KEY || '',
     naceApiKey: process.env.NACE_API_KEY || '',

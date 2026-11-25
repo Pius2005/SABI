@@ -63,7 +63,9 @@ export class TermiiSms implements SmsProvider {
         from: this.env.smsSenderId,
         sms: body,
         type: 'plain',
-        channel: 'generic',
+        // OTPs belong on the transactional route; Termii warns that the
+        // generic one drops numbers on DND and is blocked on MTN at night.
+        channel: this.env.smsChannel === 'generic' ? 'generic' : 'dnd',
         api_key: this.env.smsApiKey,
       }),
     });
