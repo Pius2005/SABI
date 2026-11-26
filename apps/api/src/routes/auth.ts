@@ -17,6 +17,10 @@ const staffAttempts = new Map<string, { count: number; until: number }>();
 
 export function createAuthRouter(store: Store, env: Env): Router {
   const router = Router();
+  // Demo mode: skip the gateway entirely and return the code to the browser so
+  // the page can show it. The local mock provider also returns it, but only
+  // outside production; this flag is the deliberate, documented switch.
+  const demoOtp = env.demoOtp;
 
   router.post('/auth/otp/request', async (req, res) => {
     try {
@@ -67,20 +71,23 @@ export function createAuthRouter(store: Store, env: Env): Router {
       }
       store.save();
 
-      try {
-        await getSmsProvider(env).send(phone, `Your ${env.appName} code is ${code}. It expires in 5 minutes. Never share it with anyone.`);
-      } catch (error) {
-        // Nothing reached the phone, so do not keep a code the learner cannot
-        // read and do not claim it was sent. Dropping it also clears the
-        // cooldown, so a retry is allowed immediately.
-        store.data.otps = store.data.otps.filter((o) => o.phoneHash !== phoneHash);
-        store.save();
-        console.error(`[api] OTP delivery failed: ${(error as Error).message}`);
-        fail(res, 502, 'SMS_FAILED', 'We could not send the code. Please try again.');
-        return;
+      if (!demoOtp) {
+        try {
+          await getSmsProvider(env).send(phone, `Your ${env.appName} code is ${code}. It expires in 5 minutes. Never share it with anyone.`);
+        } catch (error) {
+          // Nothing reached the phone, so do not keep a code the learner cannot
+          // read and do not claim it was sent. Dropping it also clears the
+          // cooldown, so a retry is allowed immediately.
+          store.data.otps = store.data.otps.filter((o) => o.phoneHash !== phoneHash);
+          store.save();
+          console.error(`[api] OTP delivery failed: ${(error as Error).message}`);
+          fail(res, 502, 'SMS_FAILED', 'We could not send the code. Please try again.');
+          return;
+        }
       }
 
-      const devCode = env.nodeEnv !== 'production' && env.smsProvider === 'mock' ? code : undefined;
+      const devCode =
+        demoOtp || (env.nodeEnv !== 'production' && env.smsProvider === 'mock') ? code : undefined;
       res.json({ ok: true, resendIn: 60, devCode });
     } catch (error) {
       if (!handleZod(res, error)) fail(res, 500, 'ERROR', 'Could not send the code.');

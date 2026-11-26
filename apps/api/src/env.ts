@@ -36,6 +36,7 @@ export interface Env {
   smsApiKey: string;
   smsSenderId: string;
   smsChannel: string;
+  demoOtp: boolean;
   whatsappProvider: string;
   whatsappApiKey: string;
   naceApiKey: string;
@@ -69,6 +70,10 @@ export function loadEnv(overrides: Partial<Env> = {}): Env {
     // the promotional fallback for accounts without DND activation (Termii's
     // `generic`, Sendchamp's `non_dnd`); it drops numbers on DND.
     smsChannel: process.env.SMS_CHANNEL || 'dnd',
+    // Demo mode: hand the login code straight back to the browser instead of
+    // paying a gateway to deliver it. No SMS is sent, so it works with an empty
+    // wallet. Meant for a demo only: anyone can sign in as any phone number.
+    demoOtp: bool(process.env.DEMO_OTP, false),
     whatsappProvider: process.env.WHATSAPP_PROVIDER || 'mock',
     whatsappApiKey: process.env.WHATSAPP_API_KEY || '',
     naceApiKey: process.env.NACE_API_KEY || '',

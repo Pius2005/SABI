@@ -56,8 +56,9 @@ unless real keys are configured.
 - 60-second resend cooldown, 5-minute code expiry, 15-minute lockout after 5
   wrong attempts.
 - Response: `{ "ok": true, "resendIn": 60, "devCode": "123456" }`.
-- `devCode` is only present when `NODE_ENV !== "production"` **and**
-  `SMS_PROVIDER=mock`. It is never returned with a real SMS provider.
+- `devCode` is present when `DEMO_OTP=true` (demo mode: no SMS is sent and the
+  page shows the code), or outside production while `SMS_PROVIDER=mock`.
+  With a real SMS provider and `DEMO_OTP` off it is never returned.
 
 ### `POST /auth/otp/verify`
 

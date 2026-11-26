@@ -113,6 +113,32 @@ describe('security boundaries', () => {
     expect(config.body.demo).toBe(false);
   });
 
+  it('demo mode returns the code and never calls the SMS gateway', async () => {
+    const realFetch = globalThis.fetch;
+    let gatewayCalls = 0;
+    globalThis.fetch = (async () => {
+      gatewayCalls += 1;
+      throw new Error('network disabled in this test');
+    }) as typeof fetch;
+    try {
+      const ctx = makeApp({ nodeEnv: 'production', demoOtp: true, smsProvider: 'sendchamp', smsApiKey: 'test-key' });
+      const response = await ctx.api.post('/api/v1/auth/otp/request').send({ phone: '08055550608' });
+      expect(response.status).toBe(200);
+      expect(response.body.devCode).toMatch(/^\d{6}$/);
+      expect(gatewayCalls).toBe(0);
+
+      const verified = await ctx.api.post('/api/v1/auth/otp/verify').send({
+        phone: '08055550608',
+        code: response.body.devCode,
+        agree: true,
+      });
+      expect(verified.status).toBe(200);
+      expect(verified.body.accessToken).toBeTruthy();
+    } finally {
+      globalThis.fetch = realFetch;
+    }
+  });
+
   it('throttles repeated OTP requests for the same number', async () => {
     const ctx = makeApp();
     const first = await ctx.api.post('/api/v1/auth/otp/request').send({ phone: '08055550605' });

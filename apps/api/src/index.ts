@@ -20,7 +20,11 @@ if (env.nodeEnv === 'production') {
   if (!env.adminEmail && !env.adminPassword) {
     console.warn('[api] ADMIN_EMAIL/ADMIN_PASSWORD are unset: this database has no administrator until you seed one.');
   }
-  if (!['termii', 'sendchamp'].includes(env.smsProvider) || !env.smsApiKey) {
+  if (env.demoOtp) {
+    console.warn(
+      '[api] DEMO_OTP is on: login codes are shown on screen and no SMS is sent. Anyone who knows a phone number can sign in with it — turn this off before real learners.',
+    );
+  } else if (!['termii', 'sendchamp'].includes(env.smsProvider) || !env.smsApiKey) {
     console.warn(
       '[api] SMS is not configured: set SMS_PROVIDER=termii or sendchamp and SMS_API_KEY, or learners cannot receive login codes.',
     );

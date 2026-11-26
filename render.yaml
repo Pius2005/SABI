@@ -60,9 +60,13 @@ services:
       - key: ALLOW_UNREVIEWED_TRANSLATIONS
         value: "true"
       # Providers. `mock` needs no key; set `openai` / `termii` / `sendchamp`
-      # and add the key to switch. SMS_PROVIDER=mock in production sends
-      # nothing, so a real gateway key is required before learners can sign in
-      # with a phone number. Sendchamp is the free fallback (50 SMS units).
+      # and add the key to switch. Sendchamp is the free SMS option (50 units
+      # on signup, then paid per message). As of now its wallet is empty, so
+      # this deployment runs the login code in demo mode instead: the code is
+      # shown on the sign-in page and no SMS is sent. Set DEMO_OTP=false once
+      # the gateway is funded and an approved Sender ID is in place.
+      - key: DEMO_OTP
+        value: "true"
       - key: LLM_PROVIDER
         value: mock
       - key: LLM_API_KEY

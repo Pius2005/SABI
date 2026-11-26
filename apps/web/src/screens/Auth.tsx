@@ -233,9 +233,9 @@ export default function Auth() {
               </div>
 
               {devCode ? (
-                <Notice variant="warning" title="Demo code">
+                <Notice variant="warning" title="Demo mode — no SMS is sent">
                   <p className="text-2xl font-bold tracking-widest">{devCode}</p>
-                  <p className="mt-1 text-sm">Shown only because the mock SMS provider is active in development.</p>
+                  <p className="mt-1 text-sm">Type this code to sign in. It is shown here because this demo does not send real text messages.</p>
                 </Notice>
               ) : null}
 
